@@ -337,7 +337,12 @@ function switchView(view, el){
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active', v.dataset.view===view));
 }
 
+// 全局股票数据缓存，供K线点击使用
+const _stockCache = {};
+
 function stockCard(s){
+  // 缓存股票数据
+  _stockCache[s.code] = s;
   const changePct = s.change_pct != null ? s.change_pct : s.deviation;
   const cc = devCls(changePct);
   const dc = devCls(s.deviation);
@@ -347,7 +352,7 @@ function stockCard(s){
   if(s.status==='breakout_up') streak=`<div class="card-streak up">站上第${s.above_streak}天</div>`;
   else if(s.status==='above'&&s.above_streak>1) streak=`<div class="card-streak up">连续${s.above_streak}天</div>`;
   else if(s.status.startsWith('below')) streak=`<div class="card-streak down">跌破第${s.below_streak}天</div>`;
-  return `<div class="stock-card card-${s.status}" onclick="openKline('${s.code}','${s.name}',${JSON.stringify(s)})" style="cursor:pointer">
+  return `<div class="stock-card card-${s.status}" onclick="openKlineByCode('${s.code}')" style="cursor:pointer">
     ${alertBadge}
     <div class="card-name">${s.name}</div>
     <div class="card-code">${s.code}</div>
@@ -516,6 +521,12 @@ function getMarket(code){
   if(code.startsWith('6')) return 'sh';
   if(code.startsWith('9')) return 'bj';
   return 'sz';
+}
+
+function openKlineByCode(code){
+  const stockData = _stockCache[code];
+  const name = stockData ? stockData.name : code;
+  openKline(code, name, stockData);
 }
 
 async function openKline(code, name, stockData){
