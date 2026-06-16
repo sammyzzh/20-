@@ -92,7 +92,11 @@
   .card-code{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:8px;}
   .card-row{display:flex;justify-content:space-between;align-items:flex-end;}
   .card-close{font-family:var(--mono);font-size:15px;font-weight:500;}
-  .card-dev{font-family:var(--mono);font-size:12px;font-weight:600;}
+  .card-change{font-family:var(--mono);font-size:14px;font-weight:600;}
+  .card-change.pos{color:var(--green);}.card-change.neg{color:var(--red);}.card-change.neu{color:var(--muted);}
+  .card-dev-row{display:flex;justify-content:space-between;align-items:center;margin-top:4px;}
+  .card-dev-label{font-size:10px;color:var(--muted);}
+  .card-dev{font-family:var(--mono);font-size:11px;font-weight:500;}
   .card-dev.pos{color:var(--green);}.card-dev.neg{color:var(--red);}.card-dev.neu{color:var(--muted);}
   .card-streak{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:5px;}
   .card-streak.up{color:#57ab6e;}.card-streak.down{color:#c9504a;}
@@ -318,6 +322,8 @@ function switchView(view, el){
 }
 
 function stockCard(s){
+  const changePct = s.change_pct != null ? s.change_pct : s.deviation;
+  const cc = devCls(changePct);
   const dc = devCls(s.deviation);
   const alertBadge = s.deviation_alert
     ? `<div class="card-dev-badge ${s.deviation_alert}">${s.deviation_alert==='strong'?'⚡±50%':'▲±30%'}</div>` : '';
@@ -331,6 +337,10 @@ function stockCard(s){
     <div class="card-code">${s.code}</div>
     <div class="card-row">
       <div class="card-close">${fmt(s.close)}</div>
+      <div class="card-change ${cc}">${fmtDev(changePct)}</div>
+    </div>
+    <div class="card-dev-row">
+      <div class="card-dev-label">偏离均线</div>
       <div class="card-dev ${dc}">${fmtDev(s.deviation)}</div>
     </div>
     ${streak}
