@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
 强势板块选股系统 - 数据抓取脚本
-每日收盘后（16:10）由 GitHub Actions 自动触发
-数据来源：新浪财经（K线）+ 同花顺（板块指数/成分股）
+数据来源：腾讯财经前复权K线（沪深创科） + 新浪财经（北交所兜底）+ 同花顺（板块指数/成分股）
 """
 
 import requests
@@ -27,9 +26,10 @@ THS_HEADERS = {
     "Referer": "https://q.10jqka.com.cn/",
 }
 SINA_HEADERS = {"Referer": "https://finance.sina.com.cn"}
+QQ_HEADERS   = {"Referer": "https://finance.qq.com"}
 
 
-def get_stock_market(code):
+def get_market(code):
     if code.startswith('6'):   return 'sh'
     elif code.startswith('9'): return 'bj'
     else:                      return 'sz'
@@ -81,9 +81,34 @@ def fetch_sector_index(ths_index_name):
         return []
 
 
-def fetch_stock_kline(code, n=60):
-    """从新浪财经拉取日线K线"""
-    market = get_stock_market(code)
+def fetch_stock_kline_qq(code, n=60):
+    """腾讯财经前复权日K线（沪深创科板）"""
+    market = get_market(code)
+    url = f"https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param={market}{code},day,,,{n},qfq"
+    try:
+        r = requests.get(url, headers=QQ_HEADERS, timeout=10)
+        data = r.json()
+        key = f"{market}{code}"
+        klines = data['data'][key].get('qfqday', [])
+        if not klines:
+            return []
+        rows = []
+        for k in klines:
+            try:
+                rows.append({
+                    'date':  k[0].replace('-', ''),
+                    'close': float(k[2]),
+                })
+            except:
+                pass
+        return rows
+    except:
+        return []
+
+
+def fetch_stock_kline_sina(code, n=60):
+    """新浪财经日K线（北交所兜底）"""
+    market = get_market(code)
     url = f"https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol={market}{code}&scale=240&ma=no&datalen={n}"
     try:
         r = requests.get(url, headers=SINA_HEADERS, timeout=10)
@@ -92,15 +117,24 @@ def fetch_stock_kline(code, n=60):
         for d in data:
             try:
                 rows.append({
-                    "date":  d["day"].replace("-", ""),
-                    "open":  float(d["open"]),
-                    "close": float(d["close"]),
+                    'date':  d['day'].replace('-', ''),
+                    'close': float(d['close']),
                 })
             except:
                 pass
         return rows
     except:
         return []
+
+
+def fetch_stock_kline(code, n=60):
+    """优先用腾讯（前复权），北交所用新浪兜底"""
+    if code.startswith('9'):
+        return fetch_stock_kline_sina(code, n)
+    rows = fetch_stock_kline_qq(code, n)
+    if rows:
+        return rows
+    return fetch_stock_kline_sina(code, n)
 
 
 def classify_stock(kline_rows):
@@ -124,13 +158,10 @@ def classify_stock(kline_rows):
 
     ma20_today = float(np.mean(closes[-20:]))
     close_today = closes[-1]
+    prev_close  = closes[-2] if len(closes) >= 2 else close_today
 
-    # 乖离率：相对20日均线
-    deviation = round((close_today - ma20_today) / ma20_today * 100, 2)
-
-    # 涨跌幅：今日收盘 vs 昨日收盘
-    prev_close = closes[-2] if len(closes) >= 2 else close_today
-    change_pct = round((close_today - prev_close) / prev_close * 100, 2)
+    deviation   = round((close_today - ma20_today) / ma20_today * 100, 2)
+    change_pct  = round((close_today - prev_close) / prev_close * 100, 2)
 
     below_streak = 0
     for s in reversed(history):
@@ -163,8 +194,8 @@ def classify_stock(kline_rows):
         "status":     status,
         "ma20":       round(ma20_today, 3),
         "close":      round(close_today, 3),
-        "change_pct": change_pct,   # 今日涨跌幅
-        "deviation":  deviation,    # 偏离20日均线幅度
+        "change_pct": change_pct,
+        "deviation":  deviation,
         "above_streak": above_streak,
         "below_streak": below_streak,
     }
@@ -177,7 +208,7 @@ def deviation_alert(deviation):
 
 
 def main():
-    now_beijing = datetime.utcnow() + timedelta(hours=8)
+    now_beijing  = datetime.utcnow() + timedelta(hours=8)
     today_beijing = now_beijing.date()
 
     print(f"=== 强势选股系统 {now_beijing.strftime('%Y-%m-%d %H:%M')} (北京时间) ===")
@@ -185,7 +216,7 @@ def main():
     output = {
         "updated_at": now_beijing.strftime("%Y-%m-%d %H:%M"),
         "trade_date": today_beijing.strftime("%Y-%m-%d"),
-        "sectors": [],
+        "sectors":    [],
         "deviation_alerts": [],
     }
 
@@ -194,9 +225,9 @@ def main():
 
         sector_closes = fetch_sector_index(sector["ths_index"])
         if len(sector_closes) >= 20:
-            ma20 = float(np.mean(sector_closes[-20:]))
+            ma20  = float(np.mean(sector_closes[-20:]))
             close = sector_closes[-1]
-            dev = (close - ma20) / ma20 * 100
+            dev   = (close - ma20) / ma20 * 100
             sector_status = "bullish" if close > ma20 * 1.03 else ("bearish" if close < ma20 * 0.97 else "tangle")
             sector_ma20, sector_close, sector_dev = round(ma20, 2), round(close, 2), round(dev, 2)
         else:
@@ -208,7 +239,7 @@ def main():
 
         stocks_result = []
         for i, s in enumerate(stocks_raw):
-            kline = fetch_stock_kline(s["code"])
+            kline  = fetch_stock_kline(s["code"])
             result = classify_stock(kline)
             if result is None:
                 continue
@@ -217,9 +248,13 @@ def main():
             stocks_result.append(stock_data)
             if alert:
                 output["deviation_alerts"].append({
-                    "sector": sector["name"], "code": s["code"], "name": s["name"],
-                    "deviation": result["deviation"], "alert": alert,
-                    "close": result["close"], "ma20": result["ma20"],
+                    "sector":    sector["name"],
+                    "code":      s["code"],
+                    "name":      s["name"],
+                    "deviation": result["deviation"],
+                    "alert":     alert,
+                    "close":     result["close"],
+                    "ma20":      result["ma20"],
                 })
             if (i + 1) % 10 == 0:
                 print(f"    {i+1}/{len(stocks_raw)}")
@@ -230,11 +265,15 @@ def main():
             sc[s["status"]] = sc.get(s["status"], 0) + 1
 
         output["sectors"].append({
-            "name": sector["name"], "ths_code": sector["ths_code"],
-            "status": sector_status, "ma20": sector_ma20,
-            "close": sector_close, "deviation": sector_dev,
-            "stock_count": len(stocks_result), "status_counts": sc,
-            "stocks": stocks_result,
+            "name":          sector["name"],
+            "ths_code":      sector["ths_code"],
+            "status":        sector_status,
+            "ma20":          sector_ma20,
+            "close":         sector_close,
+            "deviation":     sector_dev,
+            "stock_count":   len(stocks_result),
+            "status_counts": sc,
+            "stocks":        stocks_result,
         })
         print(f"  状态分布: {sc}")
 
