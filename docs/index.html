@@ -18,54 +18,28 @@
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;min-height:100vh;}
-
   header{border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:stretch;justify-content:space-between;position:sticky;top:0;z-index:100;background:var(--bg);}
   .logo{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--text);letter-spacing:.04em;display:flex;align-items:center;gap:8px;}
   .logo span{color:var(--blue);}
   .header-right{display:flex;align-items:center;gap:12px;}
   .meta{font-family:var(--mono);font-size:11px;color:var(--muted);}
   .meta b{color:var(--text);}
-
-  /* 刷新按钮 */
-  .refresh-btn{
-    display:flex;align-items:center;gap:6px;
-    padding:5px 14px;border-radius:6px;
-    border:1px solid var(--border);background:var(--bg2);
-    color:var(--text);font-size:12px;font-family:var(--sans);
-    cursor:pointer;transition:all .15s;white-space:nowrap;
-  }
+  .refresh-btn{display:flex;align-items:center;gap:6px;padding:5px 14px;border-radius:6px;border:1px solid var(--border);background:var(--bg2);color:var(--text);font-size:12px;font-family:var(--sans);cursor:pointer;transition:all .15s;white-space:nowrap;}
   .refresh-btn:hover{border-color:var(--blue);color:var(--blue);}
   .refresh-btn:disabled{opacity:.45;cursor:not-allowed;border-color:var(--border);color:var(--muted);}
   .refresh-btn.running{border-color:var(--yellow);color:var(--yellow);}
   .refresh-btn.done{border-color:var(--green);color:var(--green);}
   .spin{display:inline-block;animation:spin .8s linear infinite;}
   @keyframes spin{to{transform:rotate(360deg);}}
-
-  /* 进度提示条 */
-  .progress-bar{
-    position:fixed;top:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg,var(--blue),var(--green));
-    transform:scaleX(0);transform-origin:left;
-    transition:transform .4s ease;z-index:200;
-  }
+  .progress-bar{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--green));transform:scaleX(0);transform-origin:left;z-index:200;}
   .progress-bar.active{animation:progress 180s linear forwards;}
   @keyframes progress{to{transform:scaleX(0.95);}}
   .progress-bar.done{transform:scaleX(1);transition:transform .3s ease;}
-
-  /* 状态提示 */
-  .status-toast{
-    position:fixed;bottom:20px;right:20px;
-    background:var(--bg2);border:1px solid var(--border);
-    border-radius:8px;padding:12px 16px;
-    font-size:13px;color:var(--text);
-    box-shadow:0 4px 20px #0008;
-    display:none;z-index:300;max-width:300px;
-  }
+  .status-toast{position:fixed;bottom:20px;right:20px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--text);box-shadow:0 4px 20px #0008;display:none;z-index:300;max-width:300px;}
   .status-toast.show{display:block;}
   .status-toast.yellow{border-color:var(--yellow);}
   .status-toast.green{border-color:var(--green);}
   .status-toast.red{border-color:var(--red);}
-
   nav{display:flex;align-items:stretch;border-bottom:1px solid var(--border);padding:0 24px;overflow-x:auto;}
   .tab{padding:10px 18px;font-size:13px;font-weight:500;color:var(--muted);border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;user-select:none;}
   .tab:hover{color:var(--text);}
@@ -73,10 +47,8 @@
   .tab-badge{display:inline-block;font-family:var(--mono);font-size:10px;padding:1px 5px;border-radius:8px;background:var(--bg3);color:var(--muted);margin-left:5px;vertical-align:middle;}
   .tab-badge.orange{background:var(--orange-dim);color:var(--orange);}
   .tab-sep{width:1px;background:var(--border);margin:8px 0;flex-shrink:0;}
-
   main{padding:24px;max-width:1440px;margin:0 auto;}
   .view{display:none;}.view.active{display:block;}
-
   .sector-overview{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:28px;}
   .overview-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;cursor:pointer;transition:border-color .15s,transform .1s;}
   .overview-card:hover{border-color:var(--blue);transform:translateY(-1px);}
@@ -96,12 +68,10 @@
   .ov-count-pill.strong{background:#0d1f14;color:#57ab6e;}
   .ov-count-pill.tangle{background:var(--yellow-dim);color:var(--yellow);}
   .ov-count-pill.down{background:var(--red-dim);color:var(--red);}
-
   .sector-detail-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border);}
   .sdh-name{font-size:20px;font-weight:700;}
   .sdh-index{font-family:var(--mono);font-size:12px;color:var(--muted);margin-left:auto;text-align:right;}
   .sdh-index b{color:var(--text);}
-
   .status-groups{display:flex;flex-direction:column;gap:24px;}
   .group-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
   .group-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
@@ -109,7 +79,6 @@
   .group-count{font-family:var(--mono);font-size:11px;padding:1px 7px;border-radius:10px;background:var(--bg3);color:var(--muted);}
   .group-line{flex:1;height:1px;background:var(--border);}
   .group-desc{font-size:11px;color:var(--muted);}
-
   .stocks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:8px;}
   .stock-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:12px 14px;position:relative;overflow:hidden;transition:border-color .15s,transform .1s;}
   .stock-card:hover{border-color:#444c56;transform:translateY(-1px);}
@@ -130,7 +99,6 @@
   .card-dev-badge{position:absolute;top:6px;right:6px;font-size:9px;font-weight:700;padding:1px 4px;border-radius:3px;}
   .card-dev-badge.strong{background:var(--orange-dim);color:var(--orange);}
   .card-dev-badge.warn{background:var(--yellow-dim);color:var(--yellow);}
-
   .dev-toolbar{display:flex;gap:8px;margin-bottom:18px;align-items:center;}
   .dev-filter-btn{padding:5px 14px;border-radius:5px;font-size:12px;font-weight:500;border:1px solid var(--border);background:var(--bg2);color:var(--muted);cursor:pointer;transition:all .15s;}
   .dev-filter-btn:hover{color:var(--text);border-color:#555;}
@@ -149,11 +117,9 @@
   .dev-label.strong{background:var(--orange-dim);color:var(--orange);}
   .dev-label.warn{background:var(--yellow-dim);color:var(--yellow);}
   .dev-empty{padding:48px 0;text-align:center;color:var(--muted);font-size:13px;}
-
   #loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 0;gap:14px;color:var(--muted);}
   .spinner{width:26px;height:26px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;}
   .error-box{padding:60px 0;text-align:center;color:var(--muted);}
-
   @media(max-width:640px){main{padding:14px;}nav,header{padding:0 14px;}.stocks-grid{grid-template-columns:repeat(auto-fill,minmax(148px,1fr));}}
 </style>
 </head>
@@ -166,12 +132,12 @@
   <div class="header-right">
     <div class="meta" id="update-meta">加载中...</div>
     <button class="refresh-btn" id="refresh-btn" onclick="triggerRefresh()">
-      <span id="refresh-icon">↻</span> 刷新数据
+      <span id="refresh-icon">↻</span><span id="refresh-text"> 刷新数据</span>
     </button>
   </div>
 </header>
 
-<nav id="main-nav">
+<nav>
   <div class="tab active" data-view="sectors" onclick="switchView('sectors',this)">板块扫描</div>
   <div class="tab-sep"></div>
   <div class="tab" data-view="deviation" onclick="switchView('deviation',this)">
@@ -187,12 +153,9 @@
 
 <script>
 // ══════════════════════════════════════════
-// ⚙️ 配置区 — 填入你的信息
+// 配置
 // ══════════════════════════════════════════
-const GITHUB_TOKEN = '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';   // ghp_ 开头
-const GITHUB_OWNER = 'sammyzzh';
-const GITHUB_REPO  = '20-';
-const WORKFLOW_ID  = 'daily_update.yml';
+const WORKER_URL = 'https://stock-trigger.sammyzzh.workers.dev';
 // ══════════════════════════════════════════
 
 const STATUS_ORDER = ['breakout_up','above','tangle','below_d1','below_d2'];
@@ -210,12 +173,11 @@ let _devFilter = 'all';
 let _polling = null;
 let _refreshing = false;
 
-// ── 工具函数 ──
 function fmtDev(v){ return (v>=0?'+':'')+v.toFixed(2)+'%'; }
 function devCls(v){ return v>0.5?'pos':v<-0.5?'neg':'neu'; }
 function fmt(n,d=2){ return n==null?'--':Number(n).toFixed(d); }
+function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
 
-// ── Toast 提示 ──
 let _toastTimer;
 function showToast(msg, type='', duration=4000){
   const t = document.getElementById('toast');
@@ -225,38 +187,38 @@ function showToast(msg, type='', duration=4000){
   if(duration > 0) _toastTimer = setTimeout(()=>t.classList.remove('show'), duration);
 }
 
-// ── 进度条 ──
 function startProgress(){
   const b = document.getElementById('progress-bar');
-  b.className = 'progress-bar active';
+  b.style.transition = 'none';
+  b.style.transform = 'scaleX(0)';
+  setTimeout(()=>{
+    b.style.transition = '';
+    b.className = 'progress-bar active';
+  }, 50);
 }
 function doneProgress(){
   const b = document.getElementById('progress-bar');
   b.className = 'progress-bar done';
-  setTimeout(()=>b.className='progress-bar', 800);
+  setTimeout(()=>{ b.className='progress-bar'; b.style.transform='scaleX(0)'; }, 800);
 }
 
-// ── 刷新按钮状态 ──
 function setRefreshState(state){
   const btn = document.getElementById('refresh-btn');
   const icon = document.getElementById('refresh-icon');
+  const text = document.getElementById('refresh-text');
   if(state === 'idle'){
-    btn.disabled = false; btn.className = 'refresh-btn';
-    icon.className = ''; icon.textContent = '↻';
-    btn.childNodes[1].textContent = ' 刷新数据';
+    btn.disabled=false; btn.className='refresh-btn';
+    icon.className=''; icon.textContent='↻'; text.textContent=' 刷新数据';
   } else if(state === 'running'){
-    btn.disabled = true; btn.className = 'refresh-btn running';
-    icon.className = 'spin'; icon.textContent = '↻';
-    btn.childNodes[1].textContent = ' 更新中...';
+    btn.disabled=true; btn.className='refresh-btn running';
+    icon.className='spin'; icon.textContent='↻'; text.textContent=' 更新中...';
   } else if(state === 'done'){
-    btn.disabled = false; btn.className = 'refresh-btn done';
-    icon.className = ''; icon.textContent = '✓';
-    btn.childNodes[1].textContent = ' 已更新';
+    btn.disabled=false; btn.className='refresh-btn done';
+    icon.className=''; icon.textContent='✓'; text.textContent=' 已更新';
     setTimeout(()=>setRefreshState('idle'), 3000);
   }
 }
 
-// ── 触发 GitHub Actions ──
 async function triggerRefresh(){
   if(_refreshing) return;
   _refreshing = true;
@@ -265,28 +227,14 @@ async function triggerRefresh(){
   showToast('⏳ 正在触发数据更新，约需 3-5 分钟...', 'yellow', 0);
 
   try {
-    // 触发 workflow
-    const triggerRes = await fetch(
-      `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/${WORKFLOW_ID}/dispatches`,
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `token ${GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github.v3+json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ref: 'main' })
-      }
-    );
+    const res = await fetch(WORKER_URL, { method: 'POST' });
+    const data = await res.json();
 
-    if(!triggerRes.ok){
-      const err = await triggerRes.json().catch(()=>({}));
-      throw new Error(err.message || `HTTP ${triggerRes.status}`);
+    if(!data.ok){
+      throw new Error(`GitHub 返回 ${data.status}`);
     }
 
-    showToast('⏳ 脚本已启动，正在等待完成...', 'yellow', 0);
-
-    // 记录触发时间，开始轮询
+    showToast('⏳ 脚本已启动，等待完成...', 'yellow', 0);
     const triggerTime = Date.now();
     await pollForCompletion(triggerTime);
 
@@ -298,77 +246,48 @@ async function triggerRefresh(){
   }
 }
 
-// ── 轮询等待完成 ──
 async function pollForCompletion(triggerTime){
-  // 先等30秒让 Actions 启动
   await sleep(30000);
-
   let attempts = 0;
-  const maxAttempts = 20; // 最多等 ~10分钟
+  const maxAttempts = 20;
 
   _polling = setInterval(async () => {
     attempts++;
     try {
-      // 获取最近的 workflow runs
-      const runsRes = await fetch(
-        `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/workflows/${WORKFLOW_ID}/runs?per_page=5`,
-        { headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' } }
-      );
-      const runsData = await runsRes.json();
-      const runs = runsData.workflow_runs || [];
+      const res = await fetch(WORKER_URL + '?check=1&t=' + triggerTime);
+      const data = await res.json();
 
-      // 找到触发时间之后开始的 run
-      const myRun = runs.find(r => new Date(r.created_at).getTime() >= triggerTime - 5000);
-
-      if(myRun){
-        if(myRun.status === 'completed'){
-          clearInterval(_polling);
-          _polling = null;
-          _refreshing = false;
-
-          if(myRun.conclusion === 'success'){
-            doneProgress();
-            showToast('✅ 数据更新完成，正在加载...', 'green', 3000);
-            setRefreshState('done');
-            await sleep(2000);
-            await loadData();
-          } else {
-            doneProgress();
-            showToast('⚠️ 脚本运行失败，请到 GitHub Actions 查看日志', 'red', 8000);
-            setRefreshState('idle');
-          }
-          return;
-        } else {
-          showToast(`⏳ 正在运行中... (${myRun.status})`, 'yellow', 0);
-        }
+      if(data.status === 'success'){
+        clearInterval(_polling); _polling=null; _refreshing=false;
+        doneProgress();
+        showToast('✅ 数据更新完成，正在加载...', 'green', 3000);
+        setRefreshState('done');
+        await sleep(2000);
+        await loadData();
+      } else if(data.status === 'failed'){
+        clearInterval(_polling); _polling=null; _refreshing=false;
+        doneProgress();
+        showToast('⚠️ 脚本运行失败', 'red', 8000);
+        setRefreshState('idle');
       } else {
-        showToast(`⏳ 等待任务启动... (${attempts*30}s)`, 'yellow', 0);
+        showToast(`⏳ 运行中... (${attempts*30}s)`, 'yellow', 0);
       }
 
       if(attempts >= maxAttempts){
-        clearInterval(_polling);
-        _polling = null;
-        _refreshing = false;
-        doneProgress();
-        setRefreshState('idle');
-        showToast('⚠️ 等待超时，请稍后手动刷新页面', 'red', 8000);
+        clearInterval(_polling); _polling=null; _refreshing=false;
+        doneProgress(); setRefreshState('idle');
+        showToast('⚠️ 等待超时，请稍后刷新页面', 'red', 8000);
       }
-    } catch(e) {
-      console.error('轮询失败', e);
-    }
-  }, 30000); // 每30秒检查一次
+    } catch(e){ console.error('轮询失败', e); }
+  }, 30000);
 }
 
-function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
-
-// ── 视图切换 ──
 function switchView(view, el){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   el.classList.add('active');
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active', v.dataset.view===view));
 }
 
-// ── 股票卡片 ──
 function stockCard(s){
   const dc = devCls(s.deviation);
   const alertBadge = s.deviation_alert
@@ -389,7 +308,6 @@ function stockCard(s){
   </div>`;
 }
 
-// ── 板块详情 ──
 function renderSectorDetail(sector){
   const sLabel={bullish:'多头 ↑',bearish:'空头 ↓',tangle:'纠缠 ~',unknown:'--'}[sector.status]||'--';
   const sColor={bullish:'var(--green)',bearish:'var(--red)',tangle:'var(--yellow)',unknown:'var(--muted)'}[sector.status]||'var(--muted)';
@@ -419,10 +337,9 @@ function renderSectorDetail(sector){
     <div style="font-size:13px;font-weight:600;color:${sColor}">${sLabel}</div>
     <div class="sdh-index">${indexHtml}</div>
   </div>
-  <div class="status-groups">${groupsHtml||'<div style="color:var(--muted);padding:20px 0">暂无成分股数据</div>'}</div>`;
+  <div class="status-groups">${groupsHtml||'<div style="color:var(--muted);padding:20px 0">暂无数据</div>'}</div>`;
 }
 
-// ── 概览卡片 ──
 function overviewCard(sector,idx){
   const sLabel={bullish:'多头',bearish:'空头',tangle:'纠缠',unknown:'--'}[sector.status]||'--';
   const sc=sector.status_counts||{};
@@ -432,10 +349,9 @@ function overviewCard(sector,idx){
     sc.tangle?`<span class="ov-count-pill tangle">纠缠${sc.tangle}</span>`:'',
     (sc.below_d1||0)+(sc.below_d2||0)>0?`<span class="ov-count-pill down">跌破${(sc.below_d1||0)+(sc.below_d2||0)}</span>`:'',
   ].filter(Boolean).join('');
-  const devStr=sector.deviation!=null?fmtDev(sector.deviation):'--';
   return `<div class="overview-card${idx===_activeSector?' selected':''}" onclick="selectSector(${idx})">
     <div class="ov-header"><div class="ov-name">${sector.name}</div><div class="ov-status ${sector.status}">${sLabel}</div></div>
-    <div class="ov-meta">指数偏离 <b>${devStr}</b></div>
+    <div class="ov-meta">指数偏离 <b>${sector.deviation!=null?fmtDev(sector.deviation):'--'}</b></div>
     <div class="ov-counts">${pills}</div>
   </div>`;
 }
@@ -447,7 +363,6 @@ function selectSector(idx){
   if(d&&_data) d.innerHTML=renderSectorDetail(_data.sectors[idx]);
 }
 
-// ── 乖离率 ──
 function renderDeviationView(alerts){
   const strongCount=alerts.filter(a=>a.alert==='strong').length;
   const warnCount=alerts.filter(a=>a.alert==='warn').length;
@@ -477,21 +392,17 @@ function setDevFilter(f,el){
   document.getElementById('dev-view-inner').innerHTML=renderDeviationView(_data.deviation_alerts);
 }
 
-// ── 加载数据 ──
 async function loadData(){
   try{
     const res=await fetch(`data.json?t=${Date.now()}`);
     if(!res.ok) throw new Error(`HTTP ${res.status}`);
     _data=await res.json();
-
     document.getElementById('update-meta').innerHTML=
       `<b>${_data.trade_date||'--'}</b> &nbsp; 更新于 <b>${_data.updated_at||'--'}</b>`;
-
     const alerts=_data.deviation_alerts||[];
     const devBadge=document.getElementById('dev-badge');
     devBadge.textContent=alerts.length;
     if(alerts.length) devBadge.classList.add('orange');
-
     document.getElementById('app').innerHTML=`
       <div class="view active" data-view="sectors">
         <div class="sector-overview" id="overview-grid">
@@ -502,8 +413,6 @@ async function loadData(){
       <div class="view" data-view="deviation">
         <div id="dev-view-inner">${renderDeviationView(alerts)}</div>
       </div>`;
-
-    // 保持当前激活的 tab
     const activeTab=document.querySelector('.tab.active');
     if(activeTab){
       const view=activeTab.dataset.view;
@@ -512,7 +421,7 @@ async function loadData(){
   } catch(e){
     document.getElementById('app').innerHTML=`<div class="error-box">
       <div style="font-size:28px;margin-bottom:10px">⚠</div>
-      <div>数据加载失败，请检查 data.json 是否已生成</div>
+      <div>数据加载失败</div>
       <div style="font-family:var(--mono);font-size:11px;margin-top:8px;color:#555">${e.message}</div>
     </div>`;
   }
