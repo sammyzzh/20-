@@ -1,0 +1,35 @@
+name: 每日选股数据更新
+
+on:
+  schedule:
+    # 北京时间 15:40（UTC 07:40），周一到周五
+    - cron: "40 7 * * 1-5"
+  workflow_dispatch:   # 允许手动触发
+
+jobs:
+  fetch-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout 仓库
+        uses: actions/checkout@v4
+
+      - name: 设置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 安装依赖
+        run: |
+          pip install requests beautifulsoup4 numpy akshare
+
+      - name: 运行数据抓取
+        run: python fetch_data.py
+
+      - name: 提交并推送 data.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data.json
+          git diff --staged --quiet || git commit -m "📊 自动更新选股数据 $(date '+%Y-%m-%d %H:%M')"
+          git push
