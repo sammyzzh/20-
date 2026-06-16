@@ -13,12 +13,6 @@ from datetime import datetime, date, timedelta
 from bs4 import BeautifulSoup
 import time
 
-# ─────────────────────────────────────────────
-# 六大板块配置
-# name:       展示名称
-# ths_code:   同花顺概念板块代码（用于抓成分股）
-# ths_index:  同花顺板块指数名称（用于拉板块指数K线，必须完全匹配）
-# ─────────────────────────────────────────────
 SECTORS = [
     {"name": "小金属",    "ths_code": "300809", "ths_index": "小金属概念"},
     {"name": "算力",      "ths_code": "308828", "ths_index": "东数西算(算力)"},
@@ -34,9 +28,6 @@ HEADERS = {
 }
 
 
-# ─────────────────────────────────────────────
-# 1. 抓取板块成分股
-# ─────────────────────────────────────────────
 def fetch_sector_stocks(ths_code):
     stocks = []
     for page in range(1, 10):
@@ -67,9 +58,6 @@ def fetch_sector_stocks(ths_code):
     return stocks
 
 
-# ─────────────────────────────────────────────
-# 2. 抓取板块指数日线
-# ─────────────────────────────────────────────
 def fetch_sector_index(ths_index_name):
     try:
         import akshare as ak
@@ -86,9 +74,6 @@ def fetch_sector_index(ths_index_name):
         return []
 
 
-# ─────────────────────────────────────────────
-# 3. 抓取个股日线K线
-# ─────────────────────────────────────────────
 def fetch_stock_kline(code, n=60):
     url = f"https://d.10jqka.com.cn/v6/line/hs_{code}/01/last{n}.js"
     try:
@@ -112,9 +97,6 @@ def fetch_stock_kline(code, n=60):
         return []
 
 
-# ─────────────────────────────────────────────
-# 4. 计算20日均线状态
-# ─────────────────────────────────────────────
 def classify_stock(kline_rows):
     if len(kline_rows) < 22:
         return None
@@ -126,25 +108,17 @@ def classify_stock(kline_rows):
         if c < ma * 0.97:   return "below"
         return "tangle"
 
-    # 计算最近30天每天状态
-    history = []
+    history2 = []
     for i in range(max(20, len(closes) - 30), len(closes)):
         ma = float(np.mean(closes[i-20:i]))
-        history.append(day_state(closes[i], ma))
+        history2.append(day_state(closes[i], ma))
 
-    if not history:
+    if not history2:
         return None
 
     ma20_today = float(np.mean(closes[-20:]))
     close_today = closes[-1]
     deviation = round((close_today - ma20_today) / ma20_today * 100, 2)
-
-    # 连续跌破/站上天数
-    below_streak = sum(1 for _ in iter(lambda: history and history.pop() == "below" or False, False))
-    history2 = []
-    for i in range(max(20, len(closes) - 30), len(closes)):
-        ma = float(np.mean(closes[i-20:i]))
-        history2.append(day_state(closes[i], ma))
 
     below_streak = 0
     for s in reversed(history2):
@@ -183,24 +157,22 @@ def classify_stock(kline_rows):
     }
 
 
-# ─────────────────────────────────────────────
-# 5. 乖离率警报
-# ─────────────────────────────────────────────
 def deviation_alert(deviation):
     if abs(deviation) >= 50: return "strong"
     if abs(deviation) >= 30: return "warn"
     return None
 
 
-# ─────────────────────────────────────────────
-# 6. 主流程
-# ─────────────────────────────────────────────
 def main():
-    print(f"=== 强势选股系统 {datetime.now().strftime('%Y-%m-%d %H:%M')} ===")
+    # 北京时间
+    now_beijing = datetime.utcnow() + timedelta(hours=8)
+    today_beijing = now_beijing.date()
+
+    print(f"=== 强势选股系统 {now_beijing.strftime('%Y-%m-%d %H:%M')} (北京时间) ===")
 
     output = {
-        "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
-        "trade_date": date.today().strftime("%Y-%m-%d"),
+        "updated_at": now_beijing.strftime("%Y-%m-%d %H:%M"),
+        "trade_date": today_beijing.strftime("%Y-%m-%d"),
         "sectors": [],
         "deviation_alerts": [],
     }
@@ -208,7 +180,6 @@ def main():
     for sector in SECTORS:
         print(f"\n── {sector['name']} ──")
 
-        # 板块指数
         sector_closes = fetch_sector_index(sector["ths_index"])
         if len(sector_closes) >= 20:
             ma20 = float(np.mean(sector_closes[-20:]))
@@ -220,7 +191,6 @@ def main():
             sector_status, sector_ma20, sector_close, sector_dev = "unknown", None, None, None
         print(f"  板块状态: {sector_status}  收盘={sector_close}  MA20={sector_ma20}")
 
-        # 成分股
         stocks_raw = fetch_sector_stocks(sector["ths_code"])
         print(f"  成分股 {len(stocks_raw)} 只，计算均线...")
 
