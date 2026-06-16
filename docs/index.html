@@ -589,9 +589,6 @@ async function openKline(code, name, stockData){
       return parseFloat(avg.toFixed(3));
     });
 
-    // ±3% 区间
-    const ma20band_up  = ma20arr.map(v => v ? parseFloat((v*1.03).toFixed(3)) : null);
-    const ma20band_dn  = ma20arr.map(v => v ? parseFloat((v*0.97).toFixed(3)) : null);
 
     document.getElementById('kline-loading').style.display = 'none';
     document.getElementById('kline-chart').style.display = 'block';
@@ -617,7 +614,7 @@ async function openKline(code, name, stockData){
           if(!cd) return '';
           const [o,c,l,h] = cd.value;
           const chg = ((c-o)/o*100).toFixed(2);
-          const color = c>=o?'#3fb950':'#f85149';
+          const color = c>=o?'#f85149':'#3fb950';
           return `<b>${cd.name}</b><br/>
             开 ${o}&nbsp;&nbsp;收 <span style="color:${color}">${c}</span><br/>
             高 ${h}&nbsp;&nbsp;低 ${l}<br/>
@@ -626,7 +623,7 @@ async function openKline(code, name, stockData){
         }
       },
       legend:{
-        data:['K线','MA20','±3%区间'],
+        data:['MA20'],
         textStyle:{color:'#7d8590'},
         right:10, top:0,
       },
@@ -638,41 +635,31 @@ async function openKline(code, name, stockData){
         splitLine:{show:false},
       },
       yAxis:{
-        type:'value', scale:true,
+        type:'value',
+        scale:true,
+        boundaryGap:['15%','15%'],
         axisLine:{lineStyle:{color:'#30363d'}},
-        axisLabel:{color:'#7d8590', fontSize:11},
+        axisLabel:{color:'#7d8590', fontSize:11, formatter: v => v.toFixed(2)},
         splitLine:{lineStyle:{color:'#21262d'}},
       },
       dataZoom:[
-        {type:'inside', start:30, end:100},
+        {type:'inside', start:33, end:100},
         {type:'slider', start:30, end:100, height:24, bottom:8,
          textStyle:{color:'#7d8590'}, borderColor:'#30363d',
          fillerColor:'#1c2330', handleStyle:{color:'#58a6ff'}},
       ],
       series:[
-        {
-          name:'±3%区间', type:'line', data:ma20band_up,
-          lineStyle:{width:0}, symbol:'none',
-          areaStyle:{color:'rgba(88,166,255,0.06)'},
-          stack:'band', silent:true, legend:{show:false},
-        },
-        {
-          name:'±3%区间下', type:'line', data:ma20band_dn,
-          lineStyle:{width:0}, symbol:'none',
-          areaStyle:{color:'rgba(88,166,255,0)', origin:'end'},
-          stack:'band', silent:true,
-          tooltip:{show:false},
-        },
+
         {
           name:'MA20', type:'line', data:ma20arr,
-          lineStyle:{color:'#58a6ff', width:1.5},
+          lineStyle:{color:'#f0883e', width:2},
           symbol:'none', smooth:false,
         },
         {
           name:'K线', type:'candlestick', data:candleData,
           itemStyle:{
-            color:'#3fb950', color0:'#f85149',
-            borderColor:'#3fb950', borderColor0:'#f85149',
+            color:'#f85149', color0:'#3fb950',
+            borderColor:'#f85149', borderColor0:'#3fb950',
           },
         },
       ],
