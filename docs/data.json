@@ -1,0 +1,814 @@
+{
+  "updated_at": "2026-06-16 15:42",
+  "trade_date": "2026-06-16",
+  "sectors": [
+    {
+      "name": "小金属",
+      "ths_code": "XXXXX",
+      "status": "bullish",
+      "ma20": 1500.0,
+      "close": 1531.5,
+      "deviation": 2.1,
+      "stock_count": 12,
+      "status_counts": {
+        "breakout_up": 4,
+        "above": 4,
+        "tangle": 2,
+        "below_d1": 1,
+        "below_d2": 1
+      },
+      "stocks": [
+        {
+          "code": "600111",
+          "name": "北方稀土",
+          "status": "breakout_up",
+          "ma20": 131.49,
+          "close": 136.37,
+          "deviation": 3.71,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "600459",
+          "name": "贵研铂业",
+          "status": "breakout_up",
+          "ma20": 179.51,
+          "close": 187.12,
+          "deviation": 4.24,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "000657",
+          "name": "中钨高新",
+          "status": "above",
+          "ma20": 15.04,
+          "close": 17.65,
+          "deviation": 17.37,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "600392",
+          "name": "盛和资源",
+          "status": "above",
+          "ma20": 154.17,
+          "close": 173.31,
+          "deviation": 12.41,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "000970",
+          "name": "中科三环",
+          "status": "above",
+          "ma20": 27.62,
+          "close": 33.61,
+          "deviation": 21.68,
+          "above_streak": 5,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002155",
+          "name": "湖南黄金",
+          "status": "above",
+          "ma20": 33.72,
+          "close": 35.38,
+          "deviation": 4.92,
+          "above_streak": 3,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002056",
+          "name": "横店东磁",
+          "status": "tangle",
+          "ma20": 119.7,
+          "close": 118.07,
+          "deviation": -1.36,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002378",
+          "name": "章源钨业",
+          "status": "tangle",
+          "ma20": 54.23,
+          "close": 54.6,
+          "deviation": 0.68,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300224",
+          "name": "正海磁材",
+          "status": "below_d1",
+          "ma20": 49.81,
+          "close": 46.41,
+          "deviation": -6.82,
+          "above_streak": 0,
+          "below_streak": 1,
+          "deviation_alert": null
+        },
+        {
+          "code": "600549",
+          "name": "厦门钨业",
+          "status": "below_d2",
+          "ma20": 148.53,
+          "close": 132.48,
+          "deviation": -10.81,
+          "above_streak": 0,
+          "below_streak": 2,
+          "deviation_alert": null
+        },
+        {
+          "code": "000831",
+          "name": "中国稀土",
+          "status": "breakout_up",
+          "ma20": 140.08,
+          "close": 155.01,
+          "deviation": 10.66,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "600641",
+          "name": "先导基电",
+          "status": "breakout_up",
+          "ma20": 60.87,
+          "close": 64.09,
+          "deviation": 5.29,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        }
+      ]
+    },
+    {
+      "name": "算力",
+      "ths_code": "XXXXX",
+      "status": "bullish",
+      "ma20": 1500.0,
+      "close": 1587.0,
+      "deviation": 5.8,
+      "stock_count": 8,
+      "status_counts": {
+        "breakout_up": 2,
+        "above": 4,
+        "tangle": 2
+      },
+      "stocks": [
+        {
+          "code": "688047",
+          "name": "龙芯中科",
+          "status": "breakout_up",
+          "ma20": 85.17,
+          "close": 94.77,
+          "deviation": 11.27,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002544",
+          "name": "中航电子",
+          "status": "breakout_up",
+          "ma20": 59.92,
+          "close": 65.0,
+          "deviation": 8.47,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300502",
+          "name": "新易盛",
+          "status": "above",
+          "ma20": 106.81,
+          "close": 111.33,
+          "deviation": 4.23,
+          "above_streak": 4,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "688256",
+          "name": "寒武纪",
+          "status": "above",
+          "ma20": 123.32,
+          "close": 143.28,
+          "deviation": 16.19,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002049",
+          "name": "紫光国微",
+          "status": "above",
+          "ma20": 139.25,
+          "close": 170.57,
+          "deviation": 22.49,
+          "above_streak": 3,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "688099",
+          "name": "晶晨股份",
+          "status": "above",
+          "ma20": 92.61,
+          "close": 114.82,
+          "deviation": 23.99,
+          "above_streak": 2,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300627",
+          "name": "华测检测",
+          "status": "tangle",
+          "ma20": 106.46,
+          "close": 108.28,
+          "deviation": 1.71,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002616",
+          "name": "神宇股份",
+          "status": "tangle",
+          "ma20": 81.04,
+          "close": 82.76,
+          "deviation": 2.11,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        }
+      ]
+    },
+    {
+      "name": "芯片",
+      "ths_code": "XXXXX",
+      "status": "tangle",
+      "ma20": 1500.0,
+      "close": 1482.0,
+      "deviation": -1.2,
+      "stock_count": 11,
+      "status_counts": {
+        "breakout_up": 3,
+        "above": 4,
+        "tangle": 2,
+        "below_d1": 1,
+        "below_d2": 1
+      },
+      "stocks": [
+        {
+          "code": "600460",
+          "name": "士兰微",
+          "status": "breakout_up",
+          "ma20": 102.84,
+          "close": 107.41,
+          "deviation": 4.45,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002736",
+          "name": "国信证券",
+          "status": "breakout_up",
+          "ma20": 55.77,
+          "close": 60.41,
+          "deviation": 8.32,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "688126",
+          "name": "沪硅产业",
+          "status": "above",
+          "ma20": 111.21,
+          "close": 130.77,
+          "deviation": 17.58,
+          "above_streak": 5,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300782",
+          "name": "卓胜微",
+          "status": "above",
+          "ma20": 90.4,
+          "close": 103.92,
+          "deviation": 14.96,
+          "above_streak": 3,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "603160",
+          "name": "汇顶科技",
+          "status": "above",
+          "ma20": 93.24,
+          "close": 98.68,
+          "deviation": 5.84,
+          "above_streak": 2,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "688012",
+          "name": "中微公司",
+          "status": "above",
+          "ma20": 121.8,
+          "close": 144.5,
+          "deviation": 18.63,
+          "above_streak": 3,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002049",
+          "name": "紫光国微",
+          "status": "tangle",
+          "ma20": 23.46,
+          "close": 23.13,
+          "deviation": -1.43,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300285",
+          "name": "国瓷材料",
+          "status": "tangle",
+          "ma20": 118.5,
+          "close": 120.32,
+          "deviation": 1.54,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "688981",
+          "name": "中芯国际",
+          "status": "below_d1",
+          "ma20": 91.9,
+          "close": 86.13,
+          "deviation": -6.28,
+          "above_streak": 0,
+          "below_streak": 1,
+          "deviation_alert": null
+        },
+        {
+          "code": "002291",
+          "name": "星期六",
+          "status": "below_d2",
+          "ma20": 28.7,
+          "close": 23.86,
+          "deviation": -16.86,
+          "above_streak": 0,
+          "below_streak": 2,
+          "deviation_alert": null
+        },
+        {
+          "code": "300223",
+          "name": "北京君正",
+          "status": "breakout_up",
+          "ma20": 95.24,
+          "close": 101.99,
+          "deviation": 7.09,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        }
+      ]
+    },
+    {
+      "name": "AI应用",
+      "ths_code": "XXXXX",
+      "status": "bullish",
+      "ma20": 1500.0,
+      "close": 1624.5,
+      "deviation": 8.3,
+      "stock_count": 11,
+      "status_counts": {
+        "above": 5,
+        "breakout_up": 2,
+        "tangle": 2,
+        "below_d1": 1,
+        "below_d2": 1
+      },
+      "stocks": [
+        {
+          "code": "688327",
+          "name": "云从科技",
+          "status": "above",
+          "ma20": 39.97,
+          "close": 60.87,
+          "deviation": 52.3,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": "strong"
+        },
+        {
+          "code": "002415",
+          "name": "海康威视",
+          "status": "breakout_up",
+          "ma20": 186.01,
+          "close": 205.94,
+          "deviation": 10.71,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002368",
+          "name": "太极股份",
+          "status": "above",
+          "ma20": 21.14,
+          "close": 26.36,
+          "deviation": 24.68,
+          "above_streak": 4,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "000034",
+          "name": "神州数码",
+          "status": "above",
+          "ma20": 142.35,
+          "close": 171.22,
+          "deviation": 20.28,
+          "above_streak": 2,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "603636",
+          "name": "南威软件",
+          "status": "above",
+          "ma20": 194.05,
+          "close": 223.2,
+          "deviation": 15.02,
+          "above_streak": 5,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "688229",
+          "name": "博睿数据",
+          "status": "above",
+          "ma20": 184.68,
+          "close": 192.88,
+          "deviation": 4.44,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300803",
+          "name": "指南针",
+          "status": "tangle",
+          "ma20": 138.29,
+          "close": 140.99,
+          "deviation": 1.95,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002421",
+          "name": "达实智能",
+          "status": "tangle",
+          "ma20": 127.68,
+          "close": 127.83,
+          "deviation": 0.11,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "000727",
+          "name": "冠捷科技",
+          "status": "below_d1",
+          "ma20": 146.08,
+          "close": 132.27,
+          "deviation": -9.45,
+          "above_streak": 0,
+          "below_streak": 1,
+          "deviation_alert": null
+        },
+        {
+          "code": "300688",
+          "name": "创业黑马",
+          "status": "below_d2",
+          "ma20": 152.85,
+          "close": 124.13,
+          "deviation": -18.79,
+          "above_streak": 0,
+          "below_streak": 2,
+          "deviation_alert": null
+        },
+        {
+          "code": "605168",
+          "name": "三人行",
+          "status": "breakout_up",
+          "ma20": 50.5,
+          "close": 53.41,
+          "deviation": 5.75,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        }
+      ]
+    },
+    {
+      "name": "人形机器人",
+      "ths_code": "XXXXX",
+      "status": "bearish",
+      "ma20": 1500.0,
+      "close": 1432.5,
+      "deviation": -4.5,
+      "stock_count": 10,
+      "status_counts": {
+        "breakout_up": 2,
+        "above": 4,
+        "tangle": 2,
+        "below_d1": 1,
+        "below_d2": 1
+      },
+      "stocks": [
+        {
+          "code": "300450",
+          "name": "先导智能",
+          "status": "breakout_up",
+          "ma20": 136.89,
+          "close": 148.14,
+          "deviation": 8.21,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300024",
+          "name": "机器人",
+          "status": "breakout_up",
+          "ma20": 179.05,
+          "close": 196.61,
+          "deviation": 9.81,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "600563",
+          "name": "法拉电子",
+          "status": "above",
+          "ma20": 140.62,
+          "close": 90.28,
+          "deviation": -35.8,
+          "above_streak": 4,
+          "below_streak": 0,
+          "deviation_alert": "warn"
+        },
+        {
+          "code": "300607",
+          "name": "拓斯达",
+          "status": "above",
+          "ma20": 167.58,
+          "close": 185.12,
+          "deviation": 10.47,
+          "above_streak": 4,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "600487",
+          "name": "亨通光电",
+          "status": "above",
+          "ma20": 114.82,
+          "close": 118.74,
+          "deviation": 3.41,
+          "above_streak": 5,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002965",
+          "name": "祥鑫科技",
+          "status": "above",
+          "ma20": 16.85,
+          "close": 19.41,
+          "deviation": 15.25,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300083",
+          "name": "创世纪",
+          "status": "tangle",
+          "ma20": 180.8,
+          "close": 177.21,
+          "deviation": -1.99,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "688499",
+          "name": "利元亨",
+          "status": "tangle",
+          "ma20": 87.21,
+          "close": 89.09,
+          "deviation": 2.15,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300258",
+          "name": "精锻科技",
+          "status": "below_d1",
+          "ma20": 164.05,
+          "close": 148.99,
+          "deviation": -9.18,
+          "above_streak": 0,
+          "below_streak": 1,
+          "deviation_alert": null
+        },
+        {
+          "code": "300552",
+          "name": "万集科技",
+          "status": "below_d2",
+          "ma20": 162.42,
+          "close": 132.84,
+          "deviation": -18.22,
+          "above_streak": 0,
+          "below_streak": 2,
+          "deviation_alert": null
+        }
+      ]
+    },
+    {
+      "name": "商业航天",
+      "ths_code": "XXXXX",
+      "status": "bullish",
+      "ma20": 1500.0,
+      "close": 1555.5,
+      "deviation": 3.7,
+      "stock_count": 10,
+      "status_counts": {
+        "breakout_up": 2,
+        "above": 4,
+        "tangle": 2,
+        "below_d1": 1,
+        "below_d2": 1
+      },
+      "stocks": [
+        {
+          "code": "300747",
+          "name": "锐科激光",
+          "status": "breakout_up",
+          "ma20": 175.71,
+          "close": 194.69,
+          "deviation": 10.8,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002008",
+          "name": "大族激光",
+          "status": "breakout_up",
+          "ma20": 161.12,
+          "close": 169.87,
+          "deviation": 5.43,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "600703",
+          "name": "三安光电",
+          "status": "above",
+          "ma20": 193.71,
+          "close": 227.0,
+          "deviation": 17.18,
+          "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300285",
+          "name": "国瓷材料",
+          "status": "above",
+          "ma20": 31.91,
+          "close": 34.18,
+          "deviation": 7.09,
+          "above_streak": 4,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "002080",
+          "name": "中材科技",
+          "status": "above",
+          "ma20": 75.68,
+          "close": 85.3,
+          "deviation": 12.71,
+          "above_streak": 2,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "600183",
+          "name": "生益科技",
+          "status": "above",
+          "ma20": 58.4,
+          "close": 60.29,
+          "deviation": 3.24,
+          "above_streak": 2,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "603678",
+          "name": "火炬电子",
+          "status": "tangle",
+          "ma20": 79.2,
+          "close": 78.53,
+          "deviation": -0.85,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "300820",
+          "name": "英杰电气",
+          "status": "tangle",
+          "ma20": 146.75,
+          "close": 146.08,
+          "deviation": -0.46,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "603267",
+          "name": "鸿远电子",
+          "status": "below_d1",
+          "ma20": 34.18,
+          "close": 32.71,
+          "deviation": -4.33,
+          "above_streak": 0,
+          "below_streak": 1,
+          "deviation_alert": null
+        },
+        {
+          "code": "000777",
+          "name": "中核科技",
+          "status": "below_d2",
+          "ma20": 67.18,
+          "close": 60.17,
+          "deviation": -10.43,
+          "above_streak": 0,
+          "below_streak": 2,
+          "deviation_alert": null
+        }
+      ]
+    }
+  ],
+  "deviation_alerts": [
+    {
+      "sector": "AI应用",
+      "code": "688327",
+      "name": "云从科技",
+      "deviation": 52.3,
+      "alert": "strong",
+      "close": 60.87,
+      "ma20": 39.97
+    },
+    {
+      "sector": "人形机器人",
+      "code": "600563",
+      "name": "法拉电子",
+      "deviation": -35.8,
+      "alert": "warn",
+      "close": 90.28,
+      "ma20": 140.62
+    }
+  ]
+}
