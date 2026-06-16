@@ -30,13 +30,9 @@ SINA_HEADERS = {"Referer": "https://finance.sina.com.cn"}
 
 
 def get_stock_market(code):
-    """根据股票代码判断市场前缀"""
-    if code.startswith('6'):
-        return 'sh'
-    elif code.startswith('9'):
-        return 'bj'
-    else:
-        return 'sz'
+    if code.startswith('6'):   return 'sh'
+    elif code.startswith('9'): return 'bj'
+    else:                      return 'sz'
 
 
 def fetch_sector_stocks(ths_code):
@@ -86,7 +82,7 @@ def fetch_sector_index(ths_index_name):
 
 
 def fetch_stock_kline(code, n=60):
-    """从新浪财经拉取日线K线，数据及时准确"""
+    """从新浪财经拉取日线K线"""
     market = get_stock_market(code)
     url = f"https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol={market}{code}&scale=240&ma=no&datalen={n}"
     try:
@@ -96,13 +92,14 @@ def fetch_stock_kline(code, n=60):
         for d in data:
             try:
                 rows.append({
-                    "date": d["day"].replace("-", ""),
+                    "date":  d["day"].replace("-", ""),
+                    "open":  float(d["open"]),
                     "close": float(d["close"]),
                 })
             except:
                 pass
         return rows
-    except Exception as e:
+    except:
         return []
 
 
@@ -127,7 +124,13 @@ def classify_stock(kline_rows):
 
     ma20_today = float(np.mean(closes[-20:]))
     close_today = closes[-1]
+
+    # 乖离率：相对20日均线
     deviation = round((close_today - ma20_today) / ma20_today * 100, 2)
+
+    # 涨跌幅：今日收盘 vs 昨日收盘
+    prev_close = closes[-2] if len(closes) >= 2 else close_today
+    change_pct = round((close_today - prev_close) / prev_close * 100, 2)
 
     below_streak = 0
     for s in reversed(history):
@@ -157,10 +160,11 @@ def classify_stock(kline_rows):
         status = "unknown"
 
     return {
-        "status": status,
-        "ma20": round(ma20_today, 3),
-        "close": round(close_today, 3),
-        "deviation": deviation,
+        "status":     status,
+        "ma20":       round(ma20_today, 3),
+        "close":      round(close_today, 3),
+        "change_pct": change_pct,   # 今日涨跌幅
+        "deviation":  deviation,    # 偏离20日均线幅度
         "above_streak": above_streak,
         "below_streak": below_streak,
     }
