@@ -125,6 +125,22 @@
   .spinner{width:26px;height:26px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite;}
   .error-box{padding:60px 0;text-align:center;color:var(--muted);}
   @media(max-width:640px){main{padding:14px;}nav,header{padding:0 14px;}.stocks-grid{grid-template-columns:repeat(auto-fill,minmax(148px,1fr));}}
+
+  /* ── K线弹窗 ── */
+  .kline-overlay{position:fixed;inset:0;background:#0009;z-index:500;display:none;align-items:center;justify-content:center;}
+  .kline-overlay.show{display:flex;}
+  .kline-modal{background:var(--bg2);border:1px solid var(--border);border-radius:10px;width:min(900px,95vw);max-height:90vh;display:flex;flex-direction:column;overflow:hidden;}
+  .kline-header{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);flex-shrink:0;}
+  .kline-title{font-size:16px;font-weight:600;}
+  .kline-code{font-family:var(--mono);font-size:12px;color:var(--muted);}
+  .kline-stats{display:flex;gap:16px;margin-left:auto;}
+  .kline-stat{font-family:var(--mono);font-size:12px;color:var(--muted);}
+  .kline-stat b{color:var(--text);}
+  .kline-close{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
+  .kline-close:hover{color:var(--text);border-color:#555;}
+  .kline-body{flex:1;padding:12px;min-height:400px;position:relative;}
+  .kline-loading{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;gap:10px;}
+  #kline-chart{width:100%;height:420px;}
 </style>
 </head>
 <body>
@@ -331,7 +347,7 @@ function stockCard(s){
   if(s.status==='breakout_up') streak=`<div class="card-streak up">站上第${s.above_streak}天</div>`;
   else if(s.status==='above'&&s.above_streak>1) streak=`<div class="card-streak up">连续${s.above_streak}天</div>`;
   else if(s.status.startsWith('below')) streak=`<div class="card-streak down">跌破第${s.below_streak}天</div>`;
-  return `<div class="stock-card card-${s.status}">
+  return `<div class="stock-card card-${s.status}" onclick="openKline('${s.code}','${s.name}',${JSON.stringify(s)})" style="cursor:pointer">
     ${alertBadge}
     <div class="card-name">${s.name}</div>
     <div class="card-code">${s.code}</div>
@@ -467,6 +483,204 @@ async function loadData(){
 }
 
 loadData();
+</script>
+
+<!-- K线弹窗 -->
+<div class="kline-overlay" id="kline-overlay" onclick="closeKline(event)">
+  <div class="kline-modal" onclick="event.stopPropagation()">
+    <div class="kline-header">
+      <div>
+        <div class="kline-title" id="kline-name">--</div>
+        <div class="kline-code" id="kline-code">--</div>
+      </div>
+      <div class="kline-stats">
+        <div class="kline-stat">收盘 <b id="ks-close">--</b></div>
+        <div class="kline-stat">涨跌 <b id="ks-change">--</b></div>
+        <div class="kline-stat">MA20 <b id="ks-ma20">--</b></div>
+        <div class="kline-stat">偏离 <b id="ks-dev">--</b></div>
+      </div>
+      <button class="kline-close" onclick="closeKline()">✕</button>
+    </div>
+    <div class="kline-body">
+      <div class="kline-loading" id="kline-loading"><div class="spinner"></div><span>加载K线数据...</span></div>
+      <div id="kline-chart"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<script>
+let _klineChart = null;
+
+function getMarket(code){
+  if(code.startsWith('6')) return 'sh';
+  if(code.startsWith('9')) return 'bj';
+  return 'sz';
+}
+
+async function openKline(code, name, stockData){
+  const overlay = document.getElementById('kline-overlay');
+  overlay.classList.add('show');
+  document.getElementById('kline-name').textContent = name;
+  document.getElementById('kline-code').textContent = code;
+  document.getElementById('kline-loading').style.display = 'flex';
+  document.getElementById('kline-chart').style.display = 'none';
+
+  // 填写已有数据
+  if(stockData){
+    const cc = stockData.change_pct >= 0 ? 'var(--green)' : 'var(--red)';
+    const dc = stockData.deviation >= 0 ? 'var(--green)' : 'var(--red)';
+    document.getElementById('ks-close').textContent = stockData.close?.toFixed(2) || '--';
+    document.getElementById('ks-change').innerHTML = `<span style="color:${cc}">${stockData.change_pct >= 0?'+':''}${stockData.change_pct?.toFixed(2)}%</span>`;
+    document.getElementById('ks-ma20').textContent = stockData.ma20?.toFixed(2) || '--';
+    document.getElementById('ks-dev').innerHTML = `<span style="color:${dc}">${stockData.deviation >= 0?'+':''}${stockData.deviation?.toFixed(2)}%</span>`;
+  }
+
+  try {
+    const market = getMarket(code);
+    let rows = [];
+
+    if(!code.startsWith('9')){
+      // 腾讯前复权
+      const url = `https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=${market}${code},day,,,90,qfq`;
+      const r = await fetch(url);
+      const data = await r.json();
+      const key = `${market}${code}`;
+      const klines = data?.data?.[key]?.qfqday || [];
+      rows = klines.map(k => ({
+        date:  k[0],
+        open:  parseFloat(k[1]),
+        close: parseFloat(k[2]),
+        high:  parseFloat(k[3]),
+        low:   parseFloat(k[4]),
+      }));
+    } else {
+      // 新浪（北交所）
+      const url = `https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=${market}${code}&scale=240&ma=no&datalen=90`;
+      const r = await fetch(url, {headers:{Referer:'https://finance.sina.com.cn'}});
+      const data = await r.json();
+      rows = data.map(d => ({
+        date:  d.day,
+        open:  parseFloat(d.open),
+        close: parseFloat(d.close),
+        high:  parseFloat(d.high),
+        low:   parseFloat(d.low),
+      }));
+    }
+
+    if(!rows.length) throw new Error('无K线数据');
+
+    // 计算20日均线
+    const closes = rows.map(r => r.close);
+    const ma20arr = rows.map((_, i) => {
+      if(i < 19) return null;
+      const avg = closes.slice(i-19, i+1).reduce((a,b)=>a+b,0) / 20;
+      return parseFloat(avg.toFixed(3));
+    });
+
+    // ±3% 区间
+    const ma20band_up  = ma20arr.map(v => v ? parseFloat((v*1.03).toFixed(3)) : null);
+    const ma20band_dn  = ma20arr.map(v => v ? parseFloat((v*0.97).toFixed(3)) : null);
+
+    document.getElementById('kline-loading').style.display = 'none';
+    document.getElementById('kline-chart').style.display = 'block';
+
+    if(!_klineChart){
+      _klineChart = echarts.init(document.getElementById('kline-chart'), 'dark');
+    } else {
+      _klineChart.clear();
+    }
+
+    const dates = rows.map(r => r.date);
+    const candleData = rows.map(r => [r.open, r.close, r.low, r.high]);
+
+    _klineChart.setOption({
+      backgroundColor: 'transparent',
+      tooltip:{
+        trigger:'axis', axisPointer:{type:'cross'},
+        backgroundColor:'#1c2330', borderColor:'#30363d',
+        textStyle:{color:'#e6edf3', fontSize:12},
+        formatter: params => {
+          const cd = params.find(p=>p.seriesName==='K线');
+          const ma = params.find(p=>p.seriesName==='MA20');
+          if(!cd) return '';
+          const [o,c,l,h] = cd.value;
+          const chg = ((c-o)/o*100).toFixed(2);
+          const color = c>=o?'#3fb950':'#f85149';
+          return `<b>${cd.name}</b><br/>
+            开 ${o}&nbsp;&nbsp;收 <span style="color:${color}">${c}</span><br/>
+            高 ${h}&nbsp;&nbsp;低 ${l}<br/>
+            涨跌 <span style="color:${color}">${chg>=0?'+':''}${chg}%</span><br/>
+            MA20 ${ma?.value||'--'}`;
+        }
+      },
+      legend:{
+        data:['K线','MA20','±3%区间'],
+        textStyle:{color:'#7d8590'},
+        right:10, top:0,
+      },
+      grid:{left:60, right:20, top:36, bottom:60},
+      xAxis:{
+        type:'category', data:dates,
+        axisLine:{lineStyle:{color:'#30363d'}},
+        axisLabel:{color:'#7d8590', fontSize:11},
+        splitLine:{show:false},
+      },
+      yAxis:{
+        type:'value', scale:true,
+        axisLine:{lineStyle:{color:'#30363d'}},
+        axisLabel:{color:'#7d8590', fontSize:11},
+        splitLine:{lineStyle:{color:'#21262d'}},
+      },
+      dataZoom:[
+        {type:'inside', start:30, end:100},
+        {type:'slider', start:30, end:100, height:24, bottom:8,
+         textStyle:{color:'#7d8590'}, borderColor:'#30363d',
+         fillerColor:'#1c2330', handleStyle:{color:'#58a6ff'}},
+      ],
+      series:[
+        {
+          name:'±3%区间', type:'line', data:ma20band_up,
+          lineStyle:{width:0}, symbol:'none',
+          areaStyle:{color:'rgba(88,166,255,0.06)'},
+          stack:'band', silent:true, legend:{show:false},
+        },
+        {
+          name:'±3%区间下', type:'line', data:ma20band_dn,
+          lineStyle:{width:0}, symbol:'none',
+          areaStyle:{color:'rgba(88,166,255,0)', origin:'end'},
+          stack:'band', silent:true,
+          tooltip:{show:false},
+        },
+        {
+          name:'MA20', type:'line', data:ma20arr,
+          lineStyle:{color:'#58a6ff', width:1.5},
+          symbol:'none', smooth:false,
+        },
+        {
+          name:'K线', type:'candlestick', data:candleData,
+          itemStyle:{
+            color:'#3fb950', color0:'#f85149',
+            borderColor:'#3fb950', borderColor0:'#f85149',
+          },
+        },
+      ],
+    });
+
+    _klineChart.resize();
+
+  } catch(e) {
+    document.getElementById('kline-loading').innerHTML = `<span style="color:var(--red)">⚠ 加载失败：${e.message}</span>`;
+  }
+}
+
+function closeKline(event){
+  if(event && event.target !== document.getElementById('kline-overlay')) return;
+  document.getElementById('kline-overlay').classList.remove('show');
+}
+
+// ESC 关闭
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeKline(); });
 </script>
 </body>
 </html>
