@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
 强势板块选股系统 - 数据抓取脚本
-每日收盘后（15:40）由 GitHub Actions 自动触发
-数据来源：同花顺公开接口（无需账号）
+每日收盘后（16:10）由 GitHub Actions 自动触发
+数据来源：新浪财经（K线）+ 同花顺（板块指数/成分股）
 """
 
 import requests
@@ -22,10 +22,21 @@ SECTORS = [
     {"name": "商业航天",  "ths_code": "309130", "ths_index": "商业航天"},
 ]
 
-HEADERS = {
+THS_HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122",
     "Referer": "https://q.10jqka.com.cn/",
 }
+SINA_HEADERS = {"Referer": "https://finance.sina.com.cn"}
+
+
+def get_stock_market(code):
+    """根据股票代码判断市场前缀"""
+    if code.startswith('6'):
+        return 'sh'
+    elif code.startswith('9'):
+        return 'bj'
+    else:
+        return 'sz'
 
 
 def fetch_sector_stocks(ths_code):
@@ -33,7 +44,7 @@ def fetch_sector_stocks(ths_code):
     for page in range(1, 10):
         url = f"https://q.10jqka.com.cn/gn/detail/code/{ths_code}/page/{page}/"
         try:
-            r = requests.get(url, headers=HEADERS, timeout=12)
+            r = requests.get(url, headers=THS_HEADERS, timeout=12)
             soup = BeautifulSoup(r.content, "html.parser", from_encoding="gbk")
             table = soup.find("table")
             if not table:
@@ -75,25 +86,23 @@ def fetch_sector_index(ths_index_name):
 
 
 def fetch_stock_kline(code, n=60):
-    url = f"https://d.10jqka.com.cn/v6/line/hs_{code}/01/last{n}.js"
+    """从新浪财经拉取日线K线，数据及时准确"""
+    market = get_stock_market(code)
+    url = f"https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol={market}{code}&scale=240&ma=no&datalen={n}"
     try:
-        r = requests.get(url, headers={
-            "Referer": "https://stockpage.10jqka.com.cn/",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
-        }, timeout=10)
-        data_match = re.search(r'"data":"([^"]+)"', r.text)
-        if not data_match:
-            return []
+        r = requests.get(url, headers=SINA_HEADERS, timeout=10)
+        data = json.loads(r.text)
         rows = []
-        for item in data_match.group(1).split(";"):
-            parts = item.split(",")
-            if len(parts) >= 5:
-                try:
-                    rows.append({"date": parts[0], "close": float(parts[4])})
-                except:
-                    pass
+        for d in data:
+            try:
+                rows.append({
+                    "date": d["day"].replace("-", ""),
+                    "close": float(d["close"]),
+                })
+            except:
+                pass
         return rows
-    except:
+    except Exception as e:
         return []
 
 
@@ -108,12 +117,12 @@ def classify_stock(kline_rows):
         if c < ma * 0.97:   return "below"
         return "tangle"
 
-    history2 = []
+    history = []
     for i in range(max(20, len(closes) - 30), len(closes)):
         ma = float(np.mean(closes[i-20:i]))
-        history2.append(day_state(closes[i], ma))
+        history.append(day_state(closes[i], ma))
 
-    if not history2:
+    if not history:
         return None
 
     ma20_today = float(np.mean(closes[-20:]))
@@ -121,17 +130,17 @@ def classify_stock(kline_rows):
     deviation = round((close_today - ma20_today) / ma20_today * 100, 2)
 
     below_streak = 0
-    for s in reversed(history2):
+    for s in reversed(history):
         if s == "below": below_streak += 1
         else: break
 
     above_streak = 0
-    for s in reversed(history2):
+    for s in reversed(history):
         if s == "above": above_streak += 1
         else: break
 
-    today_state = history2[-1]
-    prev_state  = history2[-2] if len(history2) >= 2 else today_state
+    today_state = history[-1]
+    prev_state  = history[-2] if len(history) >= 2 else today_state
 
     if below_streak >= 3:
         status = "excluded"
@@ -164,7 +173,6 @@ def deviation_alert(deviation):
 
 
 def main():
-    # 北京时间
     now_beijing = datetime.utcnow() + timedelta(hours=8)
     today_beijing = now_beijing.date()
 
@@ -211,7 +219,7 @@ def main():
                 })
             if (i + 1) % 10 == 0:
                 print(f"    {i+1}/{len(stocks_raw)}")
-            time.sleep(0.08)
+            time.sleep(0.05)
 
         sc = {}
         for s in stocks_result:
