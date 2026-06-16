@@ -552,7 +552,7 @@ async function openKline(code, name, stockData){
     let rows = [];
 
     if(!code.startsWith('9')){
-      // 腾讯前复权
+      // 腾讯前复权，字段顺序: [日期, 开, 收, 高, 低, 量]
       const url = `https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=${market}${code},day,,,90,qfq`;
       const r = await fetch(url);
       const data = await r.json();
@@ -568,7 +568,7 @@ async function openKline(code, name, stockData){
     } else {
       // 新浪（北交所）
       const url = `https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=${market}${code}&scale=240&ma=no&datalen=90`;
-      const r = await fetch(url, {headers:{Referer:'https://finance.sina.com.cn'}});
+      const r = await fetch(url);
       const data = await r.json();
       rows = data.map(d => ({
         date:  d.day,
@@ -600,7 +600,14 @@ async function openKline(code, name, stockData){
     }
 
     const dates = rows.map(r => r.date);
+    // ECharts candlestick格式: [开, 收, 低, 高]
     const candleData = rows.map(r => [r.open, r.close, r.low, r.high]);
+    // 每日涨跌幅（今日收 vs 昨日收）
+    const dailyChg = rows.map((r, i) => {
+      if(i === 0) return 0;
+      const prev = rows[i-1].close;
+      return parseFloat(((r.close - prev) / prev * 100).toFixed(2));
+    });
 
     _klineChart.setOption({
       backgroundColor: 'transparent',
@@ -612,9 +619,10 @@ async function openKline(code, name, stockData){
           const cd = params.find(p=>p.seriesName==='K线');
           const ma = params.find(p=>p.seriesName==='MA20');
           if(!cd) return '';
-          const [o,c,l,h] = cd.value;
-          const chg = ((c-o)/o*100).toFixed(2);
-          const color = c>=o?'#f85149':'#3fb950';
+          const [o,c,l,h] = cd.value;  // [开,收,低,高]
+          const idx = cd.dataIndex;
+          const chg = dailyChg[idx];
+          const color = chg >= 0 ? '#f85149' : '#3fb950';
           return `<b>${cd.name}</b><br/>
             开 ${o}&nbsp;&nbsp;收 <span style="color:${color}">${c}</span><br/>
             高 ${h}&nbsp;&nbsp;低 ${l}<br/>
