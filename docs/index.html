@@ -35,7 +35,7 @@
   .progress-bar.active{animation:progress 180s linear forwards;}
   @keyframes progress{to{transform:scaleX(0.95);}}
   .progress-bar.done{transform:scaleX(1);transition:transform .3s ease;}
-  .status-toast{position:fixed;bottom:20px;right:20px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--text);box-shadow:0 4px 20px #0008;display:none;z-index:300;max-width:300px;}
+  .status-toast{position:fixed;bottom:20px;right:20px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--text);box-shadow:0 4px 20px #0008;display:none;z-index:300;max-width:300px;white-space:pre-line;line-height:1.6;}
   .status-toast.show{display:block;}
   .status-toast.yellow{border-color:var(--yellow);}
   .status-toast.green{border-color:var(--green);}
@@ -219,12 +219,37 @@ function setRefreshState(state){
   }
 }
 
+let _countdownTimer = null;
+
+function startCountdown(totalSeconds){
+  clearInterval(_countdownTimer);
+  let remaining = totalSeconds;
+  function tick(){
+    const min = Math.floor(remaining / 60);
+    const sec = remaining % 60;
+    const timeStr = min > 0 ? `${min}分${sec.toString().padStart(2,'0')}秒` : `${sec}秒`;
+    const tips = [
+      '正在抓取六大板块成分股...',
+      '正在计算20日均线状态...',
+      '正在筛选强势个股...',
+      '正在计算乖离率...',
+      '数据处理中，马上就好...',
+    ];
+    const tip = tips[Math.floor((totalSeconds - remaining) / 30) % tips.length];
+    showToast(`⏳ ${tip}\n预计还需 ${timeStr}`, 'yellow', 0);
+    remaining--;
+    if(remaining < 0) clearInterval(_countdownTimer);
+  }
+  tick();
+  _countdownTimer = setInterval(tick, 1000);
+}
+
 async function triggerRefresh(){
   if(_refreshing) return;
   _refreshing = true;
   setRefreshState('running');
   startProgress();
-  showToast('⏳ 正在触发数据更新，约需 3-5 分钟...', 'yellow', 0);
+  showToast('⏳ 正在连接服务器...', 'yellow', 0);
 
   try {
     const res = await fetch(WORKER_URL, { method: 'POST' });
@@ -234,7 +259,8 @@ async function triggerRefresh(){
       throw new Error(`GitHub 返回 ${data.status}`);
     }
 
-    showToast('⏳ 脚本已启动，等待完成...', 'yellow', 0);
+    // 预估总时长约8分钟（480秒），启动倒计时
+    startCountdown(480);
     const triggerTime = Date.now();
     await pollForCompletion(triggerTime);
 
@@ -242,6 +268,7 @@ async function triggerRefresh(){
     _refreshing = false;
     setRefreshState('idle');
     doneProgress();
+    clearInterval(_countdownTimer);
     showToast('❌ 触发失败：' + e.message, 'red', 6000);
   }
 }
@@ -249,7 +276,7 @@ async function triggerRefresh(){
 async function pollForCompletion(triggerTime){
   await sleep(30000);
   let attempts = 0;
-  const maxAttempts = 20;
+  const maxAttempts = 25; // 最多等约12分钟
 
   _polling = setInterval(async () => {
     attempts++;
@@ -259,6 +286,7 @@ async function pollForCompletion(triggerTime){
 
       if(data.status === 'success'){
         clearInterval(_polling); _polling=null; _refreshing=false;
+        clearInterval(_countdownTimer);
         doneProgress();
         showToast('✅ 数据更新完成，正在加载...', 'green', 3000);
         setRefreshState('done');
@@ -266,17 +294,18 @@ async function pollForCompletion(triggerTime){
         await loadData();
       } else if(data.status === 'failed'){
         clearInterval(_polling); _polling=null; _refreshing=false;
+        clearInterval(_countdownTimer);
         doneProgress();
-        showToast('⚠️ 脚本运行失败', 'red', 8000);
+        showToast('⚠️ 脚本运行失败，请到 GitHub Actions 查看日志', 'red', 8000);
         setRefreshState('idle');
-      } else {
-        showToast(`⏳ 运行中... (${attempts*30}s)`, 'yellow', 0);
       }
+      // 倒计时已经在显示进度，不需要额外提示
 
       if(attempts >= maxAttempts){
         clearInterval(_polling); _polling=null; _refreshing=false;
+        clearInterval(_countdownTimer);
         doneProgress(); setRefreshState('idle');
-        showToast('⚠️ 等待超时，请稍后刷新页面', 'red', 8000);
+        showToast('⚠️ 等待超时，请稍后手动刷新页面（F5）', 'red', 8000);
       }
     } catch(e){ console.error('轮询失败', e); }
   }, 30000);
