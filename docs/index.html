@@ -5,10 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>强势选股 · 板块扫描</title>
 <style>
-  /* ── 字体 ── */
   @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;600&display=swap');
 
-  /* ── 调色板 ── */
   :root {
     --bg:        #0d1117;
     --bg2:       #161b22;
@@ -17,358 +15,226 @@
     --text:      #e6edf3;
     --muted:     #7d8590;
     --green:     #3fb950;
-    --green-dim: #1a4228;
+    --green-dim: #0d2318;
     --red:       #f85149;
-    --red-dim:   #3d1a1a;
+    --red-dim:   #2d0f0f;
     --yellow:    #d29922;
-    --yellow-dim:#2d2209;
+    --yellow-dim:#2a1f05;
     --orange:    #f0883e;
-    --orange-dim:#3a1f09;
+    --orange-dim:#301508;
     --blue:      #58a6ff;
+    --blue-dim:  #0c1929;
     --mono:      'IBM Plex Mono', monospace;
     --sans:      'Noto Sans SC', sans-serif;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.6;
-    min-height: 100vh;
-  }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; line-height: 1.6; min-height: 100vh; }
 
   /* ── 顶栏 ── */
   header {
     border-bottom: 1px solid var(--border);
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--bg);
+    padding: 0 24px;
+    display: flex; align-items: stretch; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100; background: var(--bg);
   }
-  .logo {
-    font-family: var(--mono);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
-    letter-spacing: 0.04em;
-  }
+  .logo { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--text); letter-spacing: 0.04em; display: flex; align-items: center; gap: 8px; }
   .logo span { color: var(--blue); }
-  .meta {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-  }
+  .meta { font-family: var(--mono); font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
   .meta b { color: var(--text); }
 
-  /* ── 主体布局 ── */
-  main { padding: 24px; max-width: 1400px; margin: 0 auto; }
-
-  /* ── 状态栏 ── */
-  .status-bar {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
+  /* ── Tab 导航 ── */
+  nav {
+    display: flex; align-items: stretch; gap: 0;
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    overflow-x: auto;
   }
-  .status-pill {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 14px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: var(--bg2);
+  .tab {
+    padding: 10px 18px;
+    font-size: 13px; font-weight: 500;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
     cursor: pointer;
-    transition: border-color 0.15s;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
     user-select: none;
   }
-  .status-pill:hover { border-color: var(--blue); }
-  .status-pill.active { border-color: var(--blue); background: #0c1929; }
-  .pill-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    flex-shrink: 0;
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--text); border-bottom-color: var(--orange); }
+  .tab-badge {
+    display: inline-block;
+    font-family: var(--mono); font-size: 10px;
+    padding: 1px 5px; border-radius: 8px;
+    background: var(--bg3); color: var(--muted);
+    margin-left: 5px; vertical-align: middle;
   }
-  .pill-name { font-size: 13px; font-weight: 500; }
-  .pill-badge {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 1px 6px;
-    border-radius: 3px;
-    background: var(--bg3);
-  }
-  .sector-bullish  .pill-dot { background: var(--green); }
-  .sector-bearish  .pill-dot { background: var(--red); }
-  .sector-tangle   .pill-dot { background: var(--yellow); }
-  .sector-unknown  .pill-dot { background: var(--muted); }
+  .tab-badge.green { background: var(--green-dim); color: var(--green); }
+  .tab-badge.orange { background: var(--orange-dim); color: var(--orange); }
+  .tab-sep { width: 1px; background: var(--border); margin: 8px 0; flex-shrink: 0; }
 
-  /* ── 乖离率预警面板 ── */
-  .deviation-panel {
+  /* ── 主体 ── */
+  main { padding: 24px; max-width: 1440px; margin: 0 auto; }
+
+  /* ── 页面视图 ── */
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* ── 板块概览卡片 ── */
+  .sector-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .overview-card {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 8px;
-    margin-bottom: 28px;
-    overflow: hidden;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.1s;
   }
-  .deviation-panel .panel-header {
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .overview-card:hover { border-color: var(--blue); transform: translateY(-1px); }
+  .overview-card.selected { border-color: var(--blue); background: var(--blue-dim); }
+  .ov-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .ov-name { font-size: 14px; font-weight: 600; }
+  .ov-status { font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 4px; }
+  .ov-status.bullish { background: var(--green-dim); color: var(--green); }
+  .ov-status.bearish { background: var(--red-dim); color: var(--red); }
+  .ov-status.tangle  { background: var(--yellow-dim); color: var(--yellow); }
+  .ov-status.unknown { background: var(--bg3); color: var(--muted); }
+  .ov-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .ov-meta b { color: var(--text); font-weight: 500; }
+  .ov-counts { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .ov-count-pill {
+    font-family: var(--mono); font-size: 10px;
+    padding: 1px 6px; border-radius: 3px;
   }
-  .panel-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    letter-spacing: 0.03em;
-  }
-  .badge-count {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 2px 8px;
-    border-radius: 10px;
-    background: var(--bg3);
-    color: var(--muted);
-  }
-  .deviation-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1px;
-    background: var(--border);
-  }
-  .dev-card {
-    background: var(--bg2);
-    padding: 12px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .dev-card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .dev-stock-name { font-size: 13px; font-weight: 500; }
-  .dev-stock-code { font-family: var(--mono); font-size: 11px; color: var(--muted); }
-  .dev-sector-tag {
-    font-size: 11px;
-    padding: 1px 6px;
-    border-radius: 3px;
-    background: var(--bg3);
-    color: var(--muted);
-  }
-  .dev-number {
-    font-family: var(--mono);
-    font-size: 18px;
-    font-weight: 500;
-    line-height: 1;
-    margin-top: 4px;
-  }
-  .dev-sub {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-  }
-  .alert-strong .dev-number { color: var(--orange); }
-  .alert-warn   .dev-number { color: var(--yellow); }
-  .alert-strong { border-left: 3px solid var(--orange); }
-  .alert-warn   { border-left: 3px solid var(--yellow); }
-  .dev-pos { color: var(--green); }
-  .dev-neg { color: var(--red); }
+  .ov-count-pill.up     { background: var(--green-dim); color: var(--green); }
+  .ov-count-pill.strong { background: #0d1f14; color: #57ab6e; }
+  .ov-count-pill.tangle { background: var(--yellow-dim); color: var(--yellow); }
+  .ov-count-pill.down   { background: var(--red-dim); color: var(--red); }
 
-  /* ── 板块内容区 ── */
-  .sector-section {
-    margin-bottom: 32px;
-    display: none;
-  }
-  .sector-section.active { display: block; }
-
-  .sector-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
+  /* ── 板块详情区 ── */
+  .sector-detail { margin-top: 0; }
+  .sector-detail-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
     border-bottom: 1px solid var(--border);
   }
-  .sector-name-big {
-    font-size: 18px;
-    font-weight: 600;
-  }
-  .sector-index-info {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-    margin-left: auto;
-    text-align: right;
-  }
-  .sector-index-info b { color: var(--text); }
+  .sdh-name { font-size: 20px; font-weight: 700; }
+  .sdh-index { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-left: auto; text-align: right; }
+  .sdh-index b { color: var(--text); }
 
   /* ── 状态分组 ── */
-  .status-group { margin-bottom: 20px; }
-  .group-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-    padding-left: 2px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .status-groups { display: flex; flex-direction: column; gap: 24px; }
+  .status-group { }
+  .group-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 12px;
   }
-  .group-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+  .group-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .group-label { font-size: 13px; font-weight: 600; letter-spacing: 0.02em; }
   .group-count {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    background: var(--bg3);
-    padding: 1px 6px;
-    border-radius: 3px;
+    font-family: var(--mono); font-size: 11px;
+    padding: 1px 7px; border-radius: 10px;
+    background: var(--bg3); color: var(--muted);
   }
+  .group-line { flex: 1; height: 1px; background: var(--border); }
+  .group-desc { font-size: 11px; color: var(--muted); }
 
   /* ── 股票卡片网格 ── */
   .stocks-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
     gap: 8px;
   }
   .stock-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 12px 14px;
-    position: relative;
-    overflow: hidden;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 12px 14px;
+    position: relative; overflow: hidden;
     transition: border-color 0.15s, transform 0.1s;
-    cursor: default;
   }
-  .stock-card:hover {
-    border-color: #444c56;
-    transform: translateY(-1px);
-  }
-  /* 状态色条 */
-  .stock-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-  }
-  .card-breakout_up::before  { background: var(--green); }
-  .card-above::before        { background: #2ea04380; }
-  .card-tangle::before       { background: var(--yellow); }
-  .card-below_d1::before     { background: #f8514980; }
-  .card-below_d2::before     { background: var(--red); }
+  .stock-card:hover { border-color: #444c56; transform: translateY(-1px); }
+  .stock-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
 
-  .card-breakout_up  { background: #0d1f14; border-color: #2ea04360; }
-  .card-above        { background: var(--bg2); }
-  .card-tangle       { background: #1c1a0f; border-color: #d2992260; }
-  .card-below_d1     { background: #1a1010; border-color: #f8514940; }
-  .card-below_d2     { background: #1f0d0d; border-color: #f8514970; }
+  .card-breakout_up { background: #0a1c10; border-color: #2ea04355; }
+  .card-breakout_up::before { background: var(--green); }
+  .card-above { background: var(--bg2); }
+  .card-above::before { background: #2ea04350; }
+  .card-tangle { background: #181508; border-color: #d2992240; }
+  .card-tangle::before { background: var(--yellow); }
+  .card-below_d1 { background: #180d0d; border-color: #f8514935; }
+  .card-below_d1::before { background: #f8514870; }
+  .card-below_d2 { background: #1f0a0a; border-color: #f8514960; }
+  .card-below_d2::before { background: var(--red); }
 
-  .card-name {
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .card-name { font-size: 13px; font-weight: 500; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-code { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+  .card-row { display: flex; justify-content: space-between; align-items: flex-end; }
+  .card-close { font-family: var(--mono); font-size: 15px; font-weight: 500; }
+  .card-dev { font-family: var(--mono); font-size: 12px; font-weight: 600; }
+  .card-dev.pos { color: var(--green); }
+  .card-dev.neg { color: var(--red); }
+  .card-dev.neu { color: var(--muted); }
+  .card-streak { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 5px; }
+  .card-streak.up   { color: #57ab6e; }
+  .card-streak.down { color: #c9504a; }
+  .card-dev-badge {
+    position: absolute; top: 6px; right: 6px;
+    font-size: 9px; font-weight: 700; padding: 1px 4px; border-radius: 3px;
   }
-  .card-code {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .card-metrics {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  .card-close {
-    font-family: var(--mono);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
-  }
-  .card-deviation {
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 500;
-  }
-  .card-deviation.pos { color: var(--green); }
-  .card-deviation.neg { color: var(--red); }
-  .card-deviation.neu { color: var(--muted); }
+  .card-dev-badge.strong { background: var(--orange-dim); color: var(--orange); }
+  .card-dev-badge.warn   { background: var(--yellow-dim); color: var(--yellow); }
 
-  .card-badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 600;
-    padding: 2px 6px;
-    border-radius: 3px;
-    margin-top: 6px;
-    letter-spacing: 0.04em;
+  /* ── 乖离率页面 ── */
+  .dev-toolbar {
+    display: flex; gap: 8px; margin-bottom: 18px; align-items: center;
   }
-  .badge-breakout_up { background: var(--green-dim); color: var(--green); }
-  .badge-tangle      { background: var(--yellow-dim); color: var(--yellow); }
-  .badge-below_d1    { background: var(--red-dim); color: #f8514990; }
-  .badge-below_d2    { background: var(--red-dim); color: var(--red); }
+  .dev-filter-btn {
+    padding: 5px 14px; border-radius: 5px; font-size: 12px; font-weight: 500;
+    border: 1px solid var(--border); background: var(--bg2);
+    color: var(--muted); cursor: pointer; transition: all 0.15s;
+  }
+  .dev-filter-btn:hover { color: var(--text); border-color: #555; }
+  .dev-filter-btn.active { border-color: var(--orange); color: var(--orange); background: var(--orange-dim); }
+  .dev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 8px;
+  }
+  .dev-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 7px;
+    padding: 14px 16px; border-left-width: 3px;
+  }
+  .dev-card.strong { border-left-color: var(--orange); background: #150e05; }
+  .dev-card.warn   { border-left-color: var(--yellow); background: #14110a; }
+  .dev-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .dev-name { font-size: 13px; font-weight: 600; }
+  .dev-code { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .dev-sector { font-size: 11px; padding: 1px 6px; border-radius: 3px; background: var(--bg3); color: var(--muted); }
+  .dev-number { font-family: var(--mono); font-size: 22px; font-weight: 500; line-height: 1; margin-bottom: 6px; }
+  .dev-number.pos { color: var(--green); }
+  .dev-number.neg { color: var(--red); }
+  .dev-sub { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .dev-label { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 3px; display: inline-block; margin-top: 6px; }
+  .dev-label.strong { background: var(--orange-dim); color: var(--orange); }
+  .dev-label.warn   { background: var(--yellow-dim); color: var(--yellow); }
+  .dev-empty { padding: 48px 0; text-align: center; color: var(--muted); font-size: 13px; }
 
-  /* 乖离率强提醒角标 */
-  .card-dev-alert {
-    position: absolute;
-    top: 6px; right: 6px;
-    font-size: 10px;
-    padding: 1px 5px;
-    border-radius: 3px;
-    font-weight: 600;
-  }
-  .card-dev-alert.strong { background: var(--orange-dim); color: var(--orange); }
-  .card-dev-alert.warn   { background: var(--yellow-dim); color: var(--yellow); }
-
-  /* ── 空状态 ── */
-  .empty { color: var(--muted); font-size: 13px; padding: 8px 0; }
-
-  /* ── 加载态 ── */
-  #loading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 80px 0;
-    gap: 16px;
-    color: var(--muted);
-  }
-  .spinner {
-    width: 28px; height: 28px;
-    border: 2px solid var(--border);
-    border-top-color: var(--blue);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
+  /* ── 加载 / 错误 ── */
+  #loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 0; gap: 14px; color: var(--muted); }
+  .spinner { width: 26px; height: 26px; border: 2px solid var(--border); border-top-color: var(--blue); border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
+  .error-box { padding: 60px 0; text-align: center; color: var(--muted); }
 
-  /* ── 全部板块视图 ── */
-  #view-all .sector-section { display: block !important; }
-
-  /* ── 响应式 ── */
   @media (max-width: 640px) {
-    main { padding: 16px; }
-    .stocks-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-    header { padding: 12px 16px; }
+    main { padding: 14px; }
+    nav { padding: 0 14px; }
+    header { padding: 0 14px; }
+    .stocks-grid { grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); }
   }
 </style>
 </head>
@@ -379,243 +245,214 @@
   <div class="meta" id="update-meta">加载中...</div>
 </header>
 
-<main id="app">
-  <div id="loading">
-    <div class="spinner"></div>
-    <div>正在加载数据...</div>
+<nav id="main-nav">
+  <div class="tab active" data-view="sectors" onclick="switchView('sectors',this)">板块扫描</div>
+  <div class="tab-sep"></div>
+  <div class="tab" data-view="deviation" onclick="switchView('deviation',this)">
+    乖离率预警 <span class="tab-badge orange" id="dev-badge">0</span>
   </div>
+</nav>
+
+<main id="app">
+  <div id="loading"><div class="spinner"></div><div>正在加载数据...</div></div>
 </main>
 
 <script>
-// ─────────────────────────────────────────────
-// 常量与工具
-// ─────────────────────────────────────────────
-const STATUS_LABEL = {
-  breakout_up: '突破上穿',
-  above:       '持续强势',
-  tangle:      '均线纠缠',
-  below_d1:    '跌破第1天',
-  below_d2:    '跌破第2天',
-  excluded:    '已剔除',
-};
-const STATUS_ORDER = ['breakout_up', 'above', 'tangle', 'below_d1', 'below_d2'];
-
-const SECTOR_STATUS_LABEL = {
-  bullish: '多头 ↑',
-  bearish: '空头 ↓',
-  tangle:  '纠缠 ~',
-  unknown: '数据缺失',
+const STATUS_ORDER = ['breakout_up','above','tangle','below_d1','below_d2'];
+const GROUP_CONFIG = {
+  breakout_up: { label:'突破上穿', dot:'#3fb950', desc:'今日有效上穿20日均线（偏离>+3%）' },
+  above:       { label:'持续强势', dot:'#2ea04380', desc:'已连续站在20日均线上方' },
+  tangle:      { label:'均线纠缠', dot:'#d29922', desc:'在均线±3%区间内反复，未有效突破' },
+  below_d1:    { label:'跌破第1天', dot:'#f8514880', desc:'今日首次有效跌破20日均线' },
+  below_d2:    { label:'跌破第2天', dot:'#f85149', desc:'连续第2天跌破，第3天将被剔除' },
 };
 
-function devClass(v) {
-  if (v > 0.5) return 'pos';
-  if (v < -0.5) return 'neg';
-  return 'neu';
+let _data = null;
+let _activeSector = 0;
+let _devFilter = 'all';
+
+// ── 视图切换 ──
+function switchView(view, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.dataset.view === view));
 }
 
-function fmt(n, decimals = 2) {
-  if (n == null) return '--';
-  return Number(n).toFixed(decimals);
-}
+// ── 乖离率符号 ──
+function fmtDev(v) { return (v >= 0 ? '+' : '') + v.toFixed(2) + '%'; }
+function devCls(v) { return v > 0.5 ? 'pos' : v < -0.5 ? 'neg' : 'neu'; }
+function fmt(n, d=2) { return n == null ? '--' : Number(n).toFixed(d); }
 
-function fmtDev(v) {
-  if (v == null) return '--';
-  return (v >= 0 ? '+' : '') + fmt(v) + '%';
-}
-
-// ─────────────────────────────────────────────
-// 渲染乖离率预警面板
-// ─────────────────────────────────────────────
-function renderDeviationPanel(alerts) {
-  if (!alerts || alerts.length === 0) return '';
-
-  const strongCount = alerts.filter(a => a.alert === 'strong').length;
-  const warnCount   = alerts.filter(a => a.alert === 'warn').length;
-
-  const cards = alerts.map(a => {
-    const isPos = a.deviation >= 0;
-    const alertClass = `alert-${a.alert}`;
-    const devClass2  = isPos ? 'dev-pos' : 'dev-neg';
-    return `
-      <div class="dev-card ${alertClass}">
-        <div class="dev-card-top">
-          <div>
-            <div class="dev-stock-name">${a.name}</div>
-            <div class="dev-stock-code">${a.code}</div>
-          </div>
-          <div class="dev-sector-tag">${a.sector}</div>
-        </div>
-        <div class="dev-number ${devClass2}">${fmtDev(a.deviation)}</div>
-        <div class="dev-sub">收盘 ${fmt(a.close)}  MA20 ${fmt(a.ma20)}</div>
-      </div>`;
-  }).join('');
-
-  return `
-    <div class="deviation-panel">
-      <div class="panel-header">
-        <div class="panel-title">⚡ 乖离率预警</div>
-        ${strongCount > 0 ? `<span class="badge-count" style="background:#3a1f09;color:var(--orange)">强提醒 ±50% × ${strongCount}</span>` : ''}
-        ${warnCount > 0   ? `<span class="badge-count" style="background:#2d2209;color:var(--yellow)">提醒 ±30% × ${warnCount}</span>` : ''}
-      </div>
-      <div class="deviation-grid">${cards}</div>
-    </div>`;
-}
-
-// ─────────────────────────────────────────────
-// 渲染单只股票卡片
-// ─────────────────────────────────────────────
-function renderStockCard(s) {
-  const devCls = devClass(s.deviation);
+// ── 股票卡片 ──
+function stockCard(s) {
+  const dc = devCls(s.deviation);
   const alertBadge = s.deviation_alert
-    ? `<div class="card-dev-alert ${s.deviation_alert}">${s.deviation_alert === 'strong' ? '⚡±50%' : '▲±30%'}</div>`
-    : '';
-
-  const statusBadge = ['breakout_up','tangle','below_d1','below_d2'].includes(s.status)
-    ? `<div class="card-badge badge-${s.status}">${STATUS_LABEL[s.status]}</div>`
-    : '';
-
-  // 连续天数提示
-  let streakNote = '';
-  if (s.status === 'breakout_up' && s.above_streak > 1) {
-    streakNote = `<div class="card-badge badge-breakout_up">站上第${s.above_streak}天</div>`;
-  }
-
+    ? `<div class="card-dev-badge ${s.deviation_alert}">${s.deviation_alert==='strong'?'⚡±50%':'▲±30%'}</div>` : '';
+  let streak = '';
+  if (s.status === 'breakout_up' && s.above_streak > 0)
+    streak = `<div class="card-streak up">站上第${s.above_streak}天</div>`;
+  else if (s.status === 'above' && s.above_streak > 1)
+    streak = `<div class="card-streak up">连续${s.above_streak}天</div>`;
+  else if (s.status.startsWith('below'))
+    streak = `<div class="card-streak down">跌破第${s.below_streak}天</div>`;
   return `
     <div class="stock-card card-${s.status}">
       ${alertBadge}
       <div class="card-name">${s.name}</div>
       <div class="card-code">${s.code}</div>
-      <div class="card-metrics">
+      <div class="card-row">
         <div class="card-close">${fmt(s.close)}</div>
-        <div class="card-deviation ${devCls}">${fmtDev(s.deviation)}</div>
+        <div class="card-dev ${dc}">${fmtDev(s.deviation)}</div>
       </div>
-      ${statusBadge}${streakNote}
+      ${streak}
     </div>`;
 }
 
-// ─────────────────────────────────────────────
-// 渲染板块区块
-// ─────────────────────────────────────────────
-function renderSector(sector, idx) {
-  const sectorStatusLabel = SECTOR_STATUS_LABEL[sector.status] || sector.status;
-  const sectorStatusColor = {
-    bullish: 'var(--green)', bearish: 'var(--red)',
-    tangle: 'var(--yellow)', unknown: 'var(--muted)'
-  }[sector.status] || 'var(--muted)';
+// ── 板块详情 ──
+function renderSectorDetail(sector) {
+  const sLabel = {bullish:'多头 ↑',bearish:'空头 ↓',tangle:'纠缠 ~',unknown:'--'}[sector.status]||'--';
+  const sColor = {bullish:'var(--green)',bearish:'var(--red)',tangle:'var(--yellow)',unknown:'var(--muted)'}[sector.status]||'var(--muted)';
 
-  const devText = sector.deviation != null ? fmtDev(sector.deviation) : '--';
-  const indexInfo = sector.close != null
-    ? `板块指数 <b>${fmt(sector.close)}</b>  MA20 <b>${fmt(sector.ma20)}</b>  偏离 <b>${devText}</b>`
-    : `板块数据不足`;
+  const indexHtml = sector.close != null
+    ? `指数 <b>${fmt(sector.close)}</b> &nbsp; MA20 <b>${fmt(sector.ma20)}</b> &nbsp; 偏离 <b style="color:${sector.deviation>=0?'var(--green)':'var(--red)'}">${fmtDev(sector.deviation)}</b>`
+    : '板块指数数据不足';
 
   // 按状态分组
   const groups = {};
   STATUS_ORDER.forEach(s => groups[s] = []);
-  sector.stocks.forEach(stock => {
-    if (groups[stock.status]) groups[stock.status].push(stock);
-    // excluded 直接跳过不展示
-  });
+  sector.stocks.forEach(s => { if (groups[s.status]) groups[s.status].push(s); });
 
-  const groupsHtml = STATUS_ORDER.map(statusKey => {
-    const list = groups[statusKey];
-    if (list.length === 0) return '';
-    const cardsHtml = list.map(renderStockCard).join('');
+  const groupsHtml = STATUS_ORDER.map(key => {
+    const list = groups[key];
+    if (!list.length) return '';
+    const cfg = GROUP_CONFIG[key];
     return `
       <div class="status-group">
-        <div class="group-label">
-          ${STATUS_LABEL[statusKey]}
-          <span class="group-count">${list.length}</span>
+        <div class="group-header">
+          <div class="group-dot" style="background:${cfg.dot}"></div>
+          <div class="group-label">${cfg.label}</div>
+          <div class="group-count">${list.length}</div>
+          <div class="group-line"></div>
+          <div class="group-desc">${cfg.desc}</div>
         </div>
-        <div class="stocks-grid">${cardsHtml}</div>
+        <div class="stocks-grid">${list.map(stockCard).join('')}</div>
       </div>`;
   }).join('');
 
   return `
-    <div class="sector-section" id="sector-${idx}">
-      <div class="sector-header">
-        <div class="sector-name-big">${sector.name}</div>
-        <div style="font-size:13px;color:${sectorStatusColor};font-weight:600">${sectorStatusLabel}</div>
-        <div class="sector-index-info">${indexInfo}</div>
+    <div class="sector-detail-header">
+      <div class="sdh-name">${sector.name}</div>
+      <div style="font-size:13px;font-weight:600;color:${sColor}">${sLabel}</div>
+      <div class="sdh-index">${indexHtml}</div>
+    </div>
+    <div class="status-groups">${groupsHtml || '<div style="color:var(--muted);padding:20px 0">暂无成分股数据</div>'}</div>`;
+}
+
+// ── 板块概览卡片 ──
+function overviewCard(sector, idx) {
+  const sLabel = {bullish:'多头',bearish:'空头',tangle:'纠缠',unknown:'--'}[sector.status]||'--';
+  const sc = sector.status_counts || {};
+  const pills = [
+    sc.breakout_up ? `<span class="ov-count-pill up">↑突破${sc.breakout_up}</span>` : '',
+    sc.above       ? `<span class="ov-count-pill strong">强势${sc.above}</span>` : '',
+    sc.tangle      ? `<span class="ov-count-pill tangle">纠缠${sc.tangle}</span>` : '',
+    (sc.below_d1||0)+(sc.below_d2||0) > 0 ? `<span class="ov-count-pill down">跌破${(sc.below_d1||0)+(sc.below_d2||0)}</span>` : '',
+  ].filter(Boolean).join('');
+  const devStr = sector.deviation != null ? fmtDev(sector.deviation) : '--';
+  return `
+    <div class="overview-card${idx===_activeSector?' selected':''}" onclick="selectSector(${idx})">
+      <div class="ov-header">
+        <div class="ov-name">${sector.name}</div>
+        <div class="ov-status ${sector.status}">${sLabel}</div>
       </div>
-      ${groupsHtml || '<div class="empty">暂无数据</div>'}
+      <div class="ov-meta">指数偏离 <b>${devStr}</b></div>
+      <div class="ov-counts">${pills}</div>
     </div>`;
 }
 
-// ─────────────────────────────────────────────
-// 渲染顶部板块选择栏
-// ─────────────────────────────────────────────
-function renderStatusBar(sectors) {
-  const allPill = `
-    <div class="status-pill" data-target="all" onclick="switchSector('all', this)">
-      <div class="pill-dot" style="background:var(--blue)"></div>
-      <span class="pill-name">全部板块</span>
+// ── 选中板块 ──
+function selectSector(idx) {
+  _activeSector = idx;
+  document.querySelectorAll('.overview-card').forEach((c,i) => c.classList.toggle('selected', i===idx));
+  const detail = document.getElementById('sector-detail-content');
+  if (detail && _data) detail.innerHTML = renderSectorDetail(_data.sectors[idx]);
+}
+
+// ── 乖离率视图 ──
+function renderDeviationView(alerts) {
+  const strongCount = alerts.filter(a=>a.alert==='strong').length;
+  const warnCount   = alerts.filter(a=>a.alert==='warn').length;
+
+  const filterBar = `
+    <div class="dev-toolbar">
+      <div class="dev-filter-btn${_devFilter==='all'?' active':''}" onclick="setDevFilter('all',this)">全部 <span class="tab-badge">${alerts.length}</span></div>
+      <div class="dev-filter-btn${_devFilter==='strong'?' active':''}" onclick="setDevFilter('strong',this)">强提醒 ±50% <span class="tab-badge orange">${strongCount}</span></div>
+      <div class="dev-filter-btn${_devFilter==='warn'?' active':''}" onclick="setDevFilter('warn',this)">提醒 ±30% <span class="tab-badge">${warnCount}</span></div>
     </div>`;
 
-  const pills = sectors.map((s, i) => {
-    const breakouts = s.stocks.filter(st => st.status === 'breakout_up').length;
+  const filtered = _devFilter === 'all' ? alerts : alerts.filter(a=>a.alert===_devFilter);
+  if (!filtered.length) {
+    return filterBar + '<div class="dev-empty">当前无符合条件的乖离率预警</div>';
+  }
+
+  const cards = filtered.map(a => {
+    const dc = a.deviation >= 0 ? 'pos' : 'neg';
     return `
-      <div class="status-pill sector-${s.status}" data-target="${i}" onclick="switchSector('${i}', this)">
-        <div class="pill-dot"></div>
-        <span class="pill-name">${s.name}</span>
-        ${breakouts > 0 ? `<span class="pill-badge" style="color:var(--green)">↑${breakouts}</span>` : ''}
+      <div class="dev-card ${a.alert}">
+        <div class="dev-card-top">
+          <div><div class="dev-name">${a.name}</div><div class="dev-code">${a.code}</div></div>
+          <div class="dev-sector">${a.sector}</div>
+        </div>
+        <div class="dev-number ${dc}">${fmtDev(a.deviation)}</div>
+        <div class="dev-sub">收盘 ${fmt(a.close)} &nbsp; MA20 ${fmt(a.ma20)}</div>
+        <div class="dev-label ${a.alert}">${a.alert==='strong'?'⚡ 强提醒 ±50%':'▲ 提醒 ±30%'}</div>
       </div>`;
   }).join('');
 
-  return allPill + pills;
+  return filterBar + `<div class="dev-grid">${cards}</div>`;
 }
 
-// ─────────────────────────────────────────────
-// 板块切换
-// ─────────────────────────────────────────────
-function switchSector(target, el) {
-  document.querySelectorAll('.status-pill').forEach(p => p.classList.remove('active'));
+function setDevFilter(f, el) {
+  _devFilter = f;
+  document.querySelectorAll('.dev-filter-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
-
-  const allSections = document.querySelectorAll('.sector-section');
-  if (target === 'all') {
-    allSections.forEach(s => s.style.display = 'block');
-  } else {
-    allSections.forEach(s => s.style.display = 'none');
-    const t = document.getElementById(`sector-${target}`);
-    if (t) t.style.display = 'block';
-  }
+  document.getElementById('dev-view-inner').innerHTML = renderDeviationView(_data.deviation_alerts);
 }
 
-// ─────────────────────────────────────────────
-// 主入口：加载数据并渲染
-// ─────────────────────────────────────────────
+// ── 主入口 ──
 async function init() {
   try {
-    // 加时间戳防缓存
     const res = await fetch(`data.json?t=${Date.now()}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    _data = await res.json();
 
-    // 更新顶部 meta
     document.getElementById('update-meta').innerHTML =
-      `数据日期 <b>${data.trade_date || '--'}</b>　更新于 <b>${data.updated_at || '--'}</b>`;
+      `<b>${_data.trade_date||'--'}</b> &nbsp; 更新于 <b>${_data.updated_at||'--'}</b>`;
 
-    // 构建页面
-    const app = document.getElementById('app');
-    app.innerHTML = `
-      <div class="status-bar" id="status-bar">
-        ${renderStatusBar(data.sectors)}
+    const alerts = _data.deviation_alerts || [];
+    const devBadge = document.getElementById('dev-badge');
+    devBadge.textContent = alerts.length;
+    if (alerts.length) devBadge.classList.add('orange');
+
+    document.getElementById('app').innerHTML = `
+      <div class="view active" data-view="sectors">
+        <div class="sector-overview" id="overview-grid">
+          ${_data.sectors.map((s,i)=>overviewCard(s,i)).join('')}
+        </div>
+        <div id="sector-detail-content">
+          ${renderSectorDetail(_data.sectors[0])}
+        </div>
       </div>
-      ${renderDeviationPanel(data.deviation_alerts)}
-      <div id="sectors-container">
-        ${data.sectors.map((s, i) => renderSector(s, i)).join('')}
+      <div class="view" data-view="deviation">
+        <div id="dev-view-inner">${renderDeviationView(alerts)}</div>
       </div>`;
 
-    // 默认选中"全部板块"
-    const firstPill = document.querySelector('.status-pill[data-target="all"]');
-    if (firstPill) firstPill.classList.add('active');
-
-  } catch (e) {
+  } catch(e) {
     document.getElementById('app').innerHTML = `
-      <div style="padding:60px 0;text-align:center;color:var(--muted)">
-        <div style="font-size:32px;margin-bottom:12px">⚠</div>
+      <div class="error-box">
+        <div style="font-size:28px;margin-bottom:10px">⚠</div>
         <div>数据加载失败，请检查 data.json 是否已生成</div>
-        <div style="font-family:var(--mono);font-size:12px;margin-top:8px;color:#555">${e.message}</div>
+        <div style="font-family:var(--mono);font-size:11px;margin-top:8px;color:#555">${e.message}</div>
       </div>`;
   }
 }
