@@ -50,7 +50,7 @@
   main{padding:24px;max-width:1440px;margin:0 auto;}
   .view{display:none;}.view.active{display:block;}
   .sector-overview{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:28px;}
-  .overview-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;cursor:pointer;transition:border-color .15s,transform .1s;}
+  .overview-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;cursor:pointer;transition:border-color .15s,transform .1s;position:relative;}
   .overview-card:hover{border-color:var(--blue);transform:translateY(-1px);}
   .overview-card.selected{border-color:var(--blue);background:var(--blue-dim);}
   .ov-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
@@ -410,6 +410,7 @@ function overviewCard(sector,idx){
     (sc.below_d1||0)+(sc.below_d2||0)>0?`<span class="ov-count-pill down">跌破${(sc.below_d1||0)+(sc.below_d2||0)}</span>`:'',
   ].filter(Boolean).join('');
   return `<div class="overview-card${idx===_activeSector?' selected':''}" onclick="selectSector(${idx})">
+    <div style="position:absolute;top:10px;right:12px;font-size:10px;color:var(--muted);cursor:pointer" onclick="event.stopPropagation();openSectorKline(${idx})">📈 K线</div>
     <div class="ov-header"><div class="ov-name">${sector.name}</div><div class="ov-status ${sector.status}">${sLabel}</div></div>
     <div class="ov-meta">指数偏离 <b>${sector.deviation!=null?fmtDev(sector.deviation):'--'}</b></div>
     <div class="ov-counts">${pills}</div>
@@ -521,6 +522,85 @@ function getMarket(code){
   if(code.startsWith('6')) return 'sh';
   if(code.startsWith('9')) return 'bj';
   return 'sz';
+}
+
+function openSectorKline(idx){
+  const sector = _data.sectors[idx];
+  if(!sector || !sector.klines || !sector.klines.length){
+    alert('板块K线数据不足，请刷新数据后重试');
+    return;
+  }
+  const overlay = document.getElementById('kline-overlay');
+  overlay.classList.add('show');
+  document.getElementById('kline-name').textContent = sector.name + ' 板块指数';
+  document.getElementById('kline-code').textContent = sector.ths_code;
+  document.getElementById('kline-loading').style.display = 'none';
+  document.getElementById('kline-chart').style.display = 'block';
+
+  const sColor = {bullish:'var(--green)',bearish:'var(--red)',tangle:'var(--yellow)',unknown:'var(--muted)'}[sector.status]||'var(--muted)';
+  const sLabel = {bullish:'多头 ↑',bearish:'空头 ↓',tangle:'纠缠 ~',unknown:'--'}[sector.status]||'--';
+  document.getElementById('ks-close').textContent = sector.close?.toFixed(2) || '--';
+  document.getElementById('ks-change').innerHTML = `<span style="color:${sColor}">${sLabel}</span>`;
+  document.getElementById('ks-ma20').textContent = sector.ma20?.toFixed(2) || '--';
+  document.getElementById('ks-dev').innerHTML = `<span style="color:${sector.deviation>=0?'var(--green)':'var(--red)'}">${sector.deviation>=0?'+':''}${sector.deviation?.toFixed(2)}%</span>`;
+
+  const rows = sector.klines;
+  const closes = rows.map(r => r.close);
+  const ma20arr = rows.map((_,i) => {
+    if(i < 19) return null;
+    return parseFloat((closes.slice(i-19,i+1).reduce((a,b)=>a+b,0)/20).toFixed(3));
+  });
+  const dailyChg = rows.map((r,i) => {
+    if(i===0) return 0;
+    const prev = rows[i-1].close;
+    return parseFloat(((r.close-prev)/prev*100).toFixed(2));
+  });
+
+  if(!_klineChart){
+    _klineChart = echarts.init(document.getElementById('kline-chart'), 'dark');
+  } else {
+    _klineChart.clear();
+  }
+
+  const dates = rows.map(r => r.date);
+  const candleData = rows.map(r => [r.open, r.close, r.low, r.high]);
+
+  _klineChart.setOption({
+    backgroundColor:'transparent',
+    tooltip:{
+      trigger:'axis', axisPointer:{type:'cross'},
+      backgroundColor:'#1c2330', borderColor:'#30363d',
+      textStyle:{color:'#e6edf3', fontSize:12},
+      formatter: params => {
+        const cd = params.find(p=>p.seriesName==='K线');
+        const ma = params.find(p=>p.seriesName==='MA20');
+        if(!cd) return '';
+        const [xIdx,o,c,l,h] = cd.value;
+        const idx2 = cd.dataIndex;
+        const chg = dailyChg[idx2];
+        const color = chg>=0?'#f85149':'#3fb950';
+        return `<b>${cd.name}</b><br/>
+          开 ${o}&nbsp;&nbsp;收 <span style="color:${color}">${c}</span><br/>
+          高 ${h}&nbsp;&nbsp;低 ${l}<br/>
+          涨跌 <span style="color:${color}">${chg>=0?'+':''}${chg}%</span><br/>
+          MA20 ${ma?.value!=null?parseFloat(ma.value).toFixed(2):'--'}`;
+      }
+    },
+    legend:{data:['MA20'], textStyle:{color:'#7d8590'}, right:10, top:0},
+    grid:{left:80, right:20, top:36, bottom:60},
+    xAxis:{type:'category', data:dates, axisLine:{lineStyle:{color:'#30363d'}}, axisLabel:{color:'#7d8590',fontSize:11}, splitLine:{show:false}},
+    yAxis:{type:'value', scale:true, boundaryGap:['15%','15%'], axisLine:{lineStyle:{color:'#30363d'}}, axisLabel:{color:'#7d8590',fontSize:11,formatter:v=>v.toFixed(0)}, splitLine:{lineStyle:{color:'#21262d'}}},
+    dataZoom:[
+      {type:'inside', start:33, end:100},
+      {type:'slider', start:33, end:100, height:24, bottom:8, textStyle:{color:'#7d8590'}, borderColor:'#30363d', fillerColor:'#1c2330', handleStyle:{color:'#58a6ff'}},
+    ],
+    series:[
+      {name:'MA20', type:'line', data:ma20arr, lineStyle:{color:'#f0883e',width:2}, symbol:'none'},
+      {name:'K线', type:'candlestick', data:candleData,
+        itemStyle:{color:'#f85149',color0:'#3fb950',borderColor:'#f85149',borderColor0:'#3fb950'}},
+    ],
+  });
+  _klineChart.resize();
 }
 
 function openKlineByCode(code){
