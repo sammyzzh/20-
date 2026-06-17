@@ -347,7 +347,7 @@ function stockCard(s){
   const cc = devCls(changePct);
   const dc = devCls(s.deviation);
   const alertBadge = s.deviation_alert
-    ? `<div class="card-dev-badge ${s.deviation_alert}">${s.deviation_alert==='strong'?'⚡±50%':'▲±30%'}</div>` : '';
+    ? `<div class="card-dev-badge ${s.deviation_alert}">${s.deviation_alert==='strong'?(s.deviation>0?'⚡偏离+50%↑':'⚡偏离-50%↓'):(s.deviation>0?'▲偏离+30%↑':'▲偏离-30%↓')}</div>` : '';
   let streak = '';
   if(s.status==='breakout_up') streak=`<div class="card-streak up">站上第${s.above_streak}天</div>`;
   else if(s.status==='above'&&s.above_streak>1) streak=`<div class="card-streak up">连续${s.above_streak}天</div>`;
@@ -410,10 +410,12 @@ function overviewCard(sector,idx){
     (sc.below_d1||0)+(sc.below_d2||0)>0?`<span class="ov-count-pill down">跌破${(sc.below_d1||0)+(sc.below_d2||0)}</span>`:'',
   ].filter(Boolean).join('');
   return `<div class="overview-card${idx===_activeSector?' selected':''}" onclick="selectSector(${idx})">
-    <div style="position:absolute;top:10px;right:12px;font-size:10px;color:var(--muted);cursor:pointer" onclick="event.stopPropagation();openSectorKline(${idx})">📈 K线</div>
     <div class="ov-header"><div class="ov-name">${sector.name}</div><div class="ov-status ${sector.status}">${sLabel}</div></div>
     <div class="ov-meta">指数偏离 <b>${sector.deviation!=null?fmtDev(sector.deviation):'--'}</b></div>
     <div class="ov-counts">${pills}</div>
+    <div style="margin-top:8px;text-align:right">
+      <span style="font-size:10px;color:var(--blue);cursor:pointer;border:1px solid var(--blue);border-radius:3px;padding:1px 7px;" onclick="event.stopPropagation();openSectorKline(${idx})">K线图</span>
+    </div>
   </div>`;
 }
 
@@ -425,6 +427,21 @@ function selectSector(idx){
 }
 
 function renderDeviationView(alerts){
+  // 去重：同一股票合并板块标签，只显示一次
+  const seen = {};
+  alerts.forEach(a => {
+    if(!seen[a.code]){
+      seen[a.code] = Object.assign({}, a, {sectors: [a.sector]});
+    } else {
+      if(!seen[a.code].sectors.includes(a.sector)) seen[a.code].sectors.push(a.sector);
+      if(Math.abs(a.deviation) > Math.abs(seen[a.code].deviation)){
+        seen[a.code].deviation = a.deviation;
+        seen[a.code].alert = a.alert;
+      }
+    }
+  });
+  alerts = Object.values(seen).map(a => Object.assign({}, a, {sector: a.sectors.join('·')}));
+  alerts.sort((a,b) => Math.abs(b.deviation) - Math.abs(a.deviation));
   const strongCount=alerts.filter(a=>a.alert==='strong').length;
   const warnCount=alerts.filter(a=>a.alert==='warn').length;
   const filterBar=`<div class="dev-toolbar">
