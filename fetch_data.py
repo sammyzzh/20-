@@ -66,19 +66,31 @@ def fetch_sector_stocks(ths_code):
 
 
 def fetch_sector_index(ths_index_name):
+    """返回 (closes列表, kline列表)，kline每条为 {date,open,high,low,close}"""
     try:
         import akshare as ak
         today = date.today().strftime("%Y%m%d")
-        start = (date.today() - timedelta(days=120)).strftime("%Y%m%d")
+        start = (date.today() - timedelta(days=150)).strftime("%Y%m%d")
         df = ak.stock_board_concept_index_ths(
             symbol=ths_index_name, start_date=start, end_date=today
         )
         if df is None or len(df) < 22:
-            return []
-        return df["收盘价"].tolist()
+            return [], []
+        closes = df["收盘价"].tolist()
+        # 取最近90条K线
+        klines = []
+        for _, row in df.tail(90).iterrows():
+            klines.append({
+                "date":  str(row["日期"]),
+                "open":  round(float(row["开盘价"]), 3),
+                "high":  round(float(row["最高价"]), 3),
+                "low":   round(float(row["最低价"]), 3),
+                "close": round(float(row["收盘价"]), 3),
+            })
+        return closes, klines
     except Exception as e:
         print(f"  板块指数抓取失败({ths_index_name}): {e}")
-        return []
+        return [], []
 
 
 def fetch_stock_kline_qq(code, n=60):
@@ -223,7 +235,7 @@ def main():
     for sector in SECTORS:
         print(f"\n── {sector['name']} ──")
 
-        sector_closes = fetch_sector_index(sector["ths_index"])
+        sector_closes, sector_klines = fetch_sector_index(sector["ths_index"])
         if len(sector_closes) >= 20:
             ma20  = float(np.mean(sector_closes[-20:]))
             close = sector_closes[-1]
@@ -232,6 +244,7 @@ def main():
             sector_ma20, sector_close, sector_dev = round(ma20, 2), round(close, 2), round(dev, 2)
         else:
             sector_status, sector_ma20, sector_close, sector_dev = "unknown", None, None, None
+            sector_klines = []
         print(f"  板块状态: {sector_status}  收盘={sector_close}  MA20={sector_ma20}")
 
         stocks_raw = fetch_sector_stocks(sector["ths_code"])
@@ -274,6 +287,7 @@ def main():
             "stock_count":   len(stocks_result),
             "status_counts": sc,
             "stocks":        stocks_result,
+            "klines":        sector_klines,
         })
         print(f"  状态分布: {sc}")
 
