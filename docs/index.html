@@ -451,7 +451,7 @@ function renderDeviationView(alerts){
   </div>`;
   const filtered=_devFilter==='all'?alerts:alerts.filter(a=>a.alert===_devFilter);
   if(!filtered.length) return filterBar+'<div class="dev-empty">当前无符合条件的乖离率预警</div>';
-  const cards=filtered.map(a=>`<div class="dev-card ${a.alert}">
+  const cards=filtered.map(a=>`<div class="dev-card ${a.alert}" onclick="openKlineByCode('${a.code}','${a.name}',{name:'${a.name}',close:${a.close},ma20:${a.ma20},deviation:${a.deviation},change_pct:null})" style="cursor:pointer">
     <div class="dev-card-top">
       <div><div class="dev-name">${a.name}</div><div class="dev-code">${a.code}</div></div>
       <div class="dev-sector">${a.sector}</div>
@@ -620,10 +620,10 @@ function openSectorKline(idx){
   _klineChart.resize();
 }
 
-function openKlineByCode(code){
-  const stockData = _stockCache[code];
-  const name = stockData ? stockData.name : code;
-  openKline(code, name, stockData);
+function openKlineByCode(code, name, extraData){
+  const stockData = _stockCache[code] || extraData || null;
+  const displayName = (stockData && stockData.name) ? stockData.name : (name || code);
+  openKline(code, displayName, stockData);
 }
 
 async function openKline(code, name, stockData){
