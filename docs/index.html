@@ -552,19 +552,23 @@ async function openKline(code, name, stockData){
     let rows = [];
 
     if(!code.startsWith('9')){
-      // 腾讯前复权，字段顺序: [日期, 开, 收, 高, 低, 量]
+      // 腾讯前复权，字段顺序: [日期,开,收,高,低,量,?除权字典]
+      // 除权日该条末尾会多一个字典对象，只取前5个字段并过滤NaN
       const url = `https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=${market}${code},day,,,90,qfq`;
       const r = await fetch(url);
       const data = await r.json();
       const key = `${market}${code}`;
       const klines = data?.data?.[key]?.qfqday || [];
-      rows = klines.map(k => ({
-        date:  k[0],
-        open:  parseFloat(k[1]),
-        close: parseFloat(k[2]),
-        high:  parseFloat(k[3]),
-        low:   parseFloat(k[4]),
-      }));
+      rows = klines
+        .filter(k => Array.isArray(k) && k.length >= 5)
+        .map(k => ({
+          date:  k[0],
+          open:  parseFloat(k[1]),
+          close: parseFloat(k[2]),
+          high:  parseFloat(k[3]),
+          low:   parseFloat(k[4]),
+        }))
+        .filter(r => !isNaN(r.open) && !isNaN(r.close) && !isNaN(r.high) && !isNaN(r.low));
     } else {
       // 新浪（北交所）
       const url = `https://money.finance.sina.com.cn/quotes_service/api/json_v2.php/CN_MarketData.getKLineData?symbol=${market}${code}&scale=240&ma=no&datalen=90`;
@@ -619,7 +623,7 @@ async function openKline(code, name, stockData){
           const cd = params.find(p=>p.seriesName==='K线');
           const ma = params.find(p=>p.seriesName==='MA20');
           if(!cd) return '';
-          const [o,c,l,h] = cd.value;  // [开,收,低,高]
+          const [o,c,l,h] = cd.value;  // ECharts candlestick: [开,收,低,高]
           const idx = cd.dataIndex;
           const chg = dailyChg[idx];
           const color = chg >= 0 ? '#f85149' : '#3fb950';
@@ -627,7 +631,7 @@ async function openKline(code, name, stockData){
             开 ${o}&nbsp;&nbsp;收 <span style="color:${color}">${c}</span><br/>
             高 ${h}&nbsp;&nbsp;低 ${l}<br/>
             涨跌 <span style="color:${color}">${chg>=0?'+':''}${chg}%</span><br/>
-            MA20 ${ma?.value||'--'}`;
+            MA20 ${ma?.value!=null ? parseFloat(ma.value).toFixed(2) : '--'}`;
         }
       },
       legend:{
