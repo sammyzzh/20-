@@ -623,7 +623,7 @@ async function openKline(code, name, stockData){
           const cd = params.find(p=>p.seriesName==='K线');
           const ma = params.find(p=>p.seriesName==='MA20');
           if(!cd) return '';
-          const [o,c,l,h] = cd.value;  // ECharts candlestick: [开,收,低,高]
+          const [xIdx,o,c,l,h] = cd.value;  // ECharts candlestick: [xIndex,开,收,低,高]
           const idx = cd.dataIndex;
           const chg = dailyChg[idx];
           const color = chg >= 0 ? '#f85149' : '#3fb950';
