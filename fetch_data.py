@@ -291,7 +291,24 @@ def main():
         })
         print(f"  状态分布: {sc}")
 
-    output["deviation_alerts"].sort(key=lambda x: abs(x["deviation"]), reverse=True)
+    # 去重：同一股票合并板块标签，只显示一次
+    seen = {}
+    for a in output["deviation_alerts"]:
+        code = a["code"]
+        if code not in seen:
+            seen[code] = dict(a)
+            seen[code]["sectors"] = [a["sector"]]
+        else:
+            if a["sector"] not in seen[code]["sectors"]:
+                seen[code]["sectors"].append(a["sector"])
+            if abs(a["deviation"]) > abs(seen[code]["deviation"]):
+                seen[code]["deviation"] = a["deviation"]
+                seen[code]["alert"] = a["alert"]
+    # 把sectors列表转成字符串标签
+    for a in seen.values():
+        a["sector"] = "·".join(a["sectors"])
+        del a["sectors"]
+    output["deviation_alerts"] = sorted(seen.values(), key=lambda x: abs(x["deviation"]), reverse=True)
 
     with open("docs/data.json", "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
