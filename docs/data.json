@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-14 16:11",
+  "updated_at": "2026-07-14 18:07",
   "trade_date": "2026-07-14",
   "sectors": [
     {
@@ -3759,10 +3759,10 @@
       "ma20": 820.78,
       "close": 777.87,
       "deviation": -5.23,
-      "stock_count": 49,
+      "stock_count": 50,
       "status_counts": {
         "breakout_up": 7,
-        "excluded": 19,
+        "excluded": 20,
         "above": 10,
         "tangle": 13
       },
@@ -4245,6 +4245,18 @@
           "deviation": 3.34,
           "above_streak": 1,
           "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "920036",
+          "name": "觅睿科技",
+          "status": "excluded",
+          "ma20": 37.533,
+          "close": 31.02,
+          "change_pct": 3.06,
+          "deviation": -17.35,
+          "above_streak": 0,
+          "below_streak": 14,
           "deviation_alert": null
         },
         {
@@ -6246,13 +6258,13 @@
       "ma20": 2377.54,
       "close": 2164.2,
       "deviation": -8.97,
-      "stock_count": 48,
+      "stock_count": 50,
       "status_counts": {
         "breakout_up": 3,
         "excluded": 40,
-        "tangle": 2,
+        "tangle": 3,
         "above": 2,
-        "below_d2": 1
+        "below_d2": 2
       },
       "stocks": [
         {
@@ -6436,6 +6448,18 @@
           "deviation_alert": null
         },
         {
+          "code": "603459",
+          "name": "红板科技",
+          "status": "tangle",
+          "ma20": 93.386,
+          "close": 94.5,
+          "change_pct": 7.57,
+          "deviation": 1.19,
+          "above_streak": 0,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
           "code": "688106",
           "name": "金宏气体",
           "status": "above",
@@ -6493,6 +6517,18 @@
           "deviation": -20.69,
           "above_streak": 0,
           "below_streak": 10,
+          "deviation_alert": null
+        },
+        {
+          "code": "920438",
+          "name": "戈碧迦",
+          "status": "below_d2",
+          "ma20": 135.921,
+          "close": 128.0,
+          "change_pct": 6.67,
+          "deviation": -5.83,
+          "above_streak": 0,
+          "below_streak": 2,
           "deviation_alert": null
         },
         {
