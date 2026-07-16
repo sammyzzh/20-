@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-16 16:10",
+  "updated_at": "2026-07-16 18:19",
   "trade_date": "2026-07-16",
   "sectors": [
     {
@@ -9,9 +9,9 @@
       "ma20": 3668.13,
       "close": 3336.57,
       "deviation": -9.04,
-      "stock_count": 50,
+      "stock_count": 49,
       "status_counts": {
-        "excluded": 25,
+        "excluded": 24,
         "tangle": 15,
         "above": 7,
         "breakout_up": 2,
@@ -172,18 +172,6 @@
           "deviation": 2.0,
           "above_streak": 0,
           "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "920914",
-          "name": "远航精密",
-          "status": "excluded",
-          "ma20": 18.453,
-          "close": 16.44,
-          "change_pct": 1.67,
-          "deviation": -10.91,
-          "above_streak": 0,
-          "below_streak": 16,
           "deviation_alert": null
         },
         {
