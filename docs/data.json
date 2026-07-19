@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-19 02:56",
+  "updated_at": "2026-07-19 16:10",
   "trade_date": "2026-07-19",
   "sectors": [
     {
@@ -2509,10 +2509,10 @@
       "ma20": 5492.51,
       "close": 4530.81,
       "deviation": -17.51,
-      "stock_count": 50,
+      "stock_count": 49,
       "status_counts": {
         "above": 11,
-        "excluded": 27,
+        "excluded": 26,
         "breakout_up": 3,
         "tangle": 9
       },
@@ -3055,18 +3055,6 @@
           "deviation": 3.28,
           "above_streak": 1,
           "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "920690",
-          "name": "捷众科技",
-          "status": "excluded",
-          "ma20": 15.489,
-          "close": 14.53,
-          "change_pct": -0.07,
-          "deviation": -6.19,
-          "above_streak": 0,
-          "below_streak": 30,
           "deviation_alert": null
         },
         {
@@ -3758,12 +3746,12 @@
       "ma20": 807.2,
       "close": 760.98,
       "deviation": -5.73,
-      "stock_count": 50,
+      "stock_count": 46,
       "status_counts": {
-        "breakout_up": 4,
-        "excluded": 17,
+        "breakout_up": 3,
+        "excluded": 15,
         "above": 22,
-        "tangle": 7
+        "tangle": 6
       },
       "stocks": [
         {
@@ -3774,18 +3762,6 @@
           "close": 10.48,
           "change_pct": 20.05,
           "deviation": 20.75,
-          "above_streak": 1,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "920130",
-          "name": "立方控股",
-          "status": "breakout_up",
-          "ma20": 13.807,
-          "close": 14.98,
-          "change_pct": 13.92,
-          "deviation": 8.5,
           "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
@@ -3911,18 +3887,6 @@
           "deviation_alert": null
         },
         {
-          "code": "920092",
-          "name": "汉鑫科技",
-          "status": "excluded",
-          "ma20": 25.645,
-          "close": 24.18,
-          "change_pct": 4.54,
-          "deviation": -5.71,
-          "above_streak": 0,
-          "below_streak": 17,
-          "deviation_alert": null
-        },
-        {
           "code": "300766",
           "name": "每日互动",
           "status": "tangle",
@@ -3991,18 +3955,6 @@
           "change_pct": 2.63,
           "deviation": 6.25,
           "above_streak": 3,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "920208",
-          "name": "青矩技术",
-          "status": "tangle",
-          "ma20": 12.666,
-          "close": 12.49,
-          "change_pct": 2.46,
-          "deviation": -1.39,
-          "above_streak": 0,
           "below_streak": 0,
           "deviation_alert": null
         },
@@ -4112,18 +4064,6 @@
           "deviation": -5.28,
           "above_streak": 0,
           "below_streak": 5,
-          "deviation_alert": null
-        },
-        {
-          "code": "920159",
-          "name": "农大科技",
-          "status": "excluded",
-          "ma20": 27.973,
-          "close": 26.8,
-          "change_pct": 0.94,
-          "deviation": -4.19,
-          "above_streak": 0,
-          "below_streak": 30,
           "deviation_alert": null
         },
         {
