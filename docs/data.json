@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-30 16:10",
+  "updated_at": "2026-07-30 18:32",
   "trade_date": "2026-07-30",
   "sectors": [
     {
@@ -9,9 +9,9 @@
       "ma20": 3359.55,
       "close": 3262.38,
       "deviation": -2.89,
-      "stock_count": 50,
+      "stock_count": 49,
       "status_counts": {
-        "above": 27,
+        "above": 26,
         "excluded": 3,
         "breakout_up": 4,
         "tangle": 16
@@ -74,18 +74,6 @@
           "change_pct": 3.86,
           "deviation": 3.5,
           "above_streak": 1,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "920914",
-          "name": "远航精密",
-          "status": "above",
-          "ma20": 17.19,
-          "close": 18.91,
-          "change_pct": 3.84,
-          "deviation": 10.01,
-          "above_streak": 3,
           "below_streak": 0,
           "deviation_alert": null
         },
@@ -1258,12 +1246,12 @@
       "ma20": 2092.6,
       "close": 1977.35,
       "deviation": -5.51,
-      "stock_count": 50,
+      "stock_count": 49,
       "status_counts": {
         "breakout_up": 5,
         "above": 27,
         "excluded": 8,
-        "tangle": 10
+        "tangle": 9
       },
       "stocks": [
         {
@@ -1324,18 +1312,6 @@
           "deviation": -21.1,
           "above_streak": 0,
           "below_streak": 21,
-          "deviation_alert": null
-        },
-        {
-          "code": "920092",
-          "name": "汉鑫科技",
-          "status": "tangle",
-          "ma20": 23.124,
-          "close": 23.84,
-          "change_pct": 7.1,
-          "deviation": 3.09,
-          "above_streak": 0,
-          "below_streak": 0,
           "deviation_alert": null
         },
         {
