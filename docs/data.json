@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-17 16:10",
+  "updated_at": "2026-08-17 16:55",
   "trade_date": "2026-08-17",
   "sectors": [
     {
@@ -1257,10 +1257,10 @@
       "ma20": 2060.93,
       "close": 2208.33,
       "deviation": 7.15,
-      "stock_count": 50,
+      "stock_count": 49,
       "status_counts": {
         "above": 38,
-        "breakout_up": 9,
+        "breakout_up": 8,
         "tangle": 3
       },
       "stocks": [
@@ -1693,18 +1693,6 @@
           "change_pct": 5.1,
           "deviation": 11.68,
           "above_streak": 7,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688802",
-          "name": "沐曦股份",
-          "status": "breakout_up",
-          "ma20": 748.926,
-          "close": 786.0,
-          "change_pct": 5.08,
-          "deviation": 4.95,
-          "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
         },
@@ -2505,10 +2493,10 @@
       "ma20": 4584.19,
       "close": 4946.8,
       "deviation": 7.91,
-      "stock_count": 49,
+      "stock_count": 47,
       "status_counts": {
         "above": 42,
-        "breakout_up": 7
+        "breakout_up": 5
       },
       "stocks": [
         {
@@ -2772,30 +2760,6 @@
           "change_pct": 11.08,
           "deviation": 19.61,
           "above_streak": 4,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "920725",
-          "name": "惠丰钻石",
-          "status": "breakout_up",
-          "ma20": 73.705,
-          "close": 81.89,
-          "change_pct": 10.99,
-          "deviation": 11.11,
-          "above_streak": 1,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688820",
-          "name": "盛合晶微",
-          "status": "breakout_up",
-          "ma20": 135.406,
-          "close": 153.1,
-          "change_pct": 10.97,
-          "deviation": 13.07,
-          "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
         },
@@ -6225,11 +6189,9 @@
       "ma20": 2014.52,
       "close": 2142.28,
       "deviation": 6.34,
-      "stock_count": 49,
+      "stock_count": 20,
       "status_counts": {
-        "above": 43,
-        "breakout_up": 5,
-        "tangle": 1
+        "above": 20
       },
       "stocks": [
         {
@@ -6469,354 +6431,6 @@
           "change_pct": 9.15,
           "deviation": 13.17,
           "above_streak": 14,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688668",
-          "name": "鼎通科技",
-          "status": "above",
-          "ma20": 229.93,
-          "close": 293.2,
-          "change_pct": 9.13,
-          "deviation": 27.52,
-          "above_streak": 5,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "300012",
-          "name": "华测检测",
-          "status": "breakout_up",
-          "ma20": 14.023,
-          "close": 15.22,
-          "change_pct": 8.87,
-          "deviation": 8.54,
-          "above_streak": 1,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "300553",
-          "name": "集智股份",
-          "status": "breakout_up",
-          "ma20": 42.81,
-          "close": 47.76,
-          "change_pct": 8.79,
-          "deviation": 11.56,
-          "above_streak": 1,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "301591",
-          "name": "肯特股份",
-          "status": "above",
-          "ma20": 28.798,
-          "close": 36.28,
-          "change_pct": 8.79,
-          "deviation": 25.98,
-          "above_streak": 7,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "002683",
-          "name": "广东宏大",
-          "status": "above",
-          "ma20": 27.911,
-          "close": 30.8,
-          "change_pct": 8.37,
-          "deviation": 10.35,
-          "above_streak": 7,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "920438",
-          "name": "戈碧迦",
-          "status": "breakout_up",
-          "ma20": 119.044,
-          "close": 123.48,
-          "change_pct": 8.25,
-          "deviation": 3.73,
-          "above_streak": 1,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688592",
-          "name": "司南导航",
-          "status": "above",
-          "ma20": 22.915,
-          "close": 26.32,
-          "change_pct": 8.13,
-          "deviation": 14.86,
-          "above_streak": 9,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "002428",
-          "name": "云南锗业",
-          "status": "above",
-          "ma20": 84.368,
-          "close": 109.65,
-          "change_pct": 7.93,
-          "deviation": 29.97,
-          "above_streak": 9,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688456",
-          "name": "有研粉材",
-          "status": "above",
-          "ma20": 77.476,
-          "close": 93.3,
-          "change_pct": 7.82,
-          "deviation": 20.42,
-          "above_streak": 7,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688539",
-          "name": "高华科技",
-          "status": "above",
-          "ma20": 25.157,
-          "close": 29.3,
-          "change_pct": 7.72,
-          "deviation": 16.47,
-          "above_streak": 8,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "002046",
-          "name": "国机精工",
-          "status": "breakout_up",
-          "ma20": 46.513,
-          "close": 50.93,
-          "change_pct": 7.67,
-          "deviation": 9.5,
-          "above_streak": 1,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688305",
-          "name": "科德数控",
-          "status": "above",
-          "ma20": 57.916,
-          "close": 69.9,
-          "change_pct": 7.62,
-          "deviation": 20.69,
-          "above_streak": 7,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "300102",
-          "name": "乾照光电",
-          "status": "above",
-          "ma20": 17.757,
-          "close": 20.31,
-          "change_pct": 6.89,
-          "deviation": 14.38,
-          "above_streak": 9,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "603660",
-          "name": "苏州科达",
-          "status": "above",
-          "ma20": 10.037,
-          "close": 12.67,
-          "change_pct": 6.83,
-          "deviation": 26.24,
-          "above_streak": 11,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688048",
-          "name": "长光华芯",
-          "status": "above",
-          "ma20": 280.369,
-          "close": 332.88,
-          "change_pct": 6.69,
-          "deviation": 18.73,
-          "above_streak": 3,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "300749",
-          "name": "顶固集创",
-          "status": "above",
-          "ma20": 19.561,
-          "close": 24.4,
-          "change_pct": 6.69,
-          "deviation": 24.74,
-          "above_streak": 9,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688308",
-          "name": "欧科亿",
-          "status": "above",
-          "ma20": 94.784,
-          "close": 107.82,
-          "change_pct": 6.65,
-          "deviation": 13.75,
-          "above_streak": 7,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688066",
-          "name": "*ST航图",
-          "status": "above",
-          "ma20": 8.643,
-          "close": 9.65,
-          "change_pct": 6.63,
-          "deviation": 11.65,
-          "above_streak": 11,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688323",
-          "name": "瑞华泰",
-          "status": "above",
-          "ma20": 25.945,
-          "close": 30.9,
-          "change_pct": 6.59,
-          "deviation": 19.1,
-          "above_streak": 7,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "300964",
-          "name": "本川智能",
-          "status": "above",
-          "ma20": 52.48,
-          "close": 61.65,
-          "change_pct": 6.48,
-          "deviation": 17.47,
-          "above_streak": 7,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688379",
-          "name": "华光新材",
-          "status": "above",
-          "ma20": 48.793,
-          "close": 58.25,
-          "change_pct": 6.41,
-          "deviation": 19.38,
-          "above_streak": 2,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688548",
-          "name": "广钢气体",
-          "status": "above",
-          "ma20": 36.109,
-          "close": 41.5,
-          "change_pct": 6.41,
-          "deviation": 14.93,
-          "above_streak": 2,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "300842",
-          "name": "帝科股份",
-          "status": "above",
-          "ma20": 56.482,
-          "close": 67.13,
-          "change_pct": 6.27,
-          "deviation": 18.85,
-          "above_streak": 4,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "301306",
-          "name": "西测测试",
-          "status": "above",
-          "ma20": 90.181,
-          "close": 102.21,
-          "change_pct": 6.25,
-          "deviation": 13.34,
-          "above_streak": 4,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688383",
-          "name": "新益昌",
-          "status": "above",
-          "ma20": 107.562,
-          "close": 128.24,
-          "change_pct": 5.9,
-          "deviation": 19.22,
-          "above_streak": 7,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "300836",
-          "name": "佰奥智能",
-          "status": "tangle",
-          "ma20": 53.1,
-          "close": 53.11,
-          "change_pct": 5.8,
-          "deviation": 0.02,
-          "above_streak": 0,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "300593",
-          "name": "新雷能",
-          "status": "above",
-          "ma20": 26.046,
-          "close": 31.02,
-          "change_pct": 5.73,
-          "deviation": 19.09,
-          "above_streak": 10,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "600246",
-          "name": "万通发展",
-          "status": "breakout_up",
-          "ma20": 12.574,
-          "close": 13.28,
-          "change_pct": 5.65,
-          "deviation": 5.61,
-          "above_streak": 1,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "688107",
-          "name": "安路科技",
-          "status": "above",
-          "ma20": 30.504,
-          "close": 33.64,
-          "change_pct": 5.59,
-          "deviation": 10.28,
-          "above_streak": 6,
           "below_streak": 0,
           "deviation_alert": null
         }
