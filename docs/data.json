@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-08-18 22:18",
+  "updated_at": "2026-08-18 22:32",
   "trade_date": "2026-08-18",
   "sectors": [
     {
       "name": "小金属",
       "ths_code": "300809",
       "status": "bullish",
-      "ma20": 3418.43,
-      "close": 3616.95,
-      "deviation": 5.81,
+      "ma20": 3417.7,
+      "close": 3602.33,
+      "deviation": 5.4,
       "stock_count": 50,
       "status_counts": {
         "above": 38,
@@ -1245,8 +1245,8 @@
           "date": "2026-08-18",
           "open": 3637.513,
           "high": 3662.121,
-          "low": 3614.558,
-          "close": 3616.954
+          "low": 3591.014,
+          "close": 3602.329
         }
       ]
     },
@@ -1257,11 +1257,11 @@
       "ma20": 2089.59,
       "close": 2223.89,
       "deviation": 6.43,
-      "stock_count": 50,
+      "stock_count": 49,
       "status_counts": {
         "above": 37,
         "breakout_up": 10,
-        "tangle": 3
+        "tangle": 2
       },
       "stocks": [
         {
@@ -1525,18 +1525,6 @@
           "change_pct": 3.56,
           "deviation": 13.82,
           "above_streak": 12,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "920010",
-          "name": "凯添燃气",
-          "status": "tangle",
-          "ma20": 8.507,
-          "close": 8.63,
-          "change_pct": 3.35,
-          "deviation": 1.44,
-          "above_streak": 0,
           "below_streak": 0,
           "deviation_alert": null
         },
