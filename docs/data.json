@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-09-24 21:30",
-  "trade_date": "2026-09-24",
+  "updated_at": "2026-09-25 21:39",
+  "trade_date": "2026-09-25",
   "sectors": [
     {
       "name": "小金属",
       "ths_code": "300809",
       "status": "tangle",
-      "ma20": 3506.51,
-      "close": 3408.75,
-      "deviation": -2.79,
+      "ma20": 3506.18,
+      "close": 3402.15,
+      "deviation": -2.97,
       "stock_count": 50,
       "status_counts": {
         "above": 7,
@@ -1248,8 +1248,8 @@
           "date": "2026-09-24",
           "open": 3458.662,
           "high": 3467.185,
-          "low": 3408.303,
-          "close": 3408.754
+          "low": 3400.314,
+          "close": 3402.151
         }
       ]
     },
