@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-23 21:19",
-  "trade_date": "2026-10-23",
+  "updated_at": "2026-10-25 16:10",
+  "trade_date": "2026-10-25",
   "sectors": [
     {
       "name": "小金属",
@@ -3084,10 +3084,10 @@
           "code": "300866",
           "name": "安克创新",
           "status": "tangle",
-          "ma20": 116.184,
+          "ma20": 116.464,
           "close": 114.63,
           "change_pct": 9.17,
-          "deviation": -1.34,
+          "deviation": -1.57,
           "above_streak": 0,
           "below_streak": 0,
           "deviation_alert": null
@@ -3741,10 +3741,10 @@
     {
       "name": "AI应用",
       "ths_code": "309264",
-      "status": "bearish",
-      "ma20": 834.63,
-      "close": 776.18,
-      "deviation": -7.0,
+      "status": "tangle",
+      "ma20": 837.5,
+      "close": 833.58,
+      "deviation": -0.47,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 31,
@@ -3876,10 +3876,10 @@
           "code": "688507",
           "name": "索辰科技",
           "status": "above",
-          "ma20": 140.279,
+          "ma20": 140.412,
           "close": 183.08,
-          "change_pct": 14.01,
-          "deviation": 30.51,
+          "change_pct": 13.91,
+          "deviation": 30.39,
           "above_streak": 5,
           "below_streak": 0,
           "deviation_alert": "warn"
@@ -3936,10 +3936,10 @@
           "code": "300033",
           "name": "同花顺",
           "status": "breakout_up",
-          "ma20": 201.487,
+          "ma20": 201.517,
           "close": 213.85,
           "change_pct": 12.39,
-          "deviation": 6.14,
+          "deviation": 6.12,
           "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
@@ -4980,19 +4980,19 @@
         {
           "date": "2026-10-23",
           "open": 793.253,
-          "high": 798.929,
+          "high": 835.943,
           "low": 772.387,
-          "close": 776.178
+          "close": 833.575
         }
       ]
     },
     {
       "name": "人形机器人",
       "ths_code": "309119",
-      "status": "bearish",
-      "ma20": 2249.92,
-      "close": 2088.51,
-      "deviation": -7.17,
+      "status": "tangle",
+      "ma20": 2258.4,
+      "close": 2258.25,
+      "deviation": -0.01,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 24,
@@ -5185,10 +5185,10 @@
           "code": "688507",
           "name": "索辰科技",
           "status": "above",
-          "ma20": 140.279,
+          "ma20": 140.412,
           "close": 183.08,
-          "change_pct": 14.01,
-          "deviation": 30.51,
+          "change_pct": 13.91,
+          "deviation": 30.39,
           "above_streak": 5,
           "below_streak": 0,
           "deviation_alert": "warn"
@@ -6229,9 +6229,9 @@
         {
           "date": "2026-10-23",
           "open": 2122.96,
-          "high": 2134.674,
+          "high": 2265.928,
           "low": 2065.228,
-          "close": 2088.51
+          "close": 2258.246
         }
       ]
     },
@@ -7580,10 +7580,10 @@
       "sector": "AI应用·人形机器人·商业航天",
       "code": "688507",
       "name": "索辰科技",
-      "deviation": 30.51,
+      "deviation": 30.39,
       "alert": "warn",
       "close": 183.08,
-      "ma20": 140.279
+      "ma20": 140.412
     }
   ]
 }
