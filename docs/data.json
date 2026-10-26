@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-26 16:10",
+  "updated_at": "2026-10-26 23:06",
   "trade_date": "2026-10-26",
   "sectors": [
     {
@@ -1255,9 +1255,9 @@
       "name": "算力",
       "ths_code": "308828",
       "status": "bearish",
-      "ma20": 2069.74,
-      "close": 1989.69,
-      "deviation": -3.87,
+      "ma20": 2069.16,
+      "close": 1978.21,
+      "deviation": -4.4,
       "stock_count": 50,
       "status_counts": {
         "above": 17,
@@ -2494,9 +2494,9 @@
         {
           "date": "2026-10-26",
           "open": 1982.821,
-          "high": 1995.437,
+          "high": 2001.791,
           "low": 1966.037,
-          "close": 1989.695
+          "close": 1978.212
         }
       ]
     },
@@ -2504,9 +2504,9 @@
       "name": "芯片",
       "ths_code": "301085",
       "status": "bearish",
-      "ma20": 4630.49,
-      "close": 4342.01,
-      "deviation": -6.23,
+      "ma20": 4591.16,
+      "close": 4244.97,
+      "deviation": -7.54,
       "stock_count": 50,
       "status_counts": {
         "tangle": 18,
@@ -3117,13 +3117,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-11",
-          "open": 5173.773,
-          "high": 5241.535,
-          "low": 5150.482,
-          "close": 5206.433
-        },
         {
           "date": "2026-06-12",
           "open": 5314.131,
@@ -3746,6 +3739,13 @@
           "high": 4355.15,
           "low": 3991.661,
           "close": 4342.011
+        },
+        {
+          "date": "2026-10-26",
+          "open": 4302.179,
+          "high": 4319.449,
+          "low": 4230.159,
+          "close": 4244.967
         }
       ]
     },
@@ -3753,9 +3753,9 @@
       "name": "AI应用",
       "ths_code": "309264",
       "status": "tangle",
-      "ma20": 837.5,
-      "close": 833.58,
-      "deviation": -0.47,
+      "ma20": 837.21,
+      "close": 835.28,
+      "deviation": -0.23,
       "stock_count": 50,
       "status_counts": {
         "above": 17,
@@ -4366,13 +4366,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-11",
-          "open": 841.454,
-          "high": 842.053,
-          "low": 815.764,
-          "close": 822.651
-        },
         {
           "date": "2026-06-12",
           "open": 831.446,
@@ -4995,6 +4988,13 @@
           "high": 835.943,
           "low": 772.387,
           "close": 833.575
+        },
+        {
+          "date": "2026-10-26",
+          "open": 828.727,
+          "high": 845.145,
+          "low": 824.615,
+          "close": 835.279
         }
       ]
     },
@@ -5002,15 +5002,15 @@
       "name": "人形机器人",
       "ths_code": "309119",
       "status": "tangle",
-      "ma20": 2258.4,
-      "close": 2258.25,
-      "deviation": -0.01,
+      "ma20": 2251.96,
+      "close": 2240.47,
+      "deviation": -0.51,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 21,
         "above": 19,
-        "tangle": 8,
-        "excluded": 2
+        "tangle": 7,
+        "excluded": 3
       },
       "stocks": [
         {
@@ -5436,13 +5436,13 @@
         {
           "code": "300980",
           "name": "祥源新材",
-          "status": "tangle",
-          "ma20": 15.789,
+          "status": "excluded",
+          "ma20": 17.779,
           "close": 15.68,
           "change_pct": 5.59,
-          "deviation": -0.69,
+          "deviation": -11.8,
           "above_streak": 0,
-          "below_streak": 0,
+          "below_streak": 14,
           "deviation_alert": null
         },
         {
@@ -5545,10 +5545,10 @@
           "code": "688208",
           "name": "道通科技",
           "status": "breakout_up",
-          "ma20": 24.2,
+          "ma20": 24.347,
           "close": 25.65,
           "change_pct": 4.65,
-          "deviation": 5.99,
+          "deviation": 5.35,
           "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
@@ -5615,13 +5615,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-11",
-          "open": 2570.342,
-          "high": 2583.471,
-          "low": 2522.104,
-          "close": 2542.89
-        },
         {
           "date": "2026-06-12",
           "open": 2580.532,
@@ -6244,6 +6237,13 @@
           "high": 2265.928,
           "low": 2065.228,
           "close": 2258.246
+        },
+        {
+          "date": "2026-10-26",
+          "open": 2248.031,
+          "high": 2269.393,
+          "low": 2224.644,
+          "close": 2240.465
         }
       ]
     },
@@ -6251,9 +6251,9 @@
       "name": "商业航天",
       "ths_code": "309130",
       "status": "bearish",
-      "ma20": 2037.87,
-      "close": 1961.77,
-      "deviation": -3.73,
+      "ma20": 2026.54,
+      "close": 1929.96,
+      "deviation": -4.77,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 9,
@@ -6422,10 +6422,10 @@
           "code": "002967",
           "name": "广电计量",
           "status": "breakout_up",
-          "ma20": 16.99,
+          "ma20": 16.998,
           "close": 17.6,
           "change_pct": 3.65,
-          "deviation": 3.59,
+          "deviation": 3.54,
           "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
@@ -6864,13 +6864,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-11",
-          "open": 2318.585,
-          "high": 2338.512,
-          "low": 2296.886,
-          "close": 2324.898
-        },
         {
           "date": "2026-06-12",
           "open": 2358.583,
@@ -7493,6 +7486,13 @@
           "high": 1967.611,
           "low": 1818.684,
           "close": 1961.772
+        },
+        {
+          "date": "2026-10-26",
+          "open": 1947.398,
+          "high": 1960.53,
+          "low": 1920.597,
+          "close": 1929.957
         }
       ]
     }
