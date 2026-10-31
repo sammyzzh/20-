@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-10-30 22:59",
-  "trade_date": "2026-10-30",
+  "updated_at": "2026-10-31 13:41",
+  "trade_date": "2026-10-31",
   "sectors": [
     {
       "name": "小金属",
@@ -6536,10 +6536,10 @@
           "code": "002430",
           "name": "杭氧股份",
           "status": "breakout_up",
-          "ma20": 24.829,
+          "ma20": 24.809,
           "close": 25.95,
           "change_pct": 2.45,
-          "deviation": 4.51,
+          "deviation": 4.6,
           "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
@@ -6608,10 +6608,10 @@
           "code": "300629",
           "name": "新劲刚",
           "status": "breakout_up",
-          "ma20": 17.529,
+          "ma20": 17.527,
           "close": 18.18,
           "change_pct": 1.62,
-          "deviation": 3.71,
+          "deviation": 3.73,
           "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
@@ -6728,10 +6728,10 @@
           "code": "601369",
           "name": "陕鼓动力",
           "status": "excluded",
-          "ma20": 8.156,
+          "ma20": 8.097,
           "close": 7.84,
           "change_pct": 0.77,
-          "deviation": -3.88,
+          "deviation": -3.17,
           "above_streak": 0,
           "below_streak": 12,
           "deviation_alert": null
@@ -6824,10 +6824,10 @@
           "code": "688507",
           "name": "索辰科技",
           "status": "above",
-          "ma20": 143.9,
+          "ma20": 143.803,
           "close": 148.65,
           "change_pct": 0.44,
-          "deviation": 3.3,
+          "deviation": 3.37,
           "above_streak": 10,
           "below_streak": 0,
           "deviation_alert": null
@@ -6852,7 +6852,7 @@
           "close": 7.01,
           "change_pct": 0.29,
           "deviation": 4.71,
-          "above_streak": 16,
+          "above_streak": 17,
           "below_streak": 0,
           "deviation_alert": null
         }
