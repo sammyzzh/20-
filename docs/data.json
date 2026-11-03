@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-03 16:10",
-  "trade_date": "2026-11-03",
+  "updated_at": "2026-11-04 00:07",
+  "trade_date": "2026-11-04",
   "sectors": [
     {
       "name": "小金属",
       "ths_code": "300809",
       "status": "bearish",
-      "ma20": 3096.74,
-      "close": 2848.31,
-      "deviation": -8.02,
+      "ma20": 3072.82,
+      "close": 2841.34,
+      "deviation": -7.53,
       "stock_count": 50,
       "status_counts": {
         "tangle": 19,
@@ -619,13 +619,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-22",
-          "open": 3871.587,
-          "high": 4033.02,
-          "low": 3853.061,
-          "close": 4032.177
-        },
         {
           "date": "2026-06-23",
           "open": 4034.82,
@@ -1248,6 +1241,13 @@
           "high": 2860.192,
           "low": 2785.401,
           "close": 2848.313
+        },
+        {
+          "date": "2026-11-03",
+          "open": 2841.696,
+          "high": 2910.263,
+          "low": 2821.66,
+          "close": 2841.343
         }
       ]
     },
@@ -1255,9 +1255,9 @@
       "name": "算力",
       "ths_code": "308828",
       "status": "bearish",
-      "ma20": 1986.47,
-      "close": 1841.63,
-      "deviation": -7.29,
+      "ma20": 1969.54,
+      "close": 1799.74,
+      "deviation": -8.62,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 8,
@@ -1869,13 +1869,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-22",
-          "open": 2404.878,
-          "high": 2421.372,
-          "low": 2349.011,
-          "close": 2421.372
-        },
         {
           "date": "2026-06-23",
           "open": 2415.018,
@@ -2498,6 +2491,13 @@
           "high": 1854.579,
           "low": 1761.666,
           "close": 1841.632
+        },
+        {
+          "date": "2026-11-03",
+          "open": 1826.507,
+          "high": 1855.17,
+          "low": 1786.798,
+          "close": 1799.745
         }
       ]
     },
@@ -3036,10 +3036,10 @@
           "code": "002960",
           "name": "青鸟智控",
           "status": "tangle",
-          "ma20": 8.332,
+          "ma20": 8.351,
           "close": 8.49,
           "change_pct": 2.17,
-          "deviation": 1.9,
+          "deviation": 1.66,
           "above_streak": 0,
           "below_streak": 0,
           "deviation_alert": null
@@ -3729,10 +3729,10 @@
     {
       "name": "AI应用",
       "ths_code": "309264",
-      "status": "tangle",
-      "ma20": 818.7,
-      "close": 794.64,
-      "deviation": -2.94,
+      "status": "bearish",
+      "ma20": 818.15,
+      "close": 783.68,
+      "deviation": -4.21,
       "stock_count": 50,
       "status_counts": {
         "tangle": 14,
@@ -4970,8 +4970,8 @@
           "date": "2026-11-03",
           "open": 789.7,
           "high": 803.583,
-          "low": 786.405,
-          "close": 794.64
+          "low": 778.441,
+          "close": 783.684
         }
       ]
     },
@@ -4979,9 +4979,9 @@
       "name": "人形机器人",
       "ths_code": "309119",
       "status": "bearish",
-      "ma20": 2199.11,
-      "close": 2127.55,
-      "deviation": -3.25,
+      "ma20": 2186.51,
+      "close": 2068.97,
+      "deviation": -5.38,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 13,
@@ -5593,13 +5593,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-22",
-          "open": 2731.714,
-          "high": 2731.714,
-          "low": 2628.529,
-          "close": 2705.27
-        },
         {
           "date": "2026-06-23",
           "open": 2692.935,
@@ -6222,6 +6215,13 @@
           "high": 2145.268,
           "low": 2030.433,
           "close": 2127.545
+        },
+        {
+          "date": "2026-11-03",
+          "open": 2108.739,
+          "high": 2135.365,
+          "low": 2056.506,
+          "close": 2068.972
         }
       ]
     },
@@ -6229,9 +6229,9 @@
       "name": "商业航天",
       "ths_code": "309130",
       "status": "bearish",
-      "ma20": 1937.65,
-      "close": 1831.46,
-      "deviation": -5.48,
+      "ma20": 1936.07,
+      "close": 1799.73,
+      "deviation": -7.04,
       "stock_count": 50,
       "status_counts": {
         "above": 5,
@@ -7469,8 +7469,8 @@
           "date": "2026-11-03",
           "open": 1820.888,
           "high": 1857.65,
-          "low": 1808.471,
-          "close": 1831.458
+          "low": 1787.879,
+          "close": 1799.735
         }
       ]
     }
