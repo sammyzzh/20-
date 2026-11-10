@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-10 16:10",
-  "trade_date": "2026-11-10",
+  "updated_at": "2026-11-11 00:22",
+  "trade_date": "2026-11-11",
   "sectors": [
     {
       "name": "小金属",
       "ths_code": "300809",
       "status": "tangle",
-      "ma20": 3004.67,
-      "close": 2956.5,
-      "deviation": -1.6,
+      "ma20": 2990.79,
+      "close": 2982.51,
+      "deviation": -0.28,
       "stock_count": 50,
       "status_counts": {
         "above": 8,
@@ -619,13 +619,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-29",
-          "open": 3666.143,
-          "high": 3697.04,
-          "low": 3618.97,
-          "close": 3678.714
-        },
         {
           "date": "2026-06-30",
           "open": 3649.811,
@@ -1248,6 +1241,13 @@
           "high": 3002.658,
           "low": 2956.471,
           "close": 2956.501
+        },
+        {
+          "date": "2026-11-10",
+          "open": 2991.507,
+          "high": 2993.57,
+          "low": 2966.212,
+          "close": 2982.509
         }
       ]
     },
@@ -1255,9 +1255,9 @@
       "name": "算力",
       "ths_code": "308828",
       "status": "tangle",
-      "ma20": 1931.65,
-      "close": 1884.32,
-      "deviation": -2.45,
+      "ma20": 1925.15,
+      "close": 1933.9,
+      "deviation": 0.45,
       "stock_count": 50,
       "status_counts": {
         "above": 8,
@@ -1868,13 +1868,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-29",
-          "open": 2276.801,
-          "high": 2285.365,
-          "low": 2211.855,
-          "close": 2245.932
-        },
         {
           "date": "2026-06-30",
           "open": 2246.861,
@@ -2497,6 +2490,13 @@
           "high": 1921.204,
           "low": 1881.411,
           "close": 1884.319
+        },
+        {
+          "date": "2026-11-10",
+          "open": 1915.6,
+          "high": 1939.329,
+          "low": 1912.257,
+          "close": 1933.9
         }
       ]
     },
@@ -2504,9 +2504,9 @@
       "name": "芯片",
       "ths_code": "301085",
       "status": "tangle",
-      "ma20": 4183.33,
-      "close": 4075.39,
-      "deviation": -2.58,
+      "ma20": 4165.36,
+      "close": 4178.16,
+      "deviation": 0.31,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 21,
@@ -3117,13 +3117,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-29",
-          "open": 5692.812,
-          "high": 5776.73,
-          "low": 5505.695,
-          "close": 5669.682
-        },
         {
           "date": "2026-06-30",
           "open": 5669.611,
@@ -3746,6 +3739,13 @@
           "high": 4146.322,
           "low": 4066.241,
           "close": 4075.393
+        },
+        {
+          "date": "2026-11-10",
+          "open": 4159.034,
+          "high": 4201.28,
+          "low": 4137.991,
+          "close": 4178.157
         }
       ]
     },
@@ -3753,9 +3753,9 @@
       "name": "AI应用",
       "ths_code": "309264",
       "status": "tangle",
-      "ma20": 813.28,
-      "close": 808.93,
-      "deviation": -0.53,
+      "ma20": 812.38,
+      "close": 830.21,
+      "deviation": 2.19,
       "stock_count": 50,
       "status_counts": {
         "above": 17,
@@ -4366,13 +4366,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-29",
-          "open": 793.778,
-          "high": 799.223,
-          "low": 782.206,
-          "close": 794.743
-        },
         {
           "date": "2026-06-30",
           "open": 794.572,
@@ -4995,16 +4988,23 @@
           "high": 829.324,
           "low": 808.588,
           "close": 808.928
+        },
+        {
+          "date": "2026-11-10",
+          "open": 818.604,
+          "high": 830.552,
+          "low": 818.604,
+          "close": 830.206
         }
       ]
     },
     {
       "name": "人形机器人",
       "ths_code": "309119",
-      "status": "tangle",
-      "ma20": 2171.75,
-      "close": 2192.71,
-      "deviation": 0.96,
+      "status": "bullish",
+      "ma20": 2174.16,
+      "close": 2265.53,
+      "deviation": 4.2,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 17,
@@ -5615,13 +5615,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-29",
-          "open": 2543.809,
-          "high": 2549.855,
-          "low": 2467.697,
-          "close": 2520.365
-        },
         {
           "date": "2026-06-30",
           "open": 2522.636,
@@ -6244,6 +6237,13 @@
           "high": 2239.201,
           "low": 2180.294,
           "close": 2192.708
+        },
+        {
+          "date": "2026-11-10",
+          "open": 2230.117,
+          "high": 2275.13,
+          "low": 2230.117,
+          "close": 2265.535
         }
       ]
     },
@@ -6251,12 +6251,12 @@
       "name": "商业航天",
       "ths_code": "309130",
       "status": "tangle",
-      "ma20": 1906.39,
-      "close": 1891.17,
-      "deviation": -0.8,
-      "stock_count": 49,
+      "ma20": 1902.61,
+      "close": 1933.37,
+      "deviation": 1.62,
+      "stock_count": 50,
       "status_counts": {
-        "above": 19,
+        "above": 20,
         "breakout_up": 21,
         "excluded": 3,
         "tangle": 6
@@ -6345,6 +6345,18 @@
           "above_streak": 9,
           "below_streak": 0,
           "deviation_alert": "warn"
+        },
+        {
+          "code": "605598",
+          "name": "上海港湾",
+          "status": "above",
+          "ma20": 23.872,
+          "close": 28.15,
+          "change_pct": 10.0,
+          "deviation": 17.92,
+          "above_streak": 9,
+          "below_streak": 0,
+          "deviation_alert": null
         },
         {
           "code": "001232",
@@ -6852,13 +6864,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-06-29",
-          "open": 2365.004,
-          "high": 2371.725,
-          "low": 2291.637,
-          "close": 2334.515
-        },
         {
           "date": "2026-06-30",
           "open": 2337.967,
@@ -7481,6 +7486,13 @@
           "high": 1928.043,
           "low": 1889.51,
           "close": 1891.175
+        },
+        {
+          "date": "2026-11-10",
+          "open": 1924.825,
+          "high": 1939.046,
+          "low": 1919.969,
+          "close": 1933.367
         }
       ]
     }
