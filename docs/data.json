@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22 16:10",
+  "updated_at": "2026-11-22 16:35",
   "trade_date": "2026-11-22",
   "sectors": [
     {
@@ -2512,8 +2512,8 @@
       "deviation": -11.39,
       "stock_count": 50,
       "status_counts": {
-        "breakout_up": 10,
-        "tangle": 8,
+        "breakout_up": 11,
+        "tangle": 7,
         "above": 18,
         "excluded": 11,
         "below_d2": 3
@@ -2559,10 +2559,10 @@
           "code": "600360",
           "name": "华微电子",
           "status": "breakout_up",
-          "ma20": 8.506,
+          "ma20": 8.504,
           "close": 9.01,
           "change_pct": 10.01,
-          "deviation": 5.93,
+          "deviation": 5.95,
           "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
@@ -2894,12 +2894,12 @@
         {
           "code": "300121",
           "name": "阳谷华泰",
-          "status": "tangle",
-          "ma20": 10.079,
+          "status": "breakout_up",
+          "ma20": 10.043,
           "close": 10.39,
           "change_pct": 0.68,
-          "deviation": 3.08,
-          "above_streak": 0,
+          "deviation": 3.45,
+          "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
         },
