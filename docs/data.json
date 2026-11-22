@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-22 16:35",
-  "trade_date": "2026-11-22",
+  "updated_at": "2026-11-23 07:03",
+  "trade_date": "2026-11-23",
   "sectors": [
     {
       "name": "小金属",
@@ -1583,7 +1583,7 @@
         },
         {
           "code": "002122",
-          "name": "ST汇洲",
+          "name": "汇洲智能",
           "status": "tangle",
           "ma20": 2.672,
           "close": 2.69,
@@ -3918,10 +3918,10 @@
           "code": "300788",
           "name": "中信出版",
           "status": "excluded",
-          "ma20": 31.581,
+          "ma20": 31.561,
           "close": 28.72,
           "change_pct": 3.61,
-          "deviation": -9.06,
+          "deviation": -9.0,
           "above_streak": 0,
           "below_streak": 4,
           "deviation_alert": null
@@ -4254,10 +4254,10 @@
           "code": "300760",
           "name": "迈瑞医疗",
           "status": "tangle",
-          "ma20": 181.43,
+          "ma20": 180.78,
           "close": 183.81,
           "change_pct": -0.54,
-          "deviation": 1.31,
+          "deviation": 1.68,
           "above_streak": 0,
           "below_streak": 0,
           "deviation_alert": null
@@ -4278,10 +4278,10 @@
           "code": "600017",
           "name": "日照港",
           "status": "tangle",
-          "ma20": 2.718,
+          "ma20": 2.717,
           "close": 2.65,
           "change_pct": -0.75,
-          "deviation": -2.52,
+          "deviation": -2.46,
           "above_streak": 0,
           "below_streak": 0,
           "deviation_alert": null
@@ -5073,10 +5073,10 @@
           "code": "301282",
           "name": "金禄电子",
           "status": "excluded",
-          "ma20": 32.847,
+          "ma20": 32.653,
           "close": 30.84,
           "change_pct": 8.17,
-          "deviation": -6.11,
+          "deviation": -5.55,
           "above_streak": 0,
           "below_streak": 23,
           "deviation_alert": null
@@ -5275,7 +5275,7 @@
         },
         {
           "code": "002122",
-          "name": "ST汇洲",
+          "name": "汇洲智能",
           "status": "tangle",
           "ma20": 2.672,
           "close": 2.69,
@@ -6348,10 +6348,10 @@
           "code": "301282",
           "name": "金禄电子",
           "status": "excluded",
-          "ma20": 32.847,
+          "ma20": 32.653,
           "close": 30.84,
           "change_pct": 8.17,
-          "deviation": -6.11,
+          "deviation": -5.55,
           "above_streak": 0,
           "below_streak": 23,
           "deviation_alert": null
