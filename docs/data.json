@@ -1,6 +1,6 @@
 {
-  "updated_at": "2026-11-21 00:54",
-  "trade_date": "2026-11-21",
+  "updated_at": "2026-11-22 16:10",
+  "trade_date": "2026-11-22",
   "sectors": [
     {
       "name": "小金属",
@@ -2559,10 +2559,10 @@
           "code": "600360",
           "name": "华微电子",
           "status": "breakout_up",
-          "ma20": 8.504,
+          "ma20": 8.506,
           "close": 9.01,
           "change_pct": 10.01,
-          "deviation": 5.95,
+          "deviation": 5.93,
           "above_streak": 1,
           "below_streak": 0,
           "deviation_alert": null
