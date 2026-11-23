@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-23 16:10",
-  "trade_date": "2026-11-23",
+  "updated_at": "2026-11-24 04:04",
+  "trade_date": "2026-11-24",
   "sectors": [
     {
       "name": "小金属",
       "ths_code": "300809",
       "status": "bearish",
-      "ma20": 2874.18,
-      "close": 2559.86,
-      "deviation": -10.94,
+      "ma20": 2855.81,
+      "close": 2627.23,
+      "deviation": -8.0,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 1,
@@ -619,13 +619,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-10",
-          "open": 3461.906,
-          "high": 3528.835,
-          "low": 3436.192,
-          "close": 3456.483
-        },
         {
           "date": "2026-07-13",
           "open": 3427.054,
@@ -1248,6 +1241,13 @@
           "high": 2631.018,
           "low": 2559.361,
           "close": 2559.86
+        },
+        {
+          "date": "2026-11-23",
+          "open": 2532.76,
+          "high": 2637.074,
+          "low": 2496.768,
+          "close": 2627.228
         }
       ]
     },
@@ -1255,9 +1255,9 @@
       "name": "算力",
       "ths_code": "308828",
       "status": "bearish",
-      "ma20": 1862.05,
-      "close": 1656.38,
-      "deviation": -11.05,
+      "ma20": 1848.51,
+      "close": 1707.34,
+      "deviation": -7.64,
       "stock_count": 50,
       "status_counts": {
         "tangle": 6,
@@ -1869,13 +1869,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-10",
-          "open": 2221.468,
-          "high": 2301.18,
-          "low": 2220.212,
-          "close": 2244.843
-        },
         {
           "date": "2026-07-13",
           "open": 2229.266,
@@ -2498,6 +2491,13 @@
           "high": 1732.072,
           "low": 1656.384,
           "close": 1656.384
+        },
+        {
+          "date": "2026-11-23",
+          "open": 1626.398,
+          "high": 1715.505,
+          "low": 1608.986,
+          "close": 1707.337
         }
       ]
     },
@@ -2505,14 +2505,14 @@
       "name": "芯片",
       "ths_code": "301085",
       "status": "bearish",
-      "ma20": 4017.26,
-      "close": 3559.75,
-      "deviation": -11.39,
-      "stock_count": 47,
+      "ma20": 3989.71,
+      "close": 3693.88,
+      "deviation": -7.41,
+      "stock_count": 50,
       "status_counts": {
-        "above": 7,
-        "tangle": 10,
-        "excluded": 24,
+        "above": 8,
+        "tangle": 11,
+        "excluded": 25,
         "breakout_up": 6
       },
       "stocks": [
@@ -2585,6 +2585,18 @@
           "change_pct": 19.99,
           "deviation": 11.65,
           "above_streak": 1,
+          "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "688322",
+          "name": "奥比中光",
+          "status": "tangle",
+          "ma20": 103.193,
+          "close": 101.95,
+          "change_pct": 19.81,
+          "deviation": -1.2,
+          "above_streak": 0,
           "below_streak": 0,
           "deviation_alert": null
         },
@@ -2718,6 +2730,18 @@
           "deviation": 3.34,
           "above_streak": 1,
           "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "920491",
+          "name": "奥迪威",
+          "status": "excluded",
+          "ma20": 20.534,
+          "close": 19.65,
+          "change_pct": 11.52,
+          "deviation": -4.31,
+          "above_streak": 0,
+          "below_streak": 5,
           "deviation_alert": null
         },
         {
@@ -2997,6 +3021,18 @@
           "deviation_alert": null
         },
         {
+          "code": "002685",
+          "name": "华东重机",
+          "status": "above",
+          "ma20": 5.492,
+          "close": 8.14,
+          "change_pct": 10.0,
+          "deviation": 48.23,
+          "above_streak": 8,
+          "below_streak": 0,
+          "deviation_alert": "warn"
+        },
+        {
           "code": "002815",
           "name": "崇达技术",
           "status": "tangle",
@@ -3082,13 +3118,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-10",
-          "open": 5563.34,
-          "high": 5694.505,
-          "low": 5471.035,
-          "close": 5471.035
-        },
         {
           "date": "2026-07-13",
           "open": 5409.258,
@@ -3711,6 +3740,13 @@
           "high": 3727.219,
           "low": 3559.752,
           "close": 3559.752
+        },
+        {
+          "date": "2026-11-23",
+          "open": 3494.34,
+          "high": 3716.265,
+          "low": 3460.179,
+          "close": 3693.883
         }
       ]
     },
@@ -3718,13 +3754,13 @@
       "name": "AI应用",
       "ths_code": "309264",
       "status": "bearish",
-      "ma20": 794.43,
-      "close": 700.7,
-      "deviation": -11.8,
-      "stock_count": 49,
+      "ma20": 788.93,
+      "close": 725.3,
+      "deviation": -8.07,
+      "stock_count": 50,
       "status_counts": {
         "breakout_up": 12,
-        "excluded": 31,
+        "excluded": 32,
         "above": 3,
         "tangle": 2,
         "below_d2": 1
@@ -3872,6 +3908,18 @@
           "deviation": -8.78,
           "above_streak": 0,
           "below_streak": 5,
+          "deviation_alert": null
+        },
+        {
+          "code": "688686",
+          "name": "奥普特",
+          "status": "excluded",
+          "ma20": 151.79,
+          "close": 136.4,
+          "change_pct": 12.26,
+          "deviation": -10.14,
+          "above_streak": 0,
+          "below_streak": 6,
           "deviation_alert": null
         },
         {
@@ -4320,13 +4368,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-10",
-          "open": 794.302,
-          "high": 826.838,
-          "low": 788.081,
-          "close": 812.224
-        },
         {
           "date": "2026-07-13",
           "open": 807.729,
@@ -4949,6 +4990,13 @@
           "high": 730.705,
           "low": 700.703,
           "close": 700.703
+        },
+        {
+          "date": "2026-11-23",
+          "open": 690.002,
+          "high": 728.126,
+          "low": 684.552,
+          "close": 725.297
         }
       ]
     },
@@ -4956,9 +5004,9 @@
       "name": "人形机器人",
       "ths_code": "309119",
       "status": "bearish",
-      "ma20": 2143.12,
-      "close": 1847.7,
-      "deviation": -13.78,
+      "ma20": 2128.94,
+      "close": 1956.92,
+      "deviation": -8.08,
       "stock_count": 50,
       "status_counts": {
         "above": 2,
@@ -5569,13 +5617,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-10",
-          "open": 2530.758,
-          "high": 2607.954,
-          "low": 2530.758,
-          "close": 2539.233
-        },
         {
           "date": "2026-07-13",
           "open": 2518.122,
@@ -6198,6 +6239,13 @@
           "high": 1936.176,
           "low": 1847.699,
           "close": 1847.699
+        },
+        {
+          "date": "2026-11-23",
+          "open": 1817.835,
+          "high": 1966.976,
+          "low": 1817.835,
+          "close": 1956.918
         }
       ]
     },
@@ -6205,9 +6253,9 @@
       "name": "商业航天",
       "ths_code": "309130",
       "status": "bearish",
-      "ma20": 1839.0,
-      "close": 1595.14,
-      "deviation": -13.26,
+      "ma20": 1825.19,
+      "close": 1653.85,
+      "deviation": -9.39,
       "stock_count": 50,
       "status_counts": {
         "excluded": 39,
@@ -6818,13 +6866,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-10",
-          "open": 2275.52,
-          "high": 2399.259,
-          "low": 2275.418,
-          "close": 2322.482
-        },
         {
           "date": "2026-07-13",
           "open": 2306.521,
@@ -7447,6 +7488,13 @@
           "high": 1664.516,
           "low": 1595.142,
           "close": 1595.142
+        },
+        {
+          "date": "2026-11-23",
+          "open": 1569.917,
+          "high": 1661.027,
+          "low": 1557.225,
+          "close": 1653.85
         }
       ]
     }
@@ -7478,6 +7526,15 @@
       "alert": "warn",
       "close": 17.4,
       "ma20": 11.671
+    },
+    {
+      "sector": "芯片",
+      "code": "002685",
+      "name": "华东重机",
+      "deviation": 48.23,
+      "alert": "warn",
+      "close": 8.14,
+      "ma20": 5.492
     },
     {
       "sector": "芯片",
