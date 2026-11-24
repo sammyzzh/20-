@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-24 16:10",
-  "trade_date": "2026-11-24",
+  "updated_at": "2026-11-25 03:28",
+  "trade_date": "2026-11-25",
   "sectors": [
     {
       "name": "小金属",
       "ths_code": "300809",
       "status": "bearish",
-      "ma20": 2855.81,
-      "close": 2627.23,
-      "deviation": -8.0,
+      "ma20": 2839.13,
+      "close": 2596.58,
+      "deviation": -8.54,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 1,
@@ -620,13 +620,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-13",
-          "open": 3427.054,
-          "high": 3427.054,
-          "low": 3279.585,
-          "close": 3286.964
-        },
         {
           "date": "2026-07-14",
           "open": 3282.689,
@@ -1249,6 +1242,13 @@
           "high": 2637.074,
           "low": 2496.768,
           "close": 2627.228
+        },
+        {
+          "date": "2026-11-24",
+          "open": 2688.604,
+          "high": 2697.628,
+          "low": 2586.412,
+          "close": 2596.579
         }
       ]
     },
@@ -1256,9 +1256,9 @@
       "name": "算力",
       "ths_code": "308828",
       "status": "bearish",
-      "ma20": 1848.51,
-      "close": 1707.34,
-      "deviation": -7.64,
+      "ma20": 1838.7,
+      "close": 1710.02,
+      "deviation": -7.0,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 7,
@@ -1869,13 +1869,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-13",
-          "open": 2229.266,
-          "high": 2242.532,
-          "low": 2115.518,
-          "close": 2123.297
-        },
         {
           "date": "2026-07-14",
           "open": 2121.356,
@@ -2498,6 +2491,13 @@
           "high": 1715.505,
           "low": 1608.986,
           "close": 1707.337
+        },
+        {
+          "date": "2026-11-24",
+          "open": 1755.517,
+          "high": 1773.345,
+          "low": 1704.038,
+          "close": 1710.015
         }
       ]
     },
@@ -2505,9 +2505,9 @@
       "name": "芯片",
       "ths_code": "301085",
       "status": "bearish",
-      "ma20": 3989.71,
-      "close": 3693.88,
-      "deviation": -7.41,
+      "ma20": 3971.19,
+      "close": 3716.54,
+      "deviation": -6.41,
       "stock_count": 50,
       "status_counts": {
         "breakout_up": 9,
@@ -3118,13 +3118,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-13",
-          "open": 5409.258,
-          "high": 5450.016,
-          "low": 5120.324,
-          "close": 5136.671
-        },
         {
           "date": "2026-07-14",
           "open": 5139.225,
@@ -3747,6 +3740,13 @@
           "high": 3716.265,
           "low": 3460.179,
           "close": 3693.883
+        },
+        {
+          "date": "2026-11-24",
+          "open": 3827.618,
+          "high": 3861.228,
+          "low": 3704.151,
+          "close": 3716.544
         }
       ]
     },
@@ -3754,15 +3754,15 @@
       "name": "AI应用",
       "ths_code": "309264",
       "status": "bearish",
-      "ma20": 788.93,
-      "close": 725.3,
-      "deviation": -8.07,
-      "stock_count": 49,
+      "ma20": 784.96,
+      "close": 724.62,
+      "deviation": -7.69,
+      "stock_count": 50,
       "status_counts": {
         "above": 10,
         "tangle": 11,
-        "breakout_up": 3,
-        "excluded": 25
+        "excluded": 26,
+        "breakout_up": 3
       },
       "stocks": [
         {
@@ -3823,6 +3823,18 @@
           "deviation": 14.02,
           "above_streak": 21,
           "below_streak": 0,
+          "deviation_alert": null
+        },
+        {
+          "code": "601599",
+          "name": "浙文影业",
+          "status": "excluded",
+          "ma20": 4.314,
+          "close": 4.02,
+          "change_pct": 10.14,
+          "deviation": -6.82,
+          "above_streak": 0,
+          "below_streak": 4,
           "deviation_alert": null
         },
         {
@@ -4355,13 +4367,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-13",
-          "open": 807.729,
-          "high": 811.979,
-          "low": 775.343,
-          "close": 777.873
-        },
         {
           "date": "2026-07-14",
           "open": 777.619,
@@ -4984,6 +4989,13 @@
           "high": 728.126,
           "low": 684.552,
           "close": 725.297
+        },
+        {
+          "date": "2026-11-24",
+          "open": 738.945,
+          "high": 748.681,
+          "low": 721.734,
+          "close": 724.618
         }
       ]
     },
@@ -6240,9 +6252,9 @@
       "name": "商业航天",
       "ths_code": "309130",
       "status": "bearish",
-      "ma20": 1825.19,
-      "close": 1653.85,
-      "deviation": -9.39,
+      "ma20": 1815.28,
+      "close": 1661.24,
+      "deviation": -8.49,
       "stock_count": 50,
       "status_counts": {
         "tangle": 14,
@@ -6853,13 +6865,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-13",
-          "open": 2306.521,
-          "high": 2306.973,
-          "low": 2161.201,
-          "close": 2164.2
-        },
         {
           "date": "2026-07-14",
           "open": 2155.773,
@@ -7482,6 +7487,13 @@
           "high": 1661.027,
           "low": 1557.225,
           "close": 1653.85
+        },
+        {
+          "date": "2026-11-24",
+          "open": 1701.869,
+          "high": 1716.632,
+          "low": 1653.912,
+          "close": 1661.236
         }
       ]
     }
