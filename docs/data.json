@@ -1,632 +1,18 @@
 {
-  "updated_at": "2026-11-25 16:10",
-  "trade_date": "2026-11-25",
+  "updated_at": "2026-11-26 02:36",
+  "trade_date": "2026-11-26",
   "sectors": [
     {
       "name": "小金属",
       "ths_code": "300809",
       "status": "bearish",
-      "ma20": 2839.13,
-      "close": 2596.58,
-      "deviation": -8.54,
-      "stock_count": 50,
-      "status_counts": {
-        "above": 1,
-        "tangle": 9,
-        "below_d2": 4,
-        "excluded": 35,
-        "below_d1": 1
-      },
-      "stocks": [
-        {
-          "code": "000711",
-          "name": "京蓝科技",
-          "status": "above",
-          "ma20": 3.585,
-          "close": 4.52,
-          "change_pct": 6.6,
-          "deviation": 26.08,
-          "above_streak": 5,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "600157",
-          "name": "永泰能源",
-          "status": "tangle",
-          "ma20": 1.359,
-          "close": 1.33,
-          "change_pct": 2.31,
-          "deviation": -2.1,
-          "above_streak": 0,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "603389",
-          "name": "亚振家居",
-          "status": "tangle",
-          "ma20": 50.921,
-          "close": 49.35,
-          "change_pct": 2.07,
-          "deviation": -3.08,
-          "above_streak": 0,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "600655",
-          "name": "豫园股份",
-          "status": "tangle",
-          "ma20": 4.479,
-          "close": 4.45,
-          "change_pct": 1.6,
-          "deviation": -0.65,
-          "above_streak": 0,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "000983",
-          "name": "山西焦煤",
-          "status": "below_d2",
-          "ma20": 6.339,
-          "close": 6.12,
-          "change_pct": 1.16,
-          "deviation": -3.45,
-          "above_streak": 0,
-          "below_streak": 2,
-          "deviation_alert": null
-        },
-        {
-          "code": "600295",
-          "name": "鄂尔多斯",
-          "status": "below_d2",
-          "ma20": 14.966,
-          "close": 14.43,
-          "change_pct": 0.21,
-          "deviation": -3.58,
-          "above_streak": 0,
-          "below_streak": 2,
-          "deviation_alert": null
-        },
-        {
-          "code": "600188",
-          "name": "兖矿能源",
-          "status": "excluded",
-          "ma20": 17.528,
-          "close": 16.67,
-          "change_pct": 0.18,
-          "deviation": -4.9,
-          "above_streak": 0,
-          "below_streak": 7,
-          "deviation_alert": null
-        },
-        {
-          "code": "600301",
-          "name": "华锡有色",
-          "status": "tangle",
-          "ma20": 44.114,
-          "close": 43.8,
-          "change_pct": 0.05,
-          "deviation": -0.71,
-          "above_streak": 0,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "600111",
-          "name": "北方稀土",
-          "status": "excluded",
-          "ma20": 34.572,
-          "close": 31.55,
-          "change_pct": 0.0,
-          "deviation": -8.74,
-          "above_streak": 0,
-          "below_streak": 8,
-          "deviation_alert": null
-        },
-        {
-          "code": "000778",
-          "name": "新兴铸管",
-          "status": "excluded",
-          "ma20": 3.387,
-          "close": 3.22,
-          "change_pct": -0.31,
-          "deviation": -4.92,
-          "above_streak": 0,
-          "below_streak": 4,
-          "deviation_alert": null
-        },
-        {
-          "code": "600704",
-          "name": "物产中大",
-          "status": "excluded",
-          "ma20": 5.014,
-          "close": 4.86,
-          "change_pct": -0.41,
-          "deviation": -3.08,
-          "above_streak": 0,
-          "below_streak": 4,
-          "deviation_alert": null
-        },
-        {
-          "code": "000975",
-          "name": "山金国际",
-          "status": "below_d2",
-          "ma20": 22.343,
-          "close": 21.26,
-          "change_pct": -0.42,
-          "deviation": -4.85,
-          "above_streak": 0,
-          "below_streak": 2,
-          "deviation_alert": null
-        },
-        {
-          "code": "601669",
-          "name": "中国电建",
-          "status": "tangle",
-          "ma20": 4.437,
-          "close": 4.37,
-          "change_pct": -0.46,
-          "deviation": -1.51,
-          "above_streak": 0,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "600116",
-          "name": "三峡水利",
-          "status": "excluded",
-          "ma20": 5.809,
-          "close": 5.5,
-          "change_pct": -0.54,
-          "deviation": -5.33,
-          "above_streak": 0,
-          "below_streak": 3,
-          "deviation_alert": null
-        },
-        {
-          "code": "603067",
-          "name": "振华股份",
-          "status": "excluded",
-          "ma20": 21.011,
-          "close": 17.5,
-          "change_pct": -0.62,
-          "deviation": -16.71,
-          "above_streak": 0,
-          "below_streak": 28,
-          "deviation_alert": null
-        },
-        {
-          "code": "600612",
-          "name": "老凤祥",
-          "status": "tangle",
-          "ma20": 31.729,
-          "close": 30.89,
-          "change_pct": -0.68,
-          "deviation": -2.64,
-          "above_streak": 0,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "601390",
-          "name": "中国中铁",
-          "status": "tangle",
-          "ma20": 4.295,
-          "close": 4.19,
-          "change_pct": -0.71,
-          "deviation": -2.43,
-          "above_streak": 0,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "000816",
-          "name": "智慧农业",
-          "status": "tangle",
-          "ma20": 2.688,
-          "close": 2.62,
-          "change_pct": -0.76,
-          "deviation": -2.53,
-          "above_streak": 0,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "600755",
-          "name": "厦门国贸",
-          "status": "excluded",
-          "ma20": 5.476,
-          "close": 5.09,
-          "change_pct": -0.78,
-          "deviation": -7.05,
-          "above_streak": 0,
-          "below_streak": 3,
-          "deviation_alert": null
-        },
-        {
-          "code": "920792",
-          "name": "东和新材",
-          "status": "excluded",
-          "ma20": 8.402,
-          "close": 7.55,
-          "change_pct": -0.79,
-          "deviation": -10.14,
-          "above_streak": 0,
-          "below_streak": 13,
-          "deviation_alert": null
-        },
-        {
-          "code": "000697",
-          "name": "炼石航空",
-          "status": "excluded",
-          "ma20": 8.961,
-          "close": 8.36,
-          "change_pct": -0.83,
-          "deviation": -6.71,
-          "above_streak": 0,
-          "below_streak": 4,
-          "deviation_alert": null
-        },
-        {
-          "code": "603993",
-          "name": "洛阳钼业",
-          "status": "excluded",
-          "ma20": 12.952,
-          "close": 11.6,
-          "change_pct": -0.85,
-          "deviation": -10.44,
-          "above_streak": 0,
-          "below_streak": 30,
-          "deviation_alert": null
-        },
-        {
-          "code": "002601",
-          "name": "龙佰集团",
-          "status": "below_d1",
-          "ma20": 15.008,
-          "close": 14.51,
-          "change_pct": -0.89,
-          "deviation": -3.32,
-          "above_streak": 0,
-          "below_streak": 1,
-          "deviation_alert": null
-        },
-        {
-          "code": "601899",
-          "name": "紫金矿业",
-          "status": "excluded",
-          "ma20": 26.453,
-          "close": 22.97,
-          "change_pct": -1.03,
-          "deviation": -13.17,
-          "above_streak": 0,
-          "below_streak": 10,
-          "deviation_alert": null
-        },
-        {
-          "code": "300477",
-          "name": "ST合纵",
-          "status": "excluded",
-          "ma20": 1.946,
-          "close": 1.79,
-          "change_pct": -1.1,
-          "deviation": -8.02,
-          "above_streak": 0,
-          "below_streak": 28,
-          "deviation_alert": null
-        },
-        {
-          "code": "000629",
-          "name": "钒钛股份",
-          "status": "excluded",
-          "ma20": 2.626,
-          "close": 2.44,
-          "change_pct": -1.21,
-          "deviation": -7.08,
-          "above_streak": 0,
-          "below_streak": 5,
-          "deviation_alert": null
-        },
-        {
-          "code": "000850",
-          "name": "华茂股份",
-          "status": "excluded",
-          "ma20": 3.456,
-          "close": 3.16,
-          "change_pct": -1.25,
-          "deviation": -8.58,
-          "above_streak": 0,
-          "below_streak": 9,
-          "deviation_alert": null
-        },
-        {
-          "code": "600868",
-          "name": "梅雁吉祥",
-          "status": "excluded",
-          "ma20": 2.545,
-          "close": 2.31,
-          "change_pct": -1.28,
-          "deviation": -9.22,
-          "above_streak": 0,
-          "below_streak": 8,
-          "deviation_alert": null
-        },
-        {
-          "code": "002312",
-          "name": "川发龙蟒",
-          "status": "excluded",
-          "ma20": 6.739,
-          "close": 6.32,
-          "change_pct": -1.4,
-          "deviation": -6.22,
-          "above_streak": 0,
-          "below_streak": 6,
-          "deviation_alert": null
-        },
-        {
-          "code": "601106",
-          "name": "中国一重",
-          "status": "excluded",
-          "ma20": 2.788,
-          "close": 2.59,
-          "change_pct": -1.52,
-          "deviation": -7.1,
-          "above_streak": 0,
-          "below_streak": 9,
-          "deviation_alert": null
-        },
-        {
-          "code": "600711",
-          "name": "盛屯矿业",
-          "status": "excluded",
-          "ma20": 7.928,
-          "close": 7.07,
-          "change_pct": -1.53,
-          "deviation": -10.82,
-          "above_streak": 0,
-          "below_streak": 30,
-          "deviation_alert": null
-        },
-        {
-          "code": "600382",
-          "name": "广东明珠",
-          "status": "excluded",
-          "ma20": 5.052,
-          "close": 4.36,
-          "change_pct": -1.58,
-          "deviation": -13.7,
-          "above_streak": 0,
-          "below_streak": 8,
-          "deviation_alert": null
-        },
-        {
-          "code": "300267",
-          "name": "尔康制药",
-          "status": "excluded",
-          "ma20": 2.801,
-          "close": 2.48,
-          "change_pct": -1.59,
-          "deviation": -11.44,
-          "above_streak": 0,
-          "below_streak": 9,
-          "deviation_alert": null
-        },
-        {
-          "code": "600326",
-          "name": "西藏天路",
-          "status": "excluded",
-          "ma20": 5.63,
-          "close": 4.91,
-          "change_pct": -1.6,
-          "deviation": -12.8,
-          "above_streak": 0,
-          "below_streak": 9,
-          "deviation_alert": null
-        },
-        {
-          "code": "603077",
-          "name": "和邦生物",
-          "status": "excluded",
-          "ma20": 1.982,
-          "close": 1.81,
-          "change_pct": -1.63,
-          "deviation": -8.66,
-          "above_streak": 0,
-          "below_streak": 9,
-          "deviation_alert": null
-        },
-        {
-          "code": "000792",
-          "name": "盐湖股份",
-          "status": "tangle",
-          "ma20": 22.039,
-          "close": 21.73,
-          "change_pct": -1.67,
-          "deviation": -1.4,
-          "above_streak": 0,
-          "below_streak": 0,
-          "deviation_alert": null
-        },
-        {
-          "code": "601969",
-          "name": "海南矿业",
-          "status": "excluded",
-          "ma20": 7.738,
-          "close": 6.81,
-          "change_pct": -1.73,
-          "deviation": -12.0,
-          "above_streak": 0,
-          "below_streak": 10,
-          "deviation_alert": null
-        },
-        {
-          "code": "000831",
-          "name": "中国稀土",
-          "status": "excluded",
-          "ma20": 45.397,
-          "close": 36.45,
-          "change_pct": -1.78,
-          "deviation": -19.71,
-          "above_streak": 0,
-          "below_streak": 7,
-          "deviation_alert": null
-        },
-        {
-          "code": "002562",
-          "name": "兄弟科技",
-          "status": "excluded",
-          "ma20": 4.037,
-          "close": 3.65,
-          "change_pct": -1.88,
-          "deviation": -9.59,
-          "above_streak": 0,
-          "below_streak": 30,
-          "deviation_alert": null
-        },
-        {
-          "code": "600328",
-          "name": "中盐化工",
-          "status": "excluded",
-          "ma20": 5.24,
-          "close": 4.76,
-          "change_pct": -2.06,
-          "deviation": -9.17,
-          "above_streak": 0,
-          "below_streak": 10,
-          "deviation_alert": null
-        },
-        {
-          "code": "002978",
-          "name": "安宁股份",
-          "status": "excluded",
-          "ma20": 23.327,
-          "close": 20.9,
-          "change_pct": -2.06,
-          "deviation": -10.4,
-          "above_streak": 0,
-          "below_streak": 9,
-          "deviation_alert": null
-        },
-        {
-          "code": "600489",
-          "name": "中金黄金",
-          "status": "excluded",
-          "ma20": 19.101,
-          "close": 16.5,
-          "change_pct": -2.08,
-          "deviation": -13.62,
-          "above_streak": 0,
-          "below_streak": 10,
-          "deviation_alert": null
-        },
-        {
-          "code": "002721",
-          "name": "金一文化",
-          "status": "excluded",
-          "ma20": 2.345,
-          "close": 2.19,
-          "change_pct": -2.23,
-          "deviation": -6.63,
-          "above_streak": 0,
-          "below_streak": 8,
-          "deviation_alert": null
-        },
-        {
-          "code": "601600",
-          "name": "中国铝业",
-          "status": "excluded",
-          "ma20": 8.178,
-          "close": 7.44,
-          "change_pct": -2.23,
-          "deviation": -9.03,
-          "above_streak": 0,
-          "below_streak": 12,
-          "deviation_alert": null
-        },
-        {
-          "code": "600362",
-          "name": "江西铜业",
-          "status": "excluded",
-          "ma20": 31.181,
-          "close": 27.68,
-          "change_pct": -2.26,
-          "deviation": -11.23,
-          "above_streak": 0,
-          "below_streak": 30,
-          "deviation_alert": null
-        },
-        {
-          "code": "601168",
-          "name": "西部矿业",
-          "status": "excluded",
-          "ma20": 27.12,
-          "close": 24.16,
-          "change_pct": -2.3,
-          "deviation": -10.91,
-          "above_streak": 0,
-          "below_streak": 30,
-          "deviation_alert": null
-        },
-        {
-          "code": "300187",
-          "name": "永清环保",
-          "status": "excluded",
-          "ma20": 4.187,
-          "close": 3.74,
-          "change_pct": -2.35,
-          "deviation": -10.69,
-          "above_streak": 0,
-          "below_streak": 7,
-          "deviation_alert": null
-        },
-        {
-          "code": "600101",
-          "name": "明星电力",
-          "status": "excluded",
-          "ma20": 7.247,
-          "close": 6.63,
-          "change_pct": -2.36,
-          "deviation": -8.52,
-          "above_streak": 0,
-          "below_streak": 4,
-          "deviation_alert": null
-        },
-        {
-          "code": "000009",
-          "name": "中国宝安",
-          "status": "below_d2",
-          "ma20": 6.465,
-          "close": 6.11,
-          "change_pct": -2.4,
-          "deviation": -5.48,
-          "above_streak": 0,
-          "below_streak": 2,
-          "deviation_alert": null
-        },
-        {
-          "code": "000878",
-          "name": "云南铜业",
-          "status": "excluded",
-          "ma20": 13.096,
-          "close": 11.74,
-          "change_pct": -2.41,
-          "deviation": -10.35,
-          "above_streak": 0,
-          "below_streak": 10,
-          "deviation_alert": null
-        }
-      ],
+      "ma20": 2816.13,
+      "close": 2497.37,
+      "deviation": -11.32,
+      "stock_count": 0,
+      "status_counts": {},
+      "stocks": [],
       "klines": [
-        {
-          "date": "2026-07-14",
-          "open": 3282.689,
-          "high": 3390.745,
-          "low": 3253.531,
-          "close": 3390.745
-        },
         {
           "date": "2026-07-15",
           "open": 3396.709,
@@ -1249,6 +635,13 @@
           "high": 2697.628,
           "low": 2586.412,
           "close": 2596.579
+        },
+        {
+          "date": "2026-11-25",
+          "open": 2555.303,
+          "high": 2608.051,
+          "low": 2497.366,
+          "close": 2497.366
         }
       ]
     },
@@ -1256,9 +649,9 @@
       "name": "算力",
       "ths_code": "308828",
       "status": "bearish",
-      "ma20": 1838.7,
-      "close": 1710.02,
-      "deviation": -7.0,
+      "ma20": 1823.08,
+      "close": 1633.26,
+      "deviation": -10.41,
       "stock_count": 50,
       "status_counts": {
         "above": 14,
@@ -1870,13 +1263,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-14",
-          "open": 2121.356,
-          "high": 2132.281,
-          "low": 2052.044,
-          "close": 2132.253
-        },
         {
           "date": "2026-07-15",
           "open": 2128.787,
@@ -2499,6 +1885,13 @@
           "high": 1773.345,
           "low": 1704.038,
           "close": 1710.015
+        },
+        {
+          "date": "2026-11-25",
+          "open": 1685.223,
+          "high": 1720.688,
+          "low": 1633.257,
+          "close": 1633.257
         }
       ]
     },
@@ -2506,9 +1899,9 @@
       "name": "芯片",
       "ths_code": "301085",
       "status": "bearish",
-      "ma20": 3971.19,
-      "close": 3716.54,
-      "deviation": -6.41,
+      "ma20": 3935.01,
+      "close": 3498.42,
+      "deviation": -11.1,
       "stock_count": 50,
       "status_counts": {
         "above": 14,
@@ -3119,13 +2512,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-14",
-          "open": 5139.225,
-          "high": 5200.262,
-          "low": 4960.906,
-          "close": 5180.036
-        },
         {
           "date": "2026-07-15",
           "open": 5205.41,
@@ -3748,6 +3134,13 @@
           "high": 3861.228,
           "low": 3704.151,
           "close": 3716.544
+        },
+        {
+          "date": "2026-11-25",
+          "open": 3650.936,
+          "high": 3717.916,
+          "low": 3498.417,
+          "close": 3498.417
         }
       ]
     },
@@ -3755,9 +3148,9 @@
       "name": "AI应用",
       "ths_code": "309264",
       "status": "bearish",
-      "ma20": 784.96,
-      "close": 724.62,
-      "deviation": -7.69,
+      "ma20": 779.12,
+      "close": 699.53,
+      "deviation": -10.22,
       "stock_count": 50,
       "status_counts": {
         "tangle": 11,
@@ -4262,10 +3655,10 @@
           "code": "300760",
           "name": "迈瑞医疗",
           "status": "tangle",
-          "ma20": 181.368,
+          "ma20": 181.823,
           "close": 181.0,
           "change_pct": 0.44,
-          "deviation": -0.2,
+          "deviation": -0.45,
           "above_streak": 0,
           "below_streak": 0,
           "deviation_alert": null
@@ -4298,10 +3691,10 @@
           "code": "605098",
           "name": "行动教育",
           "status": "tangle",
-          "ma20": 53.051,
+          "ma20": 53.571,
           "close": 52.2,
           "change_pct": 0.37,
-          "deviation": -1.6,
+          "deviation": -2.56,
           "above_streak": 0,
           "below_streak": 0,
           "deviation_alert": null
@@ -4368,13 +3761,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-14",
-          "open": 777.619,
-          "high": 779.299,
-          "low": 758.408,
-          "close": 778.734
-        },
         {
           "date": "2026-07-15",
           "open": 776.552,
@@ -4997,6 +4383,13 @@
           "high": 748.681,
           "low": 721.734,
           "close": 724.618
+        },
+        {
+          "date": "2026-11-25",
+          "open": 716.707,
+          "high": 731.255,
+          "low": 699.535,
+          "close": 699.535
         }
       ]
     },
@@ -5004,9 +4397,9 @@
       "name": "人形机器人",
       "ths_code": "309119",
       "status": "bearish",
-      "ma20": 2119.06,
-      "close": 1980.98,
-      "deviation": -6.52,
+      "ma20": 2098.95,
+      "close": 1866.74,
+      "deviation": -11.06,
       "stock_count": 50,
       "status_counts": {
         "above": 11,
@@ -5618,13 +5011,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-14",
-          "open": 2383.928,
-          "high": 2410.611,
-          "low": 2323.75,
-          "close": 2407.565
-        },
         {
           "date": "2026-07-15",
           "open": 2413.542,
@@ -6247,6 +5633,13 @@
           "high": 2053.182,
           "low": 1973.735,
           "close": 1980.984
+        },
+        {
+          "date": "2026-11-25",
+          "open": 1953.397,
+          "high": 1985.135,
+          "low": 1866.744,
+          "close": 1866.744
         }
       ]
     },
@@ -6254,9 +5647,9 @@
       "name": "商业航天",
       "ths_code": "309130",
       "status": "bearish",
-      "ma20": 1815.28,
-      "close": 1661.24,
-      "deviation": -8.49,
+      "ma20": 1798.85,
+      "close": 1582.22,
+      "deviation": -12.04,
       "stock_count": 50,
       "status_counts": {
         "excluded": 30,
@@ -6868,13 +6261,6 @@
         }
       ],
       "klines": [
-        {
-          "date": "2026-07-14",
-          "open": 2155.773,
-          "high": 2158.711,
-          "low": 2079.293,
-          "close": 2154.197
-        },
         {
           "date": "2026-07-15",
           "open": 2153.441,
@@ -7497,6 +6883,13 @@
           "high": 1716.632,
           "low": 1653.912,
           "close": 1661.236
+        },
+        {
+          "date": "2026-11-25",
+          "open": 1638.673,
+          "high": 1671.68,
+          "low": 1582.223,
+          "close": 1582.223
         }
       ]
     }
